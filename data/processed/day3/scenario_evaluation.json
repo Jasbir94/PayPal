@@ -1,0 +1,3615 @@
+{
+  "metadata": {
+    "selected_model": "tfidf_logistic_regression",
+    "selected_by": "validation macro F1",
+    "seed": 42,
+    "sklearn_version": "1.5.2",
+    "labels": [
+      "normal_or_unknown",
+      "government_impersonation",
+      "bank_impersonation",
+      "investment_scam",
+      "fake_job_scam",
+      "tech_support_scam",
+      "romance_scam",
+      "family_emergency_scam",
+      "marketplace_scam",
+      "loan_scam",
+      "refund_scam"
+    ],
+    "input_features": [
+      "text"
+    ],
+    "split_strategy": "60/20/20 class/language balanced; template families stay in one split",
+    "confidence_kind": "uncalibrated logistic output",
+    "dataset_sha256": "f22749428ad19c79a3fba9be2e75aac202ad9a720c6840d4d7a5e685409f1fb1",
+    "limitations": "Synthetic narratives, only 110 source families. No real-world performance or calibrated fraud probability."
+  },
+  "models": {
+    "tfidf_logistic_regression": {
+      "validation": {
+        "accuracy": 0.6127272727272727,
+        "macro_precision": 0.5674599637468728,
+        "macro_recall": 0.6127272727272728,
+        "macro_f1": 0.5667902102236636,
+        "sample_count": 1100,
+        "per_class": {
+          "normal_or_unknown": {
+            "precision": 0.9803921568627451,
+            "recall": 0.5,
+            "f1": 0.6622516556291391,
+            "support": 100
+          },
+          "government_impersonation": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 100
+          },
+          "bank_impersonation": {
+            "precision": 0.6451612903225806,
+            "recall": 1.0,
+            "f1": 0.7843137254901961,
+            "support": 100
+          },
+          "investment_scam": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 100
+          },
+          "fake_job_scam": {
+            "precision": 0.7246376811594203,
+            "recall": 1.0,
+            "f1": 0.8403361344537815,
+            "support": 100
+          },
+          "tech_support_scam": {
+            "precision": 0.33557046979865773,
+            "recall": 0.5,
+            "f1": 0.40160642570281124,
+            "support": 100
+          },
+          "romance_scam": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 100
+          },
+          "family_emergency_scam": {
+            "precision": 0.4,
+            "recall": 0.5,
+            "f1": 0.4444444444444444,
+            "support": 100
+          },
+          "marketplace_scam": {
+            "precision": 0.8928571428571429,
+            "recall": 0.5,
+            "f1": 0.6410256410256411,
+            "support": 100
+          },
+          "loan_scam": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "support": 100
+          },
+          "refund_scam": {
+            "precision": 0.5967741935483871,
+            "recall": 0.74,
+            "f1": 0.6607142857142857,
+            "support": 100
+          }
+        },
+        "confusion_matrix_labels": [
+          "normal_or_unknown",
+          "government_impersonation",
+          "bank_impersonation",
+          "investment_scam",
+          "fake_job_scam",
+          "tech_support_scam",
+          "romance_scam",
+          "family_emergency_scam",
+          "marketplace_scam",
+          "loan_scam",
+          "refund_scam"
+        ],
+        "confusion_matrix": [
+          [
+            50,
+            0,
+            50,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            99,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0,
+            0,
+            50,
+            24,
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            5,
+            0,
+            37,
+            0,
+            0,
+            50,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            0,
+            50,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            0,
+            50
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            25,
+            0,
+            0,
+            74
+          ]
+        ],
+        "most_common_confusions": [
+          {
+            "actual": "government_impersonation",
+            "predicted": "tech_support_scam",
+            "count": 99
+          },
+          {
+            "actual": "normal_or_unknown",
+            "predicted": "bank_impersonation",
+            "count": 50
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "family_emergency_scam",
+            "count": 50
+          },
+          {
+            "actual": "family_emergency_scam",
+            "predicted": "loan_scam",
+            "count": 50
+          },
+          {
+            "actual": "marketplace_scam",
+            "predicted": "refund_scam",
+            "count": 50
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "fake_job_scam",
+            "count": 37
+          },
+          {
+            "actual": "refund_scam",
+            "predicted": "family_emergency_scam",
+            "count": 25
+          },
+          {
+            "actual": "tech_support_scam",
+            "predicted": "romance_scam",
+            "count": 24
+          },
+          {
+            "actual": "tech_support_scam",
+            "predicted": "government_impersonation",
+            "count": 20
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "government_impersonation",
+            "count": 8
+          },
+          {
+            "actual": "tech_support_scam",
+            "predicted": "marketplace_scam",
+            "count": 6
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "bank_impersonation",
+            "count": 5
+          }
+        ],
+        "by_language": {
+          "English": {
+            "accuracy": 0.7272727272727273,
+            "macro_precision": 0.5909090909090909,
+            "macro_recall": 0.7272727272727273,
+            "macro_f1": 0.6363636363636364,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "government_impersonation",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "family_emergency_scam",
+                "count": 50
+              },
+              {
+                "actual": "marketplace_scam",
+                "predicted": "refund_scam",
+                "count": 50
+              }
+            ]
+          },
+          "Hinglish": {
+            "accuracy": 0.49818181818181817,
+            "macro_precision": 0.4033844942935852,
+            "macro_recall": 0.4981818181818182,
+            "macro_f1": 0.42077368301931006,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 0.47619047619047616,
+                "recall": 1.0,
+                "f1": 0.6451612903225806,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 0.5681818181818182,
+                "recall": 1.0,
+                "f1": 0.7246376811594203,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.8928571428571429,
+                "recall": 1.0,
+                "f1": 0.9433962264150944,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 1.0,
+                "recall": 0.48,
+                "f1": 0.6486486486486487,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                1,
+                49,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                24,
+                0,
+                6,
+                0,
+                0
+              ],
+              [
+                0,
+                8,
+                5,
+                0,
+                37,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                25,
+                0,
+                0,
+                24
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "normal_or_unknown",
+                "predicted": "bank_impersonation",
+                "count": 50
+              },
+              {
+                "actual": "family_emergency_scam",
+                "predicted": "loan_scam",
+                "count": 50
+              },
+              {
+                "actual": "government_impersonation",
+                "predicted": "tech_support_scam",
+                "count": 49
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "fake_job_scam",
+                "count": 37
+              },
+              {
+                "actual": "refund_scam",
+                "predicted": "family_emergency_scam",
+                "count": 25
+              },
+              {
+                "actual": "tech_support_scam",
+                "predicted": "romance_scam",
+                "count": 24
+              },
+              {
+                "actual": "tech_support_scam",
+                "predicted": "government_impersonation",
+                "count": 20
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "government_impersonation",
+                "count": 8
+              },
+              {
+                "actual": "tech_support_scam",
+                "predicted": "marketplace_scam",
+                "count": 6
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "bank_impersonation",
+                "count": 5
+              },
+              {
+                "actual": "government_impersonation",
+                "predicted": "fake_job_scam",
+                "count": 1
+              },
+              {
+                "actual": "refund_scam",
+                "predicted": "normal_or_unknown",
+                "count": 1
+              }
+            ]
+          }
+        }
+      },
+      "test": {
+        "accuracy": 0.6609090909090909,
+        "macro_precision": 0.6479342346833454,
+        "macro_recall": 0.6609090909090909,
+        "macro_f1": 0.6299923182162313,
+        "sample_count": 1100,
+        "per_class": {
+          "normal_or_unknown": {
+            "precision": 0.5050505050505051,
+            "recall": 0.5,
+            "f1": 0.5025125628140703,
+            "support": 100
+          },
+          "government_impersonation": {
+            "precision": 0.66,
+            "recall": 0.99,
+            "f1": 0.792,
+            "support": 100
+          },
+          "bank_impersonation": {
+            "precision": 0.375,
+            "recall": 0.27,
+            "f1": 0.313953488372093,
+            "support": 100
+          },
+          "investment_scam": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 100
+          },
+          "fake_job_scam": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 100
+          },
+          "tech_support_scam": {
+            "precision": 0.4048582995951417,
+            "recall": 1.0,
+            "f1": 0.5763688760806917,
+            "support": 100
+          },
+          "romance_scam": {
+            "precision": 0.9615384615384616,
+            "recall": 0.5,
+            "f1": 0.6578947368421053,
+            "support": 100
+          },
+          "family_emergency_scam": {
+            "precision": 0.5737704918032787,
+            "recall": 0.7,
+            "f1": 0.6306306306306306,
+            "support": 100
+          },
+          "marketplace_scam": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285714,
+            "support": 100
+          },
+          "loan_scam": {
+            "precision": 0.9803921568627451,
+            "recall": 1.0,
+            "f1": 0.9900990099009901,
+            "support": 100
+          },
+          "refund_scam": {
+            "precision": 1.0,
+            "recall": 0.81,
+            "f1": 0.8950276243093923,
+            "support": 100
+          }
+        },
+        "confusion_matrix_labels": [
+          "normal_or_unknown",
+          "government_impersonation",
+          "bank_impersonation",
+          "investment_scam",
+          "fake_job_scam",
+          "tech_support_scam",
+          "romance_scam",
+          "family_emergency_scam",
+          "marketplace_scam",
+          "loan_scam",
+          "refund_scam"
+        ],
+        "confusion_matrix": [
+          [
+            50,
+            0,
+            44,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            99,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            49,
+            23,
+            27,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            2,
+            48,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            47,
+            50,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            28,
+            0,
+            0,
+            0,
+            0,
+            0,
+            70,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            0,
+            0,
+            50,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            19,
+            0,
+            81
+          ]
+        ],
+        "most_common_confusions": [
+          {
+            "actual": "investment_scam",
+            "predicted": "tech_support_scam",
+            "count": 50
+          },
+          {
+            "actual": "marketplace_scam",
+            "predicted": "tech_support_scam",
+            "count": 50
+          },
+          {
+            "actual": "bank_impersonation",
+            "predicted": "normal_or_unknown",
+            "count": 49
+          },
+          {
+            "actual": "investment_scam",
+            "predicted": "family_emergency_scam",
+            "count": 48
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "tech_support_scam",
+            "count": 47
+          },
+          {
+            "actual": "normal_or_unknown",
+            "predicted": "bank_impersonation",
+            "count": 44
+          },
+          {
+            "actual": "family_emergency_scam",
+            "predicted": "government_impersonation",
+            "count": 28
+          },
+          {
+            "actual": "bank_impersonation",
+            "predicted": "government_impersonation",
+            "count": 23
+          },
+          {
+            "actual": "refund_scam",
+            "predicted": "marketplace_scam",
+            "count": 19
+          },
+          {
+            "actual": "normal_or_unknown",
+            "predicted": "marketplace_scam",
+            "count": 6
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "family_emergency_scam",
+            "count": 3
+          },
+          {
+            "actual": "investment_scam",
+            "predicted": "romance_scam",
+            "count": 2
+          }
+        ],
+        "by_language": {
+          "English": {
+            "accuracy": 0.6418181818181818,
+            "macro_precision": 0.5980990840145769,
+            "macro_recall": 0.6418181818181817,
+            "macro_f1": 0.60824641993314,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 0.6410256410256411,
+                "recall": 1.0,
+                "f1": 0.78125,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.9615384615384616,
+                "recall": 1.0,
+                "f1": 0.9803921568627451,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 0.30985915492957744,
+                "recall": 0.44,
+                "f1": 0.36363636363636365,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.6666666666666666,
+                "recall": 1.0,
+                "f1": 0.8,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 1.0,
+                "recall": 0.62,
+                "f1": 0.7654320987654321,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                44,
+                0,
+                0,
+                0,
+                0,
+                0,
+                6,
+                0,
+                0
+              ],
+              [
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                49,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                48,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                28,
+                0,
+                0,
+                0,
+                0,
+                0,
+                22,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                19,
+                0,
+                31
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "bank_impersonation",
+                "predicted": "normal_or_unknown",
+                "count": 49
+              },
+              {
+                "actual": "investment_scam",
+                "predicted": "family_emergency_scam",
+                "count": 48
+              },
+              {
+                "actual": "normal_or_unknown",
+                "predicted": "bank_impersonation",
+                "count": 44
+              },
+              {
+                "actual": "family_emergency_scam",
+                "predicted": "government_impersonation",
+                "count": 28
+              },
+              {
+                "actual": "refund_scam",
+                "predicted": "marketplace_scam",
+                "count": 19
+              },
+              {
+                "actual": "normal_or_unknown",
+                "predicted": "marketplace_scam",
+                "count": 6
+              },
+              {
+                "actual": "investment_scam",
+                "predicted": "romance_scam",
+                "count": 2
+              },
+              {
+                "actual": "bank_impersonation",
+                "predicted": "family_emergency_scam",
+                "count": 1
+              }
+            ]
+          },
+          "Hinglish": {
+            "accuracy": 0.68,
+            "macro_precision": 0.6183057553242683,
+            "macro_recall": 0.68,
+            "macro_f1": 0.621030171526829,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 0.6805555555555556,
+                "recall": 0.98,
+                "f1": 0.8032786885245902,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 0.9642857142857143,
+                "recall": 0.54,
+                "f1": 0.6923076923076923,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 0.25380710659898476,
+                "recall": 1.0,
+                "f1": 0.4048582995951417,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 0.9411764705882353,
+                "recall": 0.96,
+                "f1": 0.9504950495049505,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 0.9615384615384616,
+                "recall": 1.0,
+                "f1": 0.9803921568627451,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                49,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                23,
+                27,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                47,
+                0,
+                3,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                48,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "investment_scam",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "marketplace_scam",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "tech_support_scam",
+                "count": 47
+              },
+              {
+                "actual": "bank_impersonation",
+                "predicted": "government_impersonation",
+                "count": 23
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "family_emergency_scam",
+                "count": 3
+              },
+              {
+                "actual": "family_emergency_scam",
+                "predicted": "loan_scam",
+                "count": 2
+              },
+              {
+                "actual": "government_impersonation",
+                "predicted": "bank_impersonation",
+                "count": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "tfidf_linear_svm": {
+      "validation": {
+        "accuracy": 0.6018181818181818,
+        "macro_precision": 0.5663166294336256,
+        "macro_recall": 0.6018181818181818,
+        "macro_f1": 0.5583813783502675,
+        "sample_count": 1100,
+        "per_class": {
+          "normal_or_unknown": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "support": 100
+          },
+          "government_impersonation": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 100
+          },
+          "bank_impersonation": {
+            "precision": 0.6493506493506493,
+            "recall": 1.0,
+            "f1": 0.7874015748031497,
+            "support": 100
+          },
+          "investment_scam": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 100
+          },
+          "fake_job_scam": {
+            "precision": 0.684931506849315,
+            "recall": 1.0,
+            "f1": 0.8130081300813008,
+            "support": 100
+          },
+          "tech_support_scam": {
+            "precision": 0.3184713375796178,
+            "recall": 0.5,
+            "f1": 0.38910505836575876,
+            "support": 100
+          },
+          "romance_scam": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 100
+          },
+          "family_emergency_scam": {
+            "precision": 0.36231884057971014,
+            "recall": 0.5,
+            "f1": 0.42016806722689076,
+            "support": 100
+          },
+          "marketplace_scam": {
+            "precision": 0.9615384615384616,
+            "recall": 0.5,
+            "f1": 0.6578947368421053,
+            "support": 100
+          },
+          "loan_scam": {
+            "precision": 0.6993006993006993,
+            "recall": 1.0,
+            "f1": 0.823045267489712,
+            "support": 100
+          },
+          "refund_scam": {
+            "precision": 0.5535714285714286,
+            "recall": 0.62,
+            "f1": 0.5849056603773585,
+            "support": 100
+          }
+        },
+        "confusion_matrix_labels": [
+          "normal_or_unknown",
+          "government_impersonation",
+          "bank_impersonation",
+          "investment_scam",
+          "fake_job_scam",
+          "tech_support_scam",
+          "romance_scam",
+          "family_emergency_scam",
+          "marketplace_scam",
+          "loan_scam",
+          "refund_scam"
+        ],
+        "confusion_matrix": [
+          [
+            50,
+            0,
+            50,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            0,
+            0,
+            50,
+            44,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            0,
+            46,
+            0,
+            0,
+            50,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0,
+            50,
+            0,
+            43,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            0,
+            50
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            38,
+            0,
+            0,
+            62
+          ]
+        ],
+        "most_common_confusions": [
+          {
+            "actual": "government_impersonation",
+            "predicted": "tech_support_scam",
+            "count": 100
+          },
+          {
+            "actual": "normal_or_unknown",
+            "predicted": "bank_impersonation",
+            "count": 50
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "family_emergency_scam",
+            "count": 50
+          },
+          {
+            "actual": "marketplace_scam",
+            "predicted": "refund_scam",
+            "count": 50
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "fake_job_scam",
+            "count": 46
+          },
+          {
+            "actual": "tech_support_scam",
+            "predicted": "romance_scam",
+            "count": 44
+          },
+          {
+            "actual": "family_emergency_scam",
+            "predicted": "loan_scam",
+            "count": 43
+          },
+          {
+            "actual": "refund_scam",
+            "predicted": "family_emergency_scam",
+            "count": 38
+          },
+          {
+            "actual": "family_emergency_scam",
+            "predicted": "tech_support_scam",
+            "count": 7
+          },
+          {
+            "actual": "tech_support_scam",
+            "predicted": "government_impersonation",
+            "count": 4
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "bank_impersonation",
+            "count": 4
+          },
+          {
+            "actual": "tech_support_scam",
+            "predicted": "marketplace_scam",
+            "count": 2
+          }
+        ],
+        "by_language": {
+          "English": {
+            "accuracy": 0.7272727272727273,
+            "macro_precision": 0.5909090909090909,
+            "macro_recall": 0.7272727272727273,
+            "macro_f1": 0.6363636363636364,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1": 0.6666666666666666,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "government_impersonation",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "family_emergency_scam",
+                "count": 50
+              },
+              {
+                "actual": "marketplace_scam",
+                "predicted": "refund_scam",
+                "count": 50
+              }
+            ]
+          },
+          "Hinglish": {
+            "accuracy": 0.4763636363636364,
+            "macro_precision": 0.409161403113016,
+            "macro_recall": 0.4763636363636364,
+            "macro_f1": 0.40009743514154156,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 0.4807692307692308,
+                "recall": 1.0,
+                "f1": 0.6493506493506493,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 0.5208333333333334,
+                "recall": 1.0,
+                "f1": 0.684931506849315,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.9615384615384616,
+                "recall": 1.0,
+                "f1": 0.9803921568627451,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 0.5376344086021505,
+                "recall": 1.0,
+                "f1": 0.6993006993006993,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 1.0,
+                "recall": 0.24,
+                "f1": 0.3870967741935484,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                4,
+                0,
+                0,
+                0,
+                0,
+                44,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                4,
+                0,
+                46,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                7,
+                0,
+                0,
+                0,
+                43,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                38,
+                0,
+                0,
+                12
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "normal_or_unknown",
+                "predicted": "bank_impersonation",
+                "count": 50
+              },
+              {
+                "actual": "government_impersonation",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "fake_job_scam",
+                "count": 46
+              },
+              {
+                "actual": "tech_support_scam",
+                "predicted": "romance_scam",
+                "count": 44
+              },
+              {
+                "actual": "family_emergency_scam",
+                "predicted": "loan_scam",
+                "count": 43
+              },
+              {
+                "actual": "refund_scam",
+                "predicted": "family_emergency_scam",
+                "count": 38
+              },
+              {
+                "actual": "family_emergency_scam",
+                "predicted": "tech_support_scam",
+                "count": 7
+              },
+              {
+                "actual": "tech_support_scam",
+                "predicted": "government_impersonation",
+                "count": 4
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "bank_impersonation",
+                "count": 4
+              },
+              {
+                "actual": "tech_support_scam",
+                "predicted": "marketplace_scam",
+                "count": 2
+              }
+            ]
+          }
+        }
+      },
+      "test": {
+        "accuracy": 0.6772727272727272,
+        "macro_precision": 0.676395188454854,
+        "macro_recall": 0.6772727272727272,
+        "macro_f1": 0.6486048211059544,
+        "sample_count": 1100,
+        "per_class": {
+          "normal_or_unknown": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "support": 100
+          },
+          "government_impersonation": {
+            "precision": 0.9174311926605505,
+            "recall": 1.0,
+            "f1": 0.9569377990430622,
+            "support": 100
+          },
+          "bank_impersonation": {
+            "precision": 0.45054945054945056,
+            "recall": 0.41,
+            "f1": 0.4293193717277487,
+            "support": 100
+          },
+          "investment_scam": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 100
+          },
+          "fake_job_scam": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 100
+          },
+          "tech_support_scam": {
+            "precision": 0.4,
+            "recall": 1.0,
+            "f1": 0.5714285714285714,
+            "support": 100
+          },
+          "romance_scam": {
+            "precision": 0.9803921568627451,
+            "recall": 0.5,
+            "f1": 0.6622516556291391,
+            "support": 100
+          },
+          "family_emergency_scam": {
+            "precision": 0.6711409395973155,
+            "recall": 1.0,
+            "f1": 0.8032128514056225,
+            "support": 100
+          },
+          "marketplace_scam": {
+            "precision": 0.5208333333333334,
+            "recall": 0.5,
+            "f1": 0.5102040816326531,
+            "support": 100
+          },
+          "loan_scam": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 100
+          },
+          "refund_scam": {
+            "precision": 1.0,
+            "recall": 0.54,
+            "f1": 0.7012987012987013,
+            "support": 100
+          }
+        },
+        "confusion_matrix_labels": [
+          "normal_or_unknown",
+          "government_impersonation",
+          "bank_impersonation",
+          "investment_scam",
+          "fake_job_scam",
+          "tech_support_scam",
+          "romance_scam",
+          "family_emergency_scam",
+          "marketplace_scam",
+          "loan_scam",
+          "refund_scam"
+        ],
+        "confusion_matrix": [
+          [
+            50,
+            0,
+            50,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            50,
+            9,
+            41,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            1,
+            49,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            50,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            50,
+            0,
+            0,
+            50,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            100,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            46,
+            0,
+            54
+          ]
+        ],
+        "most_common_confusions": [
+          {
+            "actual": "normal_or_unknown",
+            "predicted": "bank_impersonation",
+            "count": 50
+          },
+          {
+            "actual": "bank_impersonation",
+            "predicted": "normal_or_unknown",
+            "count": 50
+          },
+          {
+            "actual": "investment_scam",
+            "predicted": "tech_support_scam",
+            "count": 50
+          },
+          {
+            "actual": "romance_scam",
+            "predicted": "tech_support_scam",
+            "count": 50
+          },
+          {
+            "actual": "marketplace_scam",
+            "predicted": "tech_support_scam",
+            "count": 50
+          },
+          {
+            "actual": "investment_scam",
+            "predicted": "family_emergency_scam",
+            "count": 49
+          },
+          {
+            "actual": "refund_scam",
+            "predicted": "marketplace_scam",
+            "count": 46
+          },
+          {
+            "actual": "bank_impersonation",
+            "predicted": "government_impersonation",
+            "count": 9
+          },
+          {
+            "actual": "investment_scam",
+            "predicted": "romance_scam",
+            "count": 1
+          }
+        ],
+        "by_language": {
+          "English": {
+            "accuracy": 0.6436363636363637,
+            "macro_precision": 0.6369341813860531,
+            "macro_recall": 0.6436363636363637,
+            "macro_f1": 0.5903926913177971,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.9803921568627451,
+                "recall": 1.0,
+                "f1": 0.9900990099009901,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 0.5050505050505051,
+                "recall": 1.0,
+                "f1": 0.6711409395973155,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.5208333333333334,
+                "recall": 1.0,
+                "f1": 0.684931506849315,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 1.0,
+                "recall": 0.08,
+                "f1": 0.14814814814814814,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                49,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                46,
+                0,
+                4
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "normal_or_unknown",
+                "predicted": "bank_impersonation",
+                "count": 50
+              },
+              {
+                "actual": "bank_impersonation",
+                "predicted": "normal_or_unknown",
+                "count": 50
+              },
+              {
+                "actual": "investment_scam",
+                "predicted": "family_emergency_scam",
+                "count": 49
+              },
+              {
+                "actual": "refund_scam",
+                "predicted": "marketplace_scam",
+                "count": 46
+              },
+              {
+                "actual": "investment_scam",
+                "predicted": "romance_scam",
+                "count": 1
+              }
+            ]
+          },
+          "Hinglish": {
+            "accuracy": 0.7109090909090909,
+            "macro_precision": 0.6452234206471494,
+            "macro_recall": 0.7109090909090909,
+            "macro_f1": 0.6562300085235865,
+            "sample_count": 550,
+            "per_class": {
+              "normal_or_unknown": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "government_impersonation": {
+                "precision": 0.847457627118644,
+                "recall": 1.0,
+                "f1": 0.9174311926605505,
+                "support": 50
+              },
+              "bank_impersonation": {
+                "precision": 1.0,
+                "recall": 0.82,
+                "f1": 0.9010989010989011,
+                "support": 50
+              },
+              "investment_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "fake_job_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "tech_support_scam": {
+                "precision": 0.25,
+                "recall": 1.0,
+                "f1": 0.4,
+                "support": 50
+              },
+              "romance_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "family_emergency_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "marketplace_scam": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 50
+              },
+              "loan_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              },
+              "refund_scam": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 50
+              }
+            },
+            "confusion_matrix_labels": [
+              "normal_or_unknown",
+              "government_impersonation",
+              "bank_impersonation",
+              "investment_scam",
+              "fake_job_scam",
+              "tech_support_scam",
+              "romance_scam",
+              "family_emergency_scam",
+              "marketplace_scam",
+              "loan_scam",
+              "refund_scam"
+            ],
+            "confusion_matrix": [
+              [
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                9,
+                41,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50
+              ]
+            ],
+            "most_common_confusions": [
+              {
+                "actual": "investment_scam",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "romance_scam",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "marketplace_scam",
+                "predicted": "tech_support_scam",
+                "count": 50
+              },
+              {
+                "actual": "bank_impersonation",
+                "predicted": "government_impersonation",
+                "count": 9
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "dataset_quality": {
+    "rows": 5499,
+    "classes": {
+      "loan_scam": 500,
+      "bank_impersonation": 500,
+      "refund_scam": 500,
+      "investment_scam": 500,
+      "romance_scam": 500,
+      "normal_or_unknown": 500,
+      "family_emergency_scam": 500,
+      "government_impersonation": 500,
+      "fake_job_scam": 500,
+      "marketplace_scam": 500,
+      "tech_support_scam": 499
+    },
+    "average_text_length": 177.5119112565921,
+    "text_length_by_class": {
+      "bank_impersonation": 185.434,
+      "fake_job_scam": 171.274,
+      "family_emergency_scam": 176.92,
+      "government_impersonation": 184.246,
+      "investment_scam": 183.468,
+      "loan_scam": 171.838,
+      "marketplace_scam": 180.948,
+      "normal_or_unknown": 156.048,
+      "refund_scam": 173.746,
+      "romance_scam": 184.366,
+      "tech_support_scam": 184.3567134268537
+    },
+    "duplicate_normalized_messages": 0,
+    "train_test_message_overlap": 0,
+    "train_test_template_overlap": 0,
+    "template_families": 110,
+    "split_counts": {
+      "test": {
+        "bank_impersonation": 100,
+        "fake_job_scam": 100,
+        "family_emergency_scam": 100,
+        "government_impersonation": 100,
+        "investment_scam": 100,
+        "loan_scam": 100,
+        "marketplace_scam": 100,
+        "normal_or_unknown": 100,
+        "refund_scam": 100,
+        "romance_scam": 100,
+        "tech_support_scam": 100
+      },
+      "train": {
+        "bank_impersonation": 300,
+        "fake_job_scam": 300,
+        "family_emergency_scam": 300,
+        "government_impersonation": 300,
+        "investment_scam": 300,
+        "loan_scam": 300,
+        "marketplace_scam": 300,
+        "normal_or_unknown": 300,
+        "refund_scam": 300,
+        "romance_scam": 300,
+        "tech_support_scam": 299
+      },
+      "validation": {
+        "bank_impersonation": 100,
+        "fake_job_scam": 100,
+        "family_emergency_scam": 100,
+        "government_impersonation": 100,
+        "investment_scam": 100,
+        "loan_scam": 100,
+        "marketplace_scam": 100,
+        "normal_or_unknown": 100,
+        "refund_scam": 100,
+        "romance_scam": 100,
+        "tech_support_scam": 100
+      }
+    },
+    "language_distribution": {
+      "English": 2750,
+      "Hinglish": 2749
+    },
+    "most_common_words": {
+      "bank_impersonation": {
+        "account": 647,
+        "they": 443,
+        "the": 427,
+        "this": 387,
+        "bank": 300,
+        "message": 272,
+        "hai": 250,
+        "mujhe": 245,
+        "pay": 177,
+        "karna": 165,
+        "transfer": 150,
+        "caller": 150,
+        "bol": 150,
+        "please": 142,
+        "help": 142
+      },
+      "fake_job_scam": {
+        "the": 455,
+        "message": 355,
+        "this": 354,
+        "recruiter": 300,
+        "they": 287,
+        "pay": 255,
+        "mujhe": 244,
+        "payment": 221,
+        "hai": 200,
+        "keep": 170,
+        "before": 169,
+        "offer": 150,
+        "pehle": 150,
+        "please": 132,
+        "help": 132
+      },
+      "family_emergency_scam": {
+        "they": 556,
+        "this": 358,
+        "the": 314,
+        "and": 300,
+        "mujhe": 260,
+        "message": 250,
+        "family": 200,
+        "hai": 200,
+        "number": 200,
+        "chahiye": 181,
+        "payment": 181,
+        "phone": 160,
+        "caller": 150,
+        "emergency": 150,
+        "says": 150
+      },
+      "government_impersonation": {
+        "they": 389,
+        "this": 365,
+        "account": 328,
+        "the": 321,
+        "hai": 300,
+        "message": 298,
+        "mujhe": 243,
+        "officer": 200,
+        "transfer": 200,
+        "payment": 174,
+        "karna": 174,
+        "keep": 174,
+        "mila": 169,
+        "identity": 150,
+        "caller": 150
+      },
+      "investment_scam": {
+        "they": 394,
+        "this": 382,
+        "the": 330,
+        "hai": 250,
+        "message": 235,
+        "mujhe": 233,
+        "karne": 200,
+        "return": 200,
+        "plan": 200,
+        "raha": 200,
+        "pay": 180,
+        "mila": 158,
+        "profit": 150,
+        "unknown": 150,
+        "and": 150
+      },
+      "loan_scam": {
+        "loan": 400,
+        "this": 372,
+        "they": 323,
+        "the": 270,
+        "pay": 270,
+        "mujhe": 263,
+        "message": 261,
+        "approved": 200,
+        "payment": 186,
+        "bina": 150,
+        "kya": 136,
+        "karna": 136,
+        "chahiye": 136,
+        "please": 134,
+        "help": 134
+      },
+      "marketplace_scam": {
+        "the": 522,
+        "they": 496,
+        "this": 440,
+        "payment": 334,
+        "seller": 300,
+        "mujhe": 289,
+        "buyer": 250,
+        "message": 244,
+        "karne": 200,
+        "pay": 172,
+        "before": 169,
+        "and": 150,
+        "marketplace": 150,
+        "item": 150,
+        "raha": 150
+      },
+      "normal_or_unknown": {
+        "the": 523,
+        "this": 385,
+        "nahi": 300,
+        "message": 298,
+        "they": 282,
+        "mujhe": 262,
+        "hai": 200,
+        "koi": 200,
+        "karna": 196,
+        "account": 185,
+        "not": 150,
+        "raha": 150,
+        "kya": 146,
+        "payment": 146,
+        "chahiye": 146
+      },
+      "refund_scam": {
+        "refund": 450,
+        "they": 416,
+        "this": 358,
+        "message": 297,
+        "mujhe": 280,
+        "the": 275,
+        "payment": 235,
+        "pay": 225,
+        "merchant": 200,
+        "karna": 185,
+        "chahiye": 185,
+        "release": 150,
+        "karne": 150,
+        "pehle": 150,
+        "mila": 145
+      },
+      "romance_scam": {
+        "they": 625,
+        "this": 405,
+        "mujhe": 253,
+        "par": 250,
+        "message": 242,
+        "help": 215,
+        "online": 200,
+        "for": 200,
+        "mila": 177,
+        "chahiye": 176,
+        "the": 161,
+        "pay": 161,
+        "have": 150,
+        "person": 150,
+        "nahi": 150
+      },
+      "tech_support_scam": {
+        "they": 505,
+        "this": 380,
+        "the": 333,
+        "message": 250,
+        "remote": 249,
+        "mujhe": 240,
+        "pay": 233,
+        "payment": 214,
+        "screen": 200,
+        "karne": 200,
+        "transfer": 200,
+        "control": 199,
+        "install": 199,
+        "app": 199,
+        "repair": 199
+      }
+    }
+  }
+}

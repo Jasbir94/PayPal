@@ -1,0 +1,220 @@
+{
+  "title": "APP Shield Day 9 pre-change baseline",
+  "captured_at": "2026-10-03T19:01:12.301499+00:00",
+  "change_boundary": "Captured before Day 9 application/model code changes.",
+  "regression_tests": {
+    "command": ".venv/Scripts/python.exe -m pytest -q",
+    "passed": 245,
+    "failed": 0,
+    "duration_seconds": 104.89,
+    "warnings": [
+      "Existing StarletteDeprecationWarning: httpx TestClient integration; consider httpx2."
+    ]
+  },
+  "datasets": {
+    "transactions": 10000,
+    "accounts": 1040,
+    "fusion_evaluation_rows": 2000,
+    "fusion_test_rows": 400,
+    "fusion_test_positives": 33
+  },
+  "fusion_temporal_holdout": {
+    "split": {
+      "train": 1200,
+      "validation": 400,
+      "test": 400
+    },
+    "selected_calibrator": "isotonic",
+    "threshold": 0.325,
+    "metrics": {
+      "learned_fusion": {
+        "precision": 0.8888888888888888,
+        "recall": 0.48484848484848486,
+        "f1": 0.6274509803921569,
+        "false_positive_rate": 0.005449591280653951,
+        "false_negative_rate": 0.5151515151515151,
+        "roc_auc": 0.9219304764263894,
+        "average_precision": 0.7144431113548761,
+        "brier": 0.03713689974190834
+      },
+      "manual_transaction_recipient": {
+        "precision": 0.9166666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.7719298245614035,
+        "false_positive_rate": 0.005449591280653951,
+        "false_negative_rate": 0.3333333333333333,
+        "roc_auc": 0.9720914870778631,
+        "average_precision": 0.8690854984264368,
+        "brier": 0.04563384925640496
+      },
+      "amount_plus_new_recipient_baseline": {
+        "precision": 0.3333333333333333,
+        "recall": 0.24242424242424243,
+        "f1": 0.2807017543859649,
+        "false_positive_rate": 0.043596730245231606,
+        "false_negative_rate": 0.7575757575757576,
+        "roc_auc": 0.8642969201552309,
+        "average_precision": 0.3552588750738692,
+        "brier": 0.061699411771030103
+      },
+      "ablation:without_transaction": {
+        "precision": 0.5681818181818182,
+        "recall": 0.7575757575757576,
+        "f1": 0.6493506493506493,
+        "false_positive_rate": 0.051771117166212535,
+        "false_negative_rate": 0.24242424242424243,
+        "roc_auc": 0.9012880852117908,
+        "average_precision": 0.7099002585750795,
+        "brier": 0.03779153159615847
+      },
+      "ablation:without_recipient": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3939393939393939,
+        "f1": 0.3611111111111111,
+        "false_positive_rate": 0.07084468664850137,
+        "false_negative_rate": 0.6060606060606061,
+        "roc_auc": 0.8690033853521593,
+        "average_precision": 0.37233545897924725,
+        "brier": 0.061886797124014355
+      },
+      "ablation:without_graph": {
+        "precision": 0.8888888888888888,
+        "recall": 0.48484848484848486,
+        "f1": 0.6274509803921569,
+        "false_positive_rate": 0.005449591280653951,
+        "false_negative_rate": 0.5151515151515151,
+        "roc_auc": 0.9219304764263894,
+        "average_precision": 0.7144431113548761,
+        "brier": 0.037136899753738774
+      },
+      "ablation:without_context": {
+        "precision": 0.8888888888888888,
+        "recall": 0.48484848484848486,
+        "f1": 0.6274509803921569,
+        "false_positive_rate": 0.005449591280653951,
+        "false_negative_rate": 0.5151515151515151,
+        "roc_auc": 0.9219304764263894,
+        "average_precision": 0.7144431113548761,
+        "brier": 0.037136899753738774
+      },
+      "ablation:without_scenario": {
+        "precision": 0.8888888888888888,
+        "recall": 0.48484848484848486,
+        "f1": 0.6274509803921569,
+        "false_positive_rate": 0.005449591280653951,
+        "false_negative_rate": 0.5151515151515151,
+        "roc_auc": 0.9219304764263894,
+        "average_precision": 0.7144431113548761,
+        "brier": 0.037136899753738774
+      },
+      "ablation:without_psychology": {
+        "precision": 0.8888888888888888,
+        "recall": 0.48484848484848486,
+        "f1": 0.6274509803921569,
+        "false_positive_rate": 0.005449591280653951,
+        "false_negative_rate": 0.5151515151515151,
+        "roc_auc": 0.9219304764263894,
+        "average_precision": 0.7144431113548761,
+        "brier": 0.037136899753738774
+      }
+    },
+    "limitations": "The transaction labels and fraud profiles are synthetic. There is no transaction-level join for context, text or graph evidence; their scores are missing (not zero-risk) in the fusion dataset. Metrics describe only the transaction/recipient baseline and must not be generalized to real payments."
+  },
+  "adversarial_message_benchmark": {
+    "cases": 1000,
+    "templates": 50,
+    "threshold": 25,
+    "baseline_raw_text": {
+      "n": 1000,
+      "tp": 168,
+      "fp": 0,
+      "fn": 332,
+      "tn": 500,
+      "precision": 1.0,
+      "recall": 0.336,
+      "f1": 0.5029940119760479,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.664
+    },
+    "hardened_normalized_text": {
+      "n": 1000,
+      "tp": 178,
+      "fp": 0,
+      "fn": 322,
+      "tn": 500,
+      "precision": 1.0,
+      "recall": 0.356,
+      "f1": 0.5250737463126844,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.644
+    },
+    "notice": "Authored synthetic templates; message-level labels only. Scores are evidence indices, not probabilities. The threshold 25 is a probe threshold, not a policy recommendation."
+  },
+  "api_latency": {
+    "day7_smoke": {
+      "mean": 25.396,
+      "p50": 19.233,
+      "p95": 40.355,
+      "max": 42.311
+    },
+    "requests": 30,
+    "statuses": {
+      "200": 30
+    },
+    "notice": "Single-process TestClient smoke only; not a production throughput or concurrent-load guarantee.",
+    "day2_warm_testclient": {
+      "median_ms": 95.64449999015778,
+      "p95_ms": 219.2509749555025,
+      "mean_ms": 117.31661662925035
+    }
+  },
+  "day8_simulation_validation": {
+    "scenario_count": 13,
+    "passed": 13,
+    "failed": 0,
+    "flagship": {
+      "transaction_only_risk": 13.69,
+      "full_risk": 34.58,
+      "confidence": 0.5167,
+      "scenario": "government_impersonation",
+      "decision": "ALLOW_WITH_WARNING",
+      "latency_ms": {
+        "passive_analysis_ms": 15.077,
+        "full_analysis_ms": 38.742,
+        "end_to_end_analysis_ms": 53.819
+      }
+    }
+  },
+  "model_info": {
+    "api_version": "0.4.0",
+    "policy_version": "day7-v1",
+    "components": {
+      "transaction": {
+        "available": true
+      },
+      "recipient": {
+        "available": true
+      },
+      "scenario_text": {
+        "available": true
+      },
+      "psychology_text": {
+        "available": true
+      },
+      "graph": {
+        "available": true
+      }
+    },
+    "score_semantics": "evidence index; not a calibrated probability"
+  },
+  "model_artifacts": {
+    "C:\\Users\\Jasbir Singh\\OneDrive\\Desktop\\PayPal\\app-shield\\saved_models\\transaction_model.pkl": 1756877,
+    "C:\\Users\\Jasbir Singh\\OneDrive\\Desktop\\PayPal\\app-shield\\saved_models\\recipient_model.pkl": 3460,
+    "C:\\Users\\Jasbir Singh\\OneDrive\\Desktop\\PayPal\\app-shield\\saved_models\\graph_model.pkl": 12270,
+    "C:\\Users\\Jasbir Singh\\OneDrive\\Desktop\\PayPal\\app-shield\\saved_models\\scenario_pipeline.pkl": 538766,
+    "C:\\Users\\Jasbir Singh\\OneDrive\\Desktop\\PayPal\\app-shield\\saved_models\\psychology_pipeline.pkl": 509945,
+    "C:\\Users\\Jasbir Singh\\OneDrive\\Desktop\\PayPal\\app-shield\\saved_models\\fusion_model.pkl": 2065,
+    "C:\\Users\\Jasbir Singh\\OneDrive\\Desktop\\PayPal\\app-shield\\saved_models\\calibration_model.pkl": 1489
+  },
+  "synthetic_data_notice": "All labels, model metrics, adversarial cases, and scenario outputs are synthetic research evidence; these numbers do not establish production performance."
+}

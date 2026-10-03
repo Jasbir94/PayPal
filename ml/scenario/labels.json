@@ -1,0 +1,13 @@
+[
+  "normal_or_unknown",
+  "government_impersonation",
+  "bank_impersonation",
+  "investment_scam",
+  "fake_job_scam",
+  "tech_support_scam",
+  "romance_scam",
+  "family_emergency_scam",
+  "marketplace_scam",
+  "loan_scam",
+  "refund_scam"
+]

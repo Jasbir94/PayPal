@@ -1,0 +1,12 @@
+{
+  "authority": 0.3,
+  "fear": 0.3,
+  "urgency": 0.4,
+  "scarcity": 0.5,
+  "trust": 0.3,
+  "reward": 0.3,
+  "social_proof": 0.5,
+  "secrecy": 0.3,
+  "commitment": 0.3,
+  "emotional_pressure": 0.3
+}

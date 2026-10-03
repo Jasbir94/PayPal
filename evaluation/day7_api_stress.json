@@ -1,0 +1,13 @@
+{
+  "notice": "Single-process TestClient smoke only; not a production throughput or concurrent-load guarantee.",
+  "requests": 30,
+  "statuses": {
+    "200": 30
+  },
+  "latency_ms": {
+    "mean": 25.396,
+    "p50": 19.233,
+    "p95": 40.355,
+    "max": 42.311
+  }
+}

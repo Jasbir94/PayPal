@@ -1,0 +1,180 @@
+{
+  "title": "APP Shield Day 9 flagship case studies",
+  "generated_at": "2026-10-03T19:59:18.929761+00:00",
+  "environment": "Local synthetic simulator; no payment was executed.",
+  "cases": [
+    {
+      "case": "government_impersonation",
+      "title": "Normal-range government impersonation",
+      "amount_inr": 3500,
+      "transaction_only_risk": 13.69,
+      "recipient_risk": 1.37,
+      "passive_graph_risk": 0.25,
+      "passive_risk": 6.91,
+      "full_app_shield_risk": 35.16,
+      "confidence": 0.5175,
+      "scenario": "government_impersonation",
+      "scenario_confidence": 0.71434,
+      "component_latency_ms": {
+        "transaction": 4.755,
+        "recipient": 3.407,
+        "graph": 1.1337001342326403,
+        "context": 0.029,
+        "scenario": 0.633,
+        "psychology": 1.08,
+        "full_engine": 50.249
+      },
+      "psychological_techniques": [
+        "fear",
+        "secrecy"
+      ],
+      "decision": "ALLOW_WITH_WARNING",
+      "intervention": {
+        "level": 3,
+        "type": "GOVERNMENT_IMPERSONATION_WARNING",
+        "title": "Verify this official request independently",
+        "message": "Someone claiming to represent a government or law-enforcement office appears to be requesting this payment. Government agencies should not ask you to move money to a “safe account” to avoid an investigation.",
+        "recommended_action": "Pause and contact the agency using contact details from its official website or a document you already trust."
+      },
+      "analysis_state": "WARNING",
+      "interpretation": "Observed synthetic-engine output; not a fraud ground-truth performance label."
+    },
+    {
+      "case": "large_legitimate_purchase",
+      "title": "₹80,000 user-initiated established merchant purchase",
+      "amount_inr": 80000,
+      "transaction_only_risk": 54.81,
+      "recipient_risk": 1.37,
+      "passive_graph_risk": 0.25,
+      "passive_risk": 25.42,
+      "full_app_shield_risk": 7.0,
+      "confidence": 0.5116,
+      "scenario": "normal_or_unknown",
+      "scenario_confidence": 1.0,
+      "component_latency_ms": {
+        "transaction": 6.066,
+        "recipient": 3.76,
+        "graph": 1.1011001188308,
+        "context": 0.03,
+        "scenario": 0.034,
+        "psychology": 0.035,
+        "full_engine": 31.183
+      },
+      "psychological_techniques": [],
+      "decision": "ALLOW",
+      "intervention": {
+        "level": 0,
+        "type": "NO_INTERVENTION",
+        "title": "No additional check needed",
+        "message": "No additional payment warning is indicated from the information provided.",
+        "recommended_action": "Continue only if the payment details are correct."
+      },
+      "analysis_state": "READY",
+      "interpretation": "Observed synthetic-engine output; not a fraud ground-truth performance label."
+    },
+    {
+      "case": "small_initial_investment",
+      "title": "₹500 guaranteed-return investment pressure",
+      "amount_inr": 500,
+      "transaction_only_risk": 16.5,
+      "recipient_risk": 1.37,
+      "passive_graph_risk": 0.25,
+      "passive_risk": 8.18,
+      "full_app_shield_risk": 34.75,
+      "confidence": 0.5168,
+      "scenario": "investment_scam",
+      "scenario_confidence": 0.604094,
+      "component_latency_ms": {
+        "transaction": 7.399,
+        "recipient": 5.509,
+        "graph": 2.4399999529123306,
+        "context": 0.042,
+        "scenario": 0.738,
+        "psychology": 1.355,
+        "full_engine": 49.572
+      },
+      "psychological_techniques": [
+        "urgency",
+        "scarcity",
+        "reward"
+      ],
+      "decision": "ALLOW_WITH_WARNING",
+      "intervention": {
+        "level": 3,
+        "type": "INVESTMENT_SCAM_WARNING",
+        "title": "Check the investment before sending money",
+        "message": "This payment has indicators commonly associated with investment scams, such as promised returns or pressure to act quickly.",
+        "recommended_action": "Verify the provider and recipient independently. Guaranteed returns are a warning sign."
+      },
+      "analysis_state": "WARNING",
+      "interpretation": "Observed synthetic-engine output; not a fraud ground-truth performance label."
+    },
+    {
+      "case": "mule_network",
+      "title": "Recipient linked to a synthetic pass-through network",
+      "amount_inr": 2200,
+      "transaction_only_risk": 44.85,
+      "recipient_risk": 57.08,
+      "passive_graph_risk": 0.22,
+      "passive_risk": 51.58,
+      "full_app_shield_risk": 16.37,
+      "confidence": 0.5309,
+      "scenario": "normal_or_unknown",
+      "scenario_confidence": 1.0,
+      "component_latency_ms": {
+        "transaction": 12.414,
+        "recipient": 10.808,
+        "graph": 3.4423000179231167,
+        "context": 0.048,
+        "scenario": 0.063,
+        "psychology": 0.058,
+        "full_engine": 31.659
+      },
+      "psychological_techniques": [],
+      "decision": "ALLOW",
+      "intervention": {
+        "level": 0,
+        "type": "NO_INTERVENTION",
+        "title": "No additional check needed",
+        "message": "No additional payment warning is indicated from the information provided.",
+        "recommended_action": "Continue only if the payment details are correct."
+      },
+      "analysis_state": "READY",
+      "interpretation": "Observed synthetic-engine output; not a fraud ground-truth performance label."
+    },
+    {
+      "case": "legitimate_family_emergency",
+      "title": "Urgent family help to an established contact",
+      "amount_inr": 20000,
+      "transaction_only_risk": 0.09,
+      "recipient_risk": 0.43,
+      "passive_graph_risk": 0.06,
+      "passive_risk": 0.28,
+      "full_app_shield_risk": 0.0,
+      "confidence": 0.6057,
+      "scenario": "normal_or_unknown",
+      "scenario_confidence": 1.0,
+      "component_latency_ms": {
+        "transaction": 5.45,
+        "recipient": 4.767,
+        "graph": 1.3141999952495098,
+        "context": 0.034,
+        "scenario": 0.041,
+        "psychology": 0.038,
+        "full_engine": 34.773
+      },
+      "psychological_techniques": [],
+      "decision": "ALLOW",
+      "intervention": {
+        "level": 0,
+        "type": "NO_INTERVENTION",
+        "title": "No additional check needed",
+        "message": "No additional payment warning is indicated from the information provided.",
+        "recommended_action": "Continue only if the payment details are correct."
+      },
+      "analysis_state": "READY",
+      "interpretation": "Observed synthetic-engine output; not a fraud ground-truth performance label."
+    }
+  ],
+  "limitations": "These are illustrative runs, not scenario recall or verified outcome measurements."
+}

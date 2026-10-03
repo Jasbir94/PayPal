@@ -1,0 +1,493 @@
+{
+  "dataset": "synthetic, point-in-time transaction and recipient service outputs",
+  "n_rows": 2000,
+  "split": {
+    "train": 1200,
+    "validation": 400,
+    "test": 400
+  },
+  "test_positive_count": 33,
+  "selected_calibrator": "isotonic",
+  "threshold": 0.325,
+  "models": {
+    "learned_fusion": {
+      "precision": 0.8888888888888888,
+      "recall": 0.48484848484848486,
+      "f1": 0.6274509803921569,
+      "false_positive_rate": 0.005449591280653951,
+      "false_negative_rate": 0.5151515151515151,
+      "roc_auc": 0.9219304764263894,
+      "average_precision": 0.7144431113548761,
+      "brier": 0.03713689974190834,
+      "confusion": {
+        "tn": 365,
+        "fp": 2,
+        "fn": 17,
+        "tp": 16
+      }
+    },
+    "manual_transaction_recipient": {
+      "precision": 0.9166666666666666,
+      "recall": 0.6666666666666666,
+      "f1": 0.7719298245614035,
+      "false_positive_rate": 0.005449591280653951,
+      "false_negative_rate": 0.3333333333333333,
+      "roc_auc": 0.9720914870778631,
+      "average_precision": 0.8690854984264368,
+      "brier": 0.04563384925640496,
+      "confusion": {
+        "tn": 365,
+        "fp": 2,
+        "fn": 11,
+        "tp": 22
+      },
+      "threshold_selected_on_validation": 0.4500000000000001
+    },
+    "amount_plus_new_recipient_baseline": {
+      "precision": 0.3333333333333333,
+      "recall": 0.24242424242424243,
+      "f1": 0.2807017543859649,
+      "false_positive_rate": 0.043596730245231606,
+      "false_negative_rate": 0.7575757575757576,
+      "roc_auc": 0.8642969201552309,
+      "average_precision": 0.3552588750738692,
+      "brier": 0.061699411771030103,
+      "confusion": {
+        "tn": 351,
+        "fp": 16,
+        "fn": 25,
+        "tp": 8
+      },
+      "threshold_selected_on_validation": 0.17500000000000004,
+      "calibrator": "isotonic"
+    }
+  },
+  "ablations": {
+    "without_transaction": {
+      "precision": 0.5681818181818182,
+      "recall": 0.7575757575757576,
+      "f1": 0.6493506493506493,
+      "false_positive_rate": 0.051771117166212535,
+      "false_negative_rate": 0.24242424242424243,
+      "roc_auc": 0.9012880852117908,
+      "average_precision": 0.7099002585750795,
+      "brier": 0.03779153159615847,
+      "confusion": {
+        "tn": 348,
+        "fp": 19,
+        "fn": 8,
+        "tp": 25
+      },
+      "threshold_selected_on_validation": 0.12500000000000003,
+      "calibrator": "isotonic"
+    },
+    "without_recipient": {
+      "precision": 0.3333333333333333,
+      "recall": 0.3939393939393939,
+      "f1": 0.3611111111111111,
+      "false_positive_rate": 0.07084468664850137,
+      "false_negative_rate": 0.6060606060606061,
+      "roc_auc": 0.8690033853521593,
+      "average_precision": 0.37233545897924725,
+      "brier": 0.061886797124014355,
+      "confusion": {
+        "tn": 341,
+        "fp": 26,
+        "fn": 20,
+        "tp": 13
+      },
+      "threshold_selected_on_validation": 0.20000000000000007,
+      "calibrator": "isotonic"
+    },
+    "without_graph": {
+      "precision": 0.8888888888888888,
+      "recall": 0.48484848484848486,
+      "f1": 0.6274509803921569,
+      "false_positive_rate": 0.005449591280653951,
+      "false_negative_rate": 0.5151515151515151,
+      "roc_auc": 0.9219304764263894,
+      "average_precision": 0.7144431113548761,
+      "brier": 0.037136899753738774,
+      "confusion": {
+        "tn": 365,
+        "fp": 2,
+        "fn": 17,
+        "tp": 16
+      },
+      "threshold_selected_on_validation": 0.32500000000000007,
+      "calibrator": "isotonic"
+    },
+    "without_context": {
+      "precision": 0.8888888888888888,
+      "recall": 0.48484848484848486,
+      "f1": 0.6274509803921569,
+      "false_positive_rate": 0.005449591280653951,
+      "false_negative_rate": 0.5151515151515151,
+      "roc_auc": 0.9219304764263894,
+      "average_precision": 0.7144431113548761,
+      "brier": 0.037136899753738774,
+      "confusion": {
+        "tn": 365,
+        "fp": 2,
+        "fn": 17,
+        "tp": 16
+      },
+      "threshold_selected_on_validation": 0.32500000000000007,
+      "calibrator": "isotonic"
+    },
+    "without_scenario": {
+      "precision": 0.8888888888888888,
+      "recall": 0.48484848484848486,
+      "f1": 0.6274509803921569,
+      "false_positive_rate": 0.005449591280653951,
+      "false_negative_rate": 0.5151515151515151,
+      "roc_auc": 0.9219304764263894,
+      "average_precision": 0.7144431113548761,
+      "brier": 0.037136899753738774,
+      "confusion": {
+        "tn": 365,
+        "fp": 2,
+        "fn": 17,
+        "tp": 16
+      },
+      "threshold_selected_on_validation": 0.32500000000000007,
+      "calibrator": "isotonic"
+    },
+    "without_psychology": {
+      "precision": 0.8888888888888888,
+      "recall": 0.48484848484848486,
+      "f1": 0.6274509803921569,
+      "false_positive_rate": 0.005449591280653951,
+      "false_negative_rate": 0.5151515151515151,
+      "roc_auc": 0.9219304764263894,
+      "average_precision": 0.7144431113548761,
+      "brier": 0.037136899753738774,
+      "confusion": {
+        "tn": 365,
+        "fp": 2,
+        "fn": 17,
+        "tp": 16
+      },
+      "threshold_selected_on_validation": 0.32500000000000007,
+      "calibrator": "isotonic"
+    }
+  },
+  "score_distributions": {
+    "transaction_risk": {
+      "legitimate": {
+        "available_count": 1844,
+        "missing_count": 0,
+        "mean": 13.661165943600869,
+        "median": 0.24,
+        "p90": 47.27700000000001
+      },
+      "fraudulent": {
+        "available_count": 156,
+        "missing_count": 0,
+        "mean": 53.420064102564105,
+        "median": 53.81,
+        "p90": 74.395
+      }
+    },
+    "recipient_risk": {
+      "legitimate": {
+        "available_count": 1844,
+        "missing_count": 0,
+        "mean": 11.757597613882865,
+        "median": 5.24,
+        "p90": 36.61000000000001
+      },
+      "fraudulent": {
+        "available_count": 156,
+        "missing_count": 0,
+        "mean": 47.780064102564104,
+        "median": 56.055,
+        "p90": 69.935
+      }
+    },
+    "graph_risk": {
+      "legitimate": {
+        "available_count": 0,
+        "missing_count": 1844,
+        "mean": null,
+        "median": null,
+        "p90": null
+      },
+      "fraudulent": {
+        "available_count": 0,
+        "missing_count": 156,
+        "mean": null,
+        "median": null,
+        "p90": null
+      }
+    },
+    "context_risk": {
+      "legitimate": {
+        "available_count": 0,
+        "missing_count": 1844,
+        "mean": null,
+        "median": null,
+        "p90": null
+      },
+      "fraudulent": {
+        "available_count": 0,
+        "missing_count": 156,
+        "mean": null,
+        "median": null,
+        "p90": null
+      }
+    },
+    "scenario_risk": {
+      "legitimate": {
+        "available_count": 0,
+        "missing_count": 1844,
+        "mean": null,
+        "median": null,
+        "p90": null
+      },
+      "fraudulent": {
+        "available_count": 0,
+        "missing_count": 156,
+        "mean": null,
+        "median": null,
+        "p90": null
+      }
+    },
+    "psychology_risk": {
+      "legitimate": {
+        "available_count": 0,
+        "missing_count": 1844,
+        "mean": null,
+        "median": null,
+        "p90": null
+      },
+      "fraudulent": {
+        "available_count": 0,
+        "missing_count": 156,
+        "mean": null,
+        "median": null,
+        "p90": null
+      }
+    }
+  },
+  "ablation_coverage": {
+    "graph_available": 0,
+    "context_available": 0,
+    "scenario_available": 0,
+    "psychology_available": 0
+  },
+  "reliability_curve": [
+    {
+      "mean_predicted": 0.0,
+      "observed_rate": 0.010135135135135136
+    },
+    {
+      "mean_predicted": 0.06779661016949144,
+      "observed_rate": 0.08064516129032258
+    },
+    {
+      "mean_predicted": 0.1286586938222989,
+      "observed_rate": 0.0
+    },
+    {
+      "mean_predicted": 0.5677238277059865,
+      "observed_rate": 0.625
+    }
+  ],
+  "inference_ms_per_row": 0.0072037504287436604,
+  "false_positives": [
+    {
+      "transaction_id": "T002385",
+      "timestamp": "2026-01-29T10:08:05+00:00",
+      "probability": 0.9090909090909091,
+      "transaction_risk": 66.41,
+      "recipient_risk": 32.52,
+      "amount_ratio_baseline": 3.227603148231459,
+      "new_recipient_baseline": 1,
+      "is_fraud": 0
+    },
+    {
+      "transaction_id": "T001802",
+      "timestamp": "2026-01-29T14:19:18+00:00",
+      "probability": 0.9090909090909091,
+      "transaction_risk": 67.07,
+      "recipient_risk": 37.71,
+      "amount_ratio_baseline": 3.2046060970485035,
+      "new_recipient_baseline": 1,
+      "is_fraud": 0
+    }
+  ],
+  "false_negatives": [
+    {
+      "transaction_id": "T009563",
+      "timestamp": "2026-01-25T13:17:22+00:00",
+      "probability": 0.0,
+      "transaction_risk": 18.81,
+      "recipient_risk": 33.37,
+      "amount_ratio_baseline": 0.2075805716936473,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T000434",
+      "timestamp": "2026-01-25T13:59:36+00:00",
+      "probability": 0.0,
+      "transaction_risk": 0.12,
+      "recipient_risk": 71.63,
+      "amount_ratio_baseline": 2.603057482003382,
+      "new_recipient_baseline": 0,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T008469",
+      "timestamp": "2026-01-26T15:19:21+00:00",
+      "probability": 0.0,
+      "transaction_risk": 11.73,
+      "recipient_risk": 49.89,
+      "amount_ratio_baseline": 3.470878671910609,
+      "new_recipient_baseline": 0,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T006244",
+      "timestamp": "2026-01-26T08:43:42+00:00",
+      "probability": 0.06779661016949153,
+      "transaction_risk": 45.34,
+      "recipient_risk": 0.02,
+      "amount_ratio_baseline": 0.9133630450245516,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T004054",
+      "timestamp": "2026-01-26T17:42:17+00:00",
+      "probability": 0.06779661016949153,
+      "transaction_risk": 47.49,
+      "recipient_risk": 1.92,
+      "amount_ratio_baseline": 0.7590072057646117,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T000333",
+      "timestamp": "2026-01-30T15:54:08+00:00",
+      "probability": 0.06779661016949153,
+      "transaction_risk": 25.73,
+      "recipient_risk": 59.89,
+      "amount_ratio_baseline": 0.2150170191864809,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T009878",
+      "timestamp": "2026-01-30T08:54:29+00:00",
+      "probability": 0.06779661016949153,
+      "transaction_risk": 0.21,
+      "recipient_risk": 69.9,
+      "amount_ratio_baseline": 0.8923063976982394,
+      "new_recipient_baseline": 0,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T001899",
+      "timestamp": "2026-01-30T08:31:29+00:00",
+      "probability": 0.06779661016949153,
+      "transaction_risk": 43.58,
+      "recipient_risk": 0.46,
+      "amount_ratio_baseline": 0.7712068250852587,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T004724",
+      "timestamp": "2026-01-30T12:37:27+00:00",
+      "probability": 0.25,
+      "transaction_risk": 53.65,
+      "recipient_risk": 23.48,
+      "amount_ratio_baseline": 2.342904019688269,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T004029",
+      "timestamp": "2026-01-26T11:10:41+00:00",
+      "probability": 0.25,
+      "transaction_risk": 45.26,
+      "recipient_risk": 34.86,
+      "amount_ratio_baseline": 0.9331218901920894,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T008414",
+      "timestamp": "2026-01-25T13:11:06+00:00",
+      "probability": 0.25,
+      "transaction_risk": 41.27,
+      "recipient_risk": 37.8,
+      "amount_ratio_baseline": 1.027259312127467,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T009880",
+      "timestamp": "2026-01-29T14:47:47+00:00",
+      "probability": 0.25,
+      "transaction_risk": 34.36,
+      "recipient_risk": 62.24,
+      "amount_ratio_baseline": 1.0551622799293536,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T009767",
+      "timestamp": "2026-01-29T14:24:00+00:00",
+      "probability": 0.3076923076923077,
+      "transaction_risk": 50.24,
+      "recipient_risk": 46.19,
+      "amount_ratio_baseline": 1.2195682177096228,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T001851",
+      "timestamp": "2026-01-30T09:07:37+00:00",
+      "probability": 0.3076923076923077,
+      "transaction_risk": 45.69,
+      "recipient_risk": 52.9,
+      "amount_ratio_baseline": 0.966162337540136,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T006645",
+      "timestamp": "2026-01-30T10:16:17+00:00",
+      "probability": 0.3076923076923077,
+      "transaction_risk": 43.82,
+      "recipient_risk": 51.44,
+      "amount_ratio_baseline": 0.4858304755805254,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T006323",
+      "timestamp": "2026-01-30T13:20:53+00:00",
+      "probability": 0.3076923076923077,
+      "transaction_risk": 50.24,
+      "recipient_risk": 48.94,
+      "amount_ratio_baseline": 0.9348893234000776,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    },
+    {
+      "transaction_id": "T002151",
+      "timestamp": "2026-01-30T16:08:32+00:00",
+      "probability": 0.3076923076923077,
+      "transaction_risk": 45.03,
+      "recipient_risk": 56.22,
+      "amount_ratio_baseline": 0.9276324699002186,
+      "new_recipient_baseline": 1,
+      "is_fraud": 1
+    }
+  ],
+  "limitations": "The transaction labels and fraud profiles are synthetic. There is no transaction-level join for context, text or graph evidence; their scores are missing (not zero-risk) in the fusion dataset. Metrics describe only the transaction/recipient baseline and must not be generalized to real payments."
+}

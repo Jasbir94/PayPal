@@ -1,0 +1,42 @@
+{
+  "registry_schema_version": 1,
+  "updated_at": "2026-10-04T00:00:00+05:30",
+  "models": {
+    "fusion": {
+      "active_version": "fusion-logistic-platt-v1",
+      "versions": {
+        "fusion-logistic-platt-v1": {
+          "status": "ACTIVE",
+          "artifact_path": "saved_models/fusion_model.pkl",
+          "calibration_path": "saved_models/calibration_model.pkl",
+          "dataset_version": "day6_synthetic_fusion_v1",
+          "feature_schema_version": "fusion-features-v1",
+          "training_timestamp": "2026-10-03T00:00:00Z",
+          "calibration_method": "isotonic",
+          "metrics": {
+            "precision": 0.8888888889,
+            "recall": 0.4848484848,
+            "f1": 0.6274509804,
+            "pr_auc": 0.7144431114,
+            "roc_auc": 0.9219304764,
+            "false_positive_rate": 0.0054495913,
+            "brier": 0.0371368997,
+            "scenario_regressions": null,
+            "hard_negative_fpr": null
+          },
+          "limitations": "Synthetic, temporally ordered transaction/recipient evaluation; context, text, graph labels are not transaction-linked."
+        }
+      }
+    }
+  },
+  "promotion_policy": {
+    "minimum_pr_auc_delta": -0.01,
+    "minimum_recall_delta": -0.02,
+    "maximum_false_positive_rate": 0.05,
+    "maximum_brier_delta": 0.02,
+    "maximum_hard_negative_fpr": 0.05,
+    "require_scenario_regression_check": true,
+    "require_explicit_approval": true,
+    "notice": "Local research policy only; values are not production or industry standards."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "scope": "Synthetic text-only negative messages",
+  "legitimate_messages": 500,
+  "false_positives": 0,
+  "false_positive_rate": 0.0,
+  "notice": "Probe threshold 25 on authored message templates; this does not estimate payment-level hard-negative FPR."
+}

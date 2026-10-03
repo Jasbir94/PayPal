@@ -1,0 +1,71 @@
+{
+  "source": "13 Day 8 actual in-process simulator runs",
+  "phase_latency": {
+    "passive_analysis_ms": {
+      "median_ms": 15.374,
+      "p95_ms": 31.059199999999983,
+      "samples": 13
+    },
+    "full_analysis_ms": {
+      "median_ms": 38.22,
+      "p95_ms": 59.182399999999994,
+      "samples": 12
+    },
+    "end_to_end_analysis_ms": {
+      "median_ms": 53.545500000000004,
+      "p95_ms": 91.3557,
+      "samples": 12
+    }
+  },
+  "live_component_latency": {
+    "context": {
+      "median_ms": 0.041,
+      "p95_ms": 0.0478,
+      "samples": 5
+    },
+    "full_engine": {
+      "median_ms": 39.824,
+      "p95_ms": 48.5076,
+      "samples": 5
+    },
+    "graph": {
+      "median_ms": 1.4111001510173082,
+      "p95_ms": 1.82242002338171,
+      "samples": 5
+    },
+    "psychology": {
+      "median_ms": 0.045,
+      "p95_ms": 1.6427999999999998,
+      "samples": 5
+    },
+    "recipient": {
+      "median_ms": 4.36,
+      "p95_ms": 4.9848,
+      "samples": 5
+    },
+    "scenario": {
+      "median_ms": 0.218,
+      "p95_ms": 1.0782,
+      "samples": 5
+    },
+    "transaction": {
+      "median_ms": 7.013,
+      "p95_ms": 7.3592,
+      "samples": 5
+    }
+  },
+  "component_source": "Five local in-process flagship simulator requests; tiny samples, indicative only.",
+  "api_stress": {
+    "notice": "Single-process TestClient smoke only; not a production throughput or concurrent-load guarantee.",
+    "requests": 30,
+    "statuses": {
+      "200": 30
+    },
+    "latency_ms": {
+      "mean": 25.396,
+      "p50": 19.233,
+      "p95": 40.355,
+      "max": 42.311
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "metadata": {
+    "seed": 42,
+    "sklearn_version": "1.5.2",
+    "selected_model": "logistic_regression",
+    "target": "is_suspicious: synthetic suspicious-account proxy label",
+    "selected_by": "validation average precision",
+    "split_strategy": "account-disjoint stratified 60/20/20",
+    "feature_window": "strictly before scoring timestamp; 24h recipient snapshot",
+    "probabilities": "uncalibrated synthetic baseline outputs; not APP fraud probabilities",
+    "split_counts": {
+      "test": {
+        "size": 208,
+        "sum": 8
+      },
+      "train": {
+        "size": 624,
+        "sum": 24
+      },
+      "validation": {
+        "size": 208,
+        "sum": 8
+      }
+    },
+    "feature_columns": [
+      "account_age_days",
+      "incoming_transactions_1h",
+      "incoming_transactions_24h",
+      "unique_senders_1h",
+      "unique_senders_24h",
+      "incoming_amount_24h",
+      "outgoing_amount_24h",
+      "outgoing_ratio",
+      "observed_outgoing_ratio",
+      "fraud_report_count",
+      "transaction_velocity",
+      "sender_diversity",
+      "average_incoming_amount",
+      "median_incoming_amount",
+      "inflow_outflow_imbalance",
+      "average_holding_minutes"
+    ]
+  },
+  "models": {
+    "logistic_regression": {
+      "validation": {
+        "threshold": 0.7999999999999999,
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8888888888888888,
+        "roc_auc": 0.9974999999999999,
+        "pr_auc_average_precision": 0.9415178571428571,
+        "false_positive_rate": 0.01,
+        "confusion_matrix": [
+          [
+            198,
+            2
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "positive_count": 8,
+        "sample_count": 208,
+        "always_legitimate_accuracy": 0.9615384615384616
+      },
+      "test": {
+        "threshold": 0.7999999999999999,
+        "precision": 0.5555555555555556,
+        "recall": 0.625,
+        "f1": 0.5882352941176471,
+        "roc_auc": 0.97875,
+        "pr_auc_average_precision": 0.7881410256410256,
+        "false_positive_rate": 0.02,
+        "confusion_matrix": [
+          [
+            196,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "positive_count": 8,
+        "sample_count": 208,
+        "always_legitimate_accuracy": 0.9615384615384616
+      },
+      "feature_importance": {
+        "average_holding_minutes": -2.0524139511308586,
+        "inflow_outflow_imbalance": 1.7594954439615984,
+        "outgoing_ratio": 1.5282782789553417,
+        "observed_outgoing_ratio": -0.8328282563332037,
+        "fraud_report_count": 0.8080584944129658,
+        "incoming_amount_24h": 0.6710327279869438,
+        "account_age_days": -0.44986584433526067,
+        "outgoing_amount_24h": -0.4144760185107473,
+        "average_incoming_amount": -0.2820945121223273,
+        "incoming_transactions_24h": -0.23321376640499145,
+        "unique_senders_24h": -0.23321376640499145,
+        "transaction_velocity": -0.23321376640499122,
+        "median_incoming_amount": -0.2256904340747133,
+        "sender_diversity": 0.06351320450610645,
+        "incoming_transactions_1h": 0.0,
+        "unique_senders_1h": 0.0
+      }
+    },
+    "random_forest": {
+      "validation": {
+        "threshold": 0.4799999999999999,
+        "precision": 0.7272727272727273,
+        "recall": 1.0,
+        "f1": 0.8421052631578947,
+        "roc_auc": 0.9962500000000001,
+        "pr_auc_average_precision": 0.9115936147186148,
+        "false_positive_rate": 0.015,
+        "confusion_matrix": [
+          [
+            197,
+            3
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "positive_count": 8,
+        "sample_count": 208,
+        "always_legitimate_accuracy": 0.9615384615384616
+      },
+      "test": {
+        "threshold": 0.4799999999999999,
+        "precision": 0.7272727272727273,
+        "recall": 1.0,
+        "f1": 0.8421052631578947,
+        "roc_auc": 0.9968750000000001,
+        "pr_auc_average_precision": 0.9381313131313131,
+        "false_positive_rate": 0.015,
+        "confusion_matrix": [
+          [
+            197,
+            3
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "positive_count": 8,
+        "sample_count": 208,
+        "always_legitimate_accuracy": 0.9615384615384616
+      },
+      "feature_importance": {
+        "outgoing_ratio": 0.27115929914441883,
+        "account_age_days": 0.21088262601941987,
+        "average_holding_minutes": 0.2065012640257058,
+        "fraud_report_count": 0.10246503241485587,
+        "median_incoming_amount": 0.04224224450168777,
+        "inflow_outflow_imbalance": 0.0398438281422424,
+        "incoming_amount_24h": 0.03648226486069151,
+        "outgoing_amount_24h": 0.03642530351876454,
+        "average_incoming_amount": 0.03189878523776793,
+        "observed_outgoing_ratio": 0.008291990500796603,
+        "unique_senders_24h": 0.00669983624903718,
+        "sender_diversity": 0.0030215960235362273,
+        "incoming_transactions_24h": 0.0024942092137770623,
+        "transaction_velocity": 0.0015917201472985436,
+        "incoming_transactions_1h": 0.0,
+        "unique_senders_1h": 0.0
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+scenario,status,support,reason
+government_impersonation,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+bank_impersonation,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+investment,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+fake_job,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+tech_support,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+romance,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+marketplace,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+loan_scam,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+refund_scam,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+family_emergency,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.
+small_initial_payment,NOT_EVALUABLE,0,No transaction-linked scenario ground truth in the temporal holdout.

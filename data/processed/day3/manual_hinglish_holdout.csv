@@ -1,0 +1,56 @@
+text,scenario_label,language
+"Papa ke purane beneficiary ko electricity bill ke paise de raha hu, unse saamne baat ho chuki hai.",normal_or_unknown,Hinglish
+SIP apne regulated broker par khud start ki thi; return fix nahi aur aaj pay karna zaroori nahi.,normal_or_unknown,Hinglish
+"Bank ne branch me KYC bola hai, kisi naye account me paisa bhejne ki baat nahi hui.",normal_or_unknown,Hinglish
+"Dukaan se saman le liya, ab invoice ke hisab se purane seller ko payment karunga.",normal_or_unknown,Hinglish
+"Behen ko birthday gift ke paise dene hain, number aur account dono pehle se jaanta hu.",normal_or_unknown,Hinglish
+"CID wala bankar phone kiya, meri ID criminal case me hai bolta; paisa unke account me nahi bheja to jail.",government_impersonation,Hinglish
+Aadhaar pe illegal kaam hua kehkar cyber cell ka aadmi legal action rokne ko transfer karwa raha.,government_impersonation,Hinglish
+"Police officer keh raha digital arrest lagega, funds verification wallet me rakho aur ghar pe mat batao.",government_impersonation,Hinglish
+"Sarkari investigator ne WhatsApp par warrant bheja, case close ke liye abhi payment maanga.",government_impersonation,Hinglish
+Income tax ki inquiry bolkar unknown caller custodial action se bachne ko safe account deposit mangta.,government_impersonation,Hinglish
+"Main bank se bol raha hu, aapka account freeze hone wala hai, verification ke liye abhi payment karo.",bank_impersonation,Hinglish
+Bank manager bankar balance bachane ke liye dusre secure wallet me transfer mang raha hai.,bank_impersonation,Hinglish
+KYC pending bolke helpline wala temporary account me paise shift karne ko keh raha.,bank_impersonation,Hinglish
+Fraud department ka caller account block karega jab tak verification deposit nahi bhejta.,bank_impersonation,Hinglish
+"Bank support se aadmi bola suspicious entry hai, funds safe account par move karo warna access band.",bank_impersonation,Hinglish
+"Telegram advisor har mahine pakka bees percent return dega bolta, shuru ke paise personal UPI pe mangta.",investment_scam,Hinglish
+Online mentor zero risk double paisa ka promise karke deposit maang raha hai.,investment_scam,Hinglish
+Trading group fixed daily earning kehkar unknown coordinator ko pehle amount bhejne ko kehta.,investment_scam,Hinglish
+"Social media wala guaranteed profit deta, registered broker ke bahar account me investment mangta.",investment_scam,Hinglish
+Naye contact ne loss impossible bola aur private plan join karne ko aaj hi money dalne ko kaha.,investment_scam,Hinglish
+HR ne job pakki boli par offer letter se pehle registration charges dene hain.,fake_job_scam,Hinglish
+"Recruiter security deposit apne account me mangta, tabhi joining mail aayega bolta.",fake_job_scam,Hinglish
+"Ghar se kaam milega lekin training fee pehle bhejo, company details baad me denge.",fake_job_scam,Hinglish
+"Interview bina selection hua, documents verify karne ke liye paise maang rahe hain.",fake_job_scam,Hinglish
+Employment agent equipment booking ke naam par personal wallet payment ke baad appointment dega.,fake_job_scam,Hinglish
+Computer virus ka dar dikhake support caller screen control app install aur payment app kholo bolta.,tech_support_scam,Hinglish
+Remote desktop ka code maangkar technician repair fee transfer karne ko keh raha.,tech_support_scam,Hinglish
+"Laptop popup se number mila, helpdesk wala screen share pe aakar bank app se paise bhejwa raha.",tech_support_scam,Hinglish
+Unknown software expert device control leke security fix ka charge personal wallet par mangta.,tech_support_scam,Hinglish
+Caller bolta remote session start karo phir protection renew karne ko transfer karwa dega.,tech_support_scam,Hinglish
+"Dating website ka partner kabhi mila nahi, ab emergency hospital bill ke paise secret me mang raha.",romance_scam,Hinglish
+"Online girlfriend airport pe phansi bolti, milne aane ke liye travel fee abhi chahiye.",romance_scam,Hinglish
+"Romantic chat wale ne gift bheja bolkar customs charges bharne ko kaha, video call nahi karta.",romance_scam,Hinglish
+"Messages me pyar ka wada hua, foreign partner medical loan chukane ke liye money maangta.",romance_scam,Hinglish
+Dating app wala relationship pakki bolta par visit se pehle luggage clearance ka transfer chahiye.,romance_scam,Hinglish
+"Naya number beta banke bola accident hua hai, mummy ko bina bataye paise bhejo.",family_emergency_scam,Hinglish
+"Cousin bankar unknown call me urgent bail ke liye transfer maanga, dusro ko phone mana hai.",family_emergency_scam,Hinglish
+"Bhai custody me hai bolke stranger release money mangta, bhai se baat nahi kara raha.",family_emergency_scam,Hinglish
+Daughter ka mobile toot gaya bolkar alag beneficiary ko abhi money bhejne ka message hai.,family_emergency_scam,Hinglish
+"Papa ki surgery ka emergency message aaya, hospital confirm karne ka time nahi de rahe.",family_emergency_scam,Hinglish
+OLX buyer bolta QR scan karke paise bhejo tab mere account me sale amount aayega.,marketplace_scam,Hinglish
+Secondhand seller listing app ke bahar courier insurance ka advance maang raha hai.,marketplace_scam,Hinglish
+Buyer merchant activation ka payment mujhse chahiye tab furniture ka price dega.,marketplace_scam,Hinglish
+"Online seller extra delivery security personal UPI par mangta, invoice nahi deta.",marketplace_scam,Hinglish
+Resale customer collect request approve karke credit receive hoga bolkar rush karta.,marketplace_scam,Hinglish
+Instant loan approved bola lekin release se pehle processing charges bhejne hain.,loan_scam,Hinglish
+Finance agent refundable security dekar credit disbursement unlock karo keh raha.,loan_scam,Hinglish
+Lender bina documents loan dega par insurance advance apne wallet pe mangta.,loan_scam,Hinglish
+"Borrowing account locked hai, clearance fee pay kiye bina funds nahi milenge bolte.",loan_scam,Hinglish
+Loan company ka unknown banda eligibility verify karne ke liye pehle personal transfer chahta.,loan_scam,Hinglish
+"Refund dene se pehle verification debit approve karwa raha hai, bolta paisa wapas aa jayega.",refund_scam,Hinglish
+Cancelled order ke refund ka tax pehle bharna padega agent keh raha.,refund_scam,Hinglish
+Customer care QR scan aur payment karne ko bolta tab reimbursement credit hoga.,refund_scam,Hinglish
+Extra refund bheja hai bolkar account check bina personal wallet par paisa wapas mang raha.,refund_scam,Hinglish
+Pending reversal release charge advance me bhejne ka unknown support message mila.,refund_scam,Hinglish

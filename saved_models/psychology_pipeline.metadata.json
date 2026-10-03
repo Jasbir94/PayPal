@@ -1,0 +1,24 @@
+{
+  "seed": 42,
+  "labels": [
+    "authority",
+    "fear",
+    "urgency",
+    "scarcity",
+    "trust",
+    "reward",
+    "social_proof",
+    "secrecy",
+    "commitment",
+    "emotional_pressure"
+  ],
+  "input_features": [
+    "text"
+  ],
+  "sklearn_version": "1.5.2",
+  "threshold_selection": "maximum validation F1 per label, recall then closeness to .5 as tie-breakers",
+  "split_strategy": "Exact 70/15/15 row allocation with balanced languages and randomly sampled label combinations. Source-family isolation and authored co-labels cause prevalence differences; this is not perfect iterative multi-label stratification.",
+  "probabilities": "uncalibrated per-label logistic outputs",
+  "dataset_sha256": "0999d506b175da9ecf34032e09347bdae2aed68d30f068ba78d8ca3669b57cf2",
+  "limitations": "Synthetic component-composed messages; source phrasing and correlations can differ substantially from real conversations."
+}

@@ -1,0 +1,27 @@
+{
+  "status": "MEASURED_SYNTHETIC",
+  "model_version": "fusion-logistic-platt-v1",
+  "test_samples": 400,
+  "test_positives": 33,
+  "brier": 0.03713689974190834,
+  "expected_calibration_error": 0.01457584918401866,
+  "reliability_bins": [
+    {
+      "mean_predicted": 0.0,
+      "observed_rate": 0.010135135135135136
+    },
+    {
+      "mean_predicted": 0.06779661016949144,
+      "observed_rate": 0.08064516129032258
+    },
+    {
+      "mean_predicted": 0.1286586938222989,
+      "observed_rate": 0.0
+    },
+    {
+      "mean_predicted": 0.5677238277059865,
+      "observed_rate": 0.625
+    }
+  ],
+  "notice": "Calibrated probability belongs to the registered transaction/recipient fusion modality profile; it is not evidence of real-world calibration."
+}

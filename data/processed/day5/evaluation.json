@@ -1,0 +1,1618 @@
+{
+  "target": "is_known_mule",
+  "comparisons": {
+    "recipient_only": {
+      "samples": 209,
+      "positive_count": 4,
+      "threshold": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.10121951219512193,
+      "pr_auc_average_precision": 0.013176456669448677,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          205,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    },
+    "graph_only": {
+      "samples": 209,
+      "positive_count": 4,
+      "threshold": 0.8,
+      "precision": 0.14814814814814814,
+      "recall": 1.0,
+      "f1": 0.25806451612903225,
+      "roc_auc": 0.9768292682926829,
+      "pr_auc_average_precision": 0.39017857142857143,
+      "false_positive_rate": 0.11219512195121951,
+      "confusion_matrix": [
+        [
+          182,
+          23
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    },
+    "recipient_plus_graph": {
+      "samples": 209,
+      "positive_count": 4,
+      "threshold": 0.6,
+      "precision": 0.14285714285714285,
+      "recall": 1.0,
+      "f1": 0.25,
+      "roc_auc": 0.9682926829268292,
+      "pr_auc_average_precision": 0.2755952380952381,
+      "false_positive_rate": 0.11707317073170732,
+      "confusion_matrix": [
+        [
+          181,
+          24
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    }
+  },
+  "deployed_score_target": "is_suspicious",
+  "deployed_score_comparison": {
+    "recipient_only": {
+      "samples": 209,
+      "positive_count": 9,
+      "threshold": 0.6,
+      "precision": 0.625,
+      "recall": 0.5555555555555556,
+      "f1": 0.5882352941176471,
+      "roc_auc": 0.9600000000000001,
+      "pr_auc_average_precision": 0.5232804232804233,
+      "false_positive_rate": 0.015,
+      "confusion_matrix": [
+        [
+          197,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    },
+    "graph_only": {
+      "samples": 209,
+      "positive_count": 9,
+      "threshold": 0.6,
+      "precision": 0.8,
+      "recall": 0.8888888888888888,
+      "f1": 0.8421052631578947,
+      "roc_auc": 0.9930555555555556,
+      "pr_auc_average_precision": 0.9201388888888888,
+      "false_positive_rate": 0.01,
+      "confusion_matrix": [
+        [
+          198,
+          2
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    },
+    "recipient_plus_graph": {
+      "samples": 209,
+      "positive_count": 9,
+      "threshold": 0.6,
+      "precision": 0.7272727272727273,
+      "recall": 0.8888888888888888,
+      "f1": 0.8,
+      "roc_auc": 0.9927777777777778,
+      "pr_auc_average_precision": 0.932367149758454,
+      "false_positive_rate": 0.015,
+      "confusion_matrix": [
+        [
+          197,
+          3
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    }
+  },
+  "full_ablation": {
+    "without_graph": {
+      "samples": 209,
+      "positive_count": 9,
+      "threshold": 0.6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.9908333333333333,
+      "pr_auc_average_precision": 0.8192340067340067,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          200,
+          0
+        ],
+        [
+          9,
+          0
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    },
+    "with_graph": {
+      "samples": 209,
+      "positive_count": 9,
+      "threshold": 0.6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 1.0,
+      "pr_auc_average_precision": 1.0000000000000002,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          200,
+          0
+        ],
+        [
+          9,
+          0
+        ]
+      ],
+      "confusion_matrix_order": [
+        "negative",
+        "positive"
+      ]
+    }
+  },
+  "full_ablation_examples": [
+    {
+      "account_id": "A0001",
+      "is_suspicious": 0,
+      "without_graph": 14.52,
+      "with_graph": 30.24
+    },
+    {
+      "account_id": "A0005",
+      "is_suspicious": 0,
+      "without_graph": 18.49,
+      "with_graph": 26.26
+    },
+    {
+      "account_id": "A0010",
+      "is_suspicious": 0,
+      "without_graph": 13.86,
+      "with_graph": 18.75
+    },
+    {
+      "account_id": "A0015",
+      "is_suspicious": 0,
+      "without_graph": 15.38,
+      "with_graph": 25.33
+    },
+    {
+      "account_id": "A0032",
+      "is_suspicious": 0,
+      "without_graph": 20.57,
+      "with_graph": 21.49
+    },
+    {
+      "account_id": "A0034",
+      "is_suspicious": 0,
+      "without_graph": 31.56,
+      "with_graph": 28.66
+    },
+    {
+      "account_id": "A0039",
+      "is_suspicious": 0,
+      "without_graph": 20.68,
+      "with_graph": 26.92
+    },
+    {
+      "account_id": "A0041",
+      "is_suspicious": 0,
+      "without_graph": 25.6,
+      "with_graph": 23.85
+    },
+    {
+      "account_id": "A0042",
+      "is_suspicious": 0,
+      "without_graph": 13.88,
+      "with_graph": 18.75
+    },
+    {
+      "account_id": "A0049",
+      "is_suspicious": 0,
+      "without_graph": 23.26,
+      "with_graph": 27.69
+    },
+    {
+      "account_id": "A0052",
+      "is_suspicious": 0,
+      "without_graph": 27.49,
+      "with_graph": 28.96
+    },
+    {
+      "account_id": "A0057",
+      "is_suspicious": 0,
+      "without_graph": 13.87,
+      "with_graph": 18.75
+    },
+    {
+      "account_id": "A0063",
+      "is_suspicious": 0,
+      "without_graph": 14.14,
+      "with_graph": 29.86
+    },
+    {
+      "account_id": "A0065",
+      "is_suspicious": 0,
+      "without_graph": 13.88,
+      "with_graph": 24.88
+    },
+    {
+      "account_id": "A0069",
+      "is_suspicious": 0,
+      "without_graph": 13.89,
+      "with_graph": 24.88
+    },
+    {
+      "account_id": "A0076",
+      "is_suspicious": 0,
+      "without_graph": 13.95,
+      "with_graph": 24.9
+    },
+    {
+      "account_id": "A0081",
+      "is_suspicious": 0,
+      "without_graph": 16.0,
+      "with_graph": 19.39
+    },
+    {
+      "account_id": "A0087",
+      "is_suspicious": 0,
+      "without_graph": 15.92,
+      "with_graph": 25.49
+    },
+    {
+      "account_id": "A0093",
+      "is_suspicious": 0,
+      "without_graph": 30.3,
+      "with_graph": 30.08
+    },
+    {
+      "account_id": "A0102",
+      "is_suspicious": 0,
+      "without_graph": 14.12,
+      "with_graph": 19.56
+    },
+    {
+      "account_id": "A0105",
+      "is_suspicious": 0,
+      "without_graph": 13.99,
+      "with_graph": 19.52
+    },
+    {
+      "account_id": "A0106",
+      "is_suspicious": 0,
+      "without_graph": 14.44,
+      "with_graph": 18.92
+    },
+    {
+      "account_id": "A0111",
+      "is_suspicious": 0,
+      "without_graph": 14.25,
+      "with_graph": 24.99
+    },
+    {
+      "account_id": "A0113",
+      "is_suspicious": 0,
+      "without_graph": 15.17,
+      "with_graph": 25.26
+    },
+    {
+      "account_id": "A0114",
+      "is_suspicious": 0,
+      "without_graph": 33.91,
+      "with_graph": 29.57
+    },
+    {
+      "account_id": "A0117",
+      "is_suspicious": 0,
+      "without_graph": 14.13,
+      "with_graph": 15.89
+    },
+    {
+      "account_id": "A0122",
+      "is_suspicious": 0,
+      "without_graph": 16.5,
+      "with_graph": 18.07
+    },
+    {
+      "account_id": "A0123",
+      "is_suspicious": 0,
+      "without_graph": 14.75,
+      "with_graph": 17.54
+    },
+    {
+      "account_id": "A0137",
+      "is_suspicious": 0,
+      "without_graph": 13.99,
+      "with_graph": 19.52
+    },
+    {
+      "account_id": "A0141",
+      "is_suspicious": 0,
+      "without_graph": 23.9,
+      "with_graph": 22.87
+    },
+    {
+      "account_id": "A0167",
+      "is_suspicious": 0,
+      "without_graph": 15.14,
+      "with_graph": 16.19
+    },
+    {
+      "account_id": "A0170",
+      "is_suspicious": 0,
+      "without_graph": 15.51,
+      "with_graph": 19.73
+    },
+    {
+      "account_id": "A0177",
+      "is_suspicious": 0,
+      "without_graph": 13.84,
+      "with_graph": 18.5
+    },
+    {
+      "account_id": "A0182",
+      "is_suspicious": 0,
+      "without_graph": 24.29,
+      "with_graph": 28.0
+    },
+    {
+      "account_id": "A0187",
+      "is_suspicious": 0,
+      "without_graph": 19.04,
+      "with_graph": 20.06
+    },
+    {
+      "account_id": "A0188",
+      "is_suspicious": 0,
+      "without_graph": 29.27,
+      "with_graph": 26.43
+    },
+    {
+      "account_id": "A0189",
+      "is_suspicious": 0,
+      "without_graph": 27.79,
+      "with_graph": 25.39
+    },
+    {
+      "account_id": "A0190",
+      "is_suspicious": 0,
+      "without_graph": 14.7,
+      "with_graph": 16.06
+    },
+    {
+      "account_id": "A0195",
+      "is_suspicious": 0,
+      "without_graph": 15.62,
+      "with_graph": 19.03
+    },
+    {
+      "account_id": "A0212",
+      "is_suspicious": 0,
+      "without_graph": 13.84,
+      "with_graph": 17.27
+    },
+    {
+      "account_id": "A0221",
+      "is_suspicious": 0,
+      "without_graph": 13.91,
+      "with_graph": 18.03
+    },
+    {
+      "account_id": "A0227",
+      "is_suspicious": 0,
+      "without_graph": 16.66,
+      "with_graph": 18.12
+    },
+    {
+      "account_id": "A0266",
+      "is_suspicious": 0,
+      "without_graph": 14.03,
+      "with_graph": 24.3
+    },
+    {
+      "account_id": "A0267",
+      "is_suspicious": 0,
+      "without_graph": 27.61,
+      "with_graph": 24.63
+    },
+    {
+      "account_id": "A0272",
+      "is_suspicious": 0,
+      "without_graph": 20.96,
+      "with_graph": 19.45
+    },
+    {
+      "account_id": "A0275",
+      "is_suspicious": 0,
+      "without_graph": 14.71,
+      "with_graph": 17.53
+    },
+    {
+      "account_id": "A0277",
+      "is_suspicious": 0,
+      "without_graph": 13.85,
+      "with_graph": 19.48
+    },
+    {
+      "account_id": "A0279",
+      "is_suspicious": 0,
+      "without_graph": 26.04,
+      "with_graph": 24.06
+    },
+    {
+      "account_id": "A0286",
+      "is_suspicious": 0,
+      "without_graph": 32.53,
+      "with_graph": 28.91
+    },
+    {
+      "account_id": "A0287",
+      "is_suspicious": 0,
+      "without_graph": 27.21,
+      "with_graph": 23.51
+    },
+    {
+      "account_id": "A0290",
+      "is_suspicious": 0,
+      "without_graph": 14.25,
+      "with_graph": 16.66
+    },
+    {
+      "account_id": "A0296",
+      "is_suspicious": 0,
+      "without_graph": 13.86,
+      "with_graph": 24.87
+    },
+    {
+      "account_id": "A0300",
+      "is_suspicious": 0,
+      "without_graph": 16.8,
+      "with_graph": 17.42
+    },
+    {
+      "account_id": "A0301",
+      "is_suspicious": 0,
+      "without_graph": 25.81,
+      "with_graph": 25.61
+    },
+    {
+      "account_id": "A0303",
+      "is_suspicious": 0,
+      "without_graph": 14.93,
+      "with_graph": 16.13
+    },
+    {
+      "account_id": "A0311",
+      "is_suspicious": 0,
+      "without_graph": 16.64,
+      "with_graph": 18.84
+    },
+    {
+      "account_id": "A0313",
+      "is_suspicious": 0,
+      "without_graph": 14.65,
+      "with_graph": 18.74
+    },
+    {
+      "account_id": "A0314",
+      "is_suspicious": 0,
+      "without_graph": 14.52,
+      "with_graph": 20.9
+    },
+    {
+      "account_id": "A0317",
+      "is_suspicious": 0,
+      "without_graph": 16.62,
+      "with_graph": 18.59
+    },
+    {
+      "account_id": "A0323",
+      "is_suspicious": 0,
+      "without_graph": 14.2,
+      "with_graph": 18.6
+    },
+    {
+      "account_id": "A0329",
+      "is_suspicious": 0,
+      "without_graph": 13.85,
+      "with_graph": 18.5
+    },
+    {
+      "account_id": "A0332",
+      "is_suspicious": 0,
+      "without_graph": 18.68,
+      "with_graph": 19.46
+    },
+    {
+      "account_id": "A0333",
+      "is_suspicious": 0,
+      "without_graph": 36.08,
+      "with_graph": 30.77
+    },
+    {
+      "account_id": "A0339",
+      "is_suspicious": 0,
+      "without_graph": 14.23,
+      "with_graph": 16.65
+    },
+    {
+      "account_id": "A0342",
+      "is_suspicious": 0,
+      "without_graph": 18.42,
+      "with_graph": 18.2
+    },
+    {
+      "account_id": "A0347",
+      "is_suspicious": 0,
+      "without_graph": 13.89,
+      "with_graph": 19.24
+    },
+    {
+      "account_id": "A0349",
+      "is_suspicious": 0,
+      "without_graph": 13.85,
+      "with_graph": 17.76
+    },
+    {
+      "account_id": "A0359",
+      "is_suspicious": 0,
+      "without_graph": 21.2,
+      "with_graph": 20.88
+    },
+    {
+      "account_id": "A0364",
+      "is_suspicious": 0,
+      "without_graph": 13.85,
+      "with_graph": 19.23
+    },
+    {
+      "account_id": "A0366",
+      "is_suspicious": 0,
+      "without_graph": 14.14,
+      "with_graph": 14.11
+    },
+    {
+      "account_id": "A0369",
+      "is_suspicious": 0,
+      "without_graph": 14.57,
+      "with_graph": 17.49
+    },
+    {
+      "account_id": "A0370",
+      "is_suspicious": 0,
+      "without_graph": 13.84,
+      "with_graph": 18.5
+    },
+    {
+      "account_id": "A0372",
+      "is_suspicious": 0,
+      "without_graph": 14.7,
+      "with_graph": 18.26
+    },
+    {
+      "account_id": "A0375",
+      "is_suspicious": 0,
+      "without_graph": 14.74,
+      "with_graph": 16.8
+    },
+    {
+      "account_id": "A0384",
+      "is_suspicious": 0,
+      "without_graph": 13.86,
+      "with_graph": 17.28
+    },
+    {
+      "account_id": "A0385",
+      "is_suspicious": 0,
+      "without_graph": 13.89,
+      "with_graph": 16.55
+    },
+    {
+      "account_id": "A0386",
+      "is_suspicious": 0,
+      "without_graph": 13.86,
+      "with_graph": 19.23
+    },
+    {
+      "account_id": "A0389",
+      "is_suspicious": 0,
+      "without_graph": 13.87,
+      "with_graph": 19.24
+    },
+    {
+      "account_id": "A0396",
+      "is_suspicious": 0,
+      "without_graph": 14.53,
+      "with_graph": 17.97
+    },
+    {
+      "account_id": "A0397",
+      "is_suspicious": 0,
+      "without_graph": 13.88,
+      "with_graph": 24.88
+    },
+    {
+      "account_id": "A0403",
+      "is_suspicious": 0,
+      "without_graph": 20.19,
+      "with_graph": 19.44
+    },
+    {
+      "account_id": "A0410",
+      "is_suspicious": 0,
+      "without_graph": 20.55,
+      "with_graph": 18.54
+    },
+    {
+      "account_id": "A0416",
+      "is_suspicious": 0,
+      "without_graph": 14.33,
+      "with_graph": 17.42
+    },
+    {
+      "account_id": "A0432",
+      "is_suspicious": 0,
+      "without_graph": 22.18,
+      "with_graph": 27.37
+    },
+    {
+      "account_id": "A0437",
+      "is_suspicious": 0,
+      "without_graph": 15.02,
+      "with_graph": 17.62
+    },
+    {
+      "account_id": "A0440",
+      "is_suspicious": 0,
+      "without_graph": 15.16,
+      "with_graph": 25.26
+    },
+    {
+      "account_id": "A0442",
+      "is_suspicious": 0,
+      "without_graph": 15.44,
+      "with_graph": 17.01
+    },
+    {
+      "account_id": "A0450",
+      "is_suspicious": 0,
+      "without_graph": 15.08,
+      "with_graph": 15.44
+    },
+    {
+      "account_id": "A0451",
+      "is_suspicious": 0,
+      "without_graph": 25.3,
+      "with_graph": 24.8
+    },
+    {
+      "account_id": "A0452",
+      "is_suspicious": 0,
+      "without_graph": 28.28,
+      "with_graph": 26.89
+    },
+    {
+      "account_id": "A0453",
+      "is_suspicious": 0,
+      "without_graph": 13.88,
+      "with_graph": 18.02
+    },
+    {
+      "account_id": "A0475",
+      "is_suspicious": 0,
+      "without_graph": 14.48,
+      "with_graph": 17.46
+    },
+    {
+      "account_id": "A0481",
+      "is_suspicious": 0,
+      "without_graph": 19.52,
+      "with_graph": 19.29
+    },
+    {
+      "account_id": "A0483",
+      "is_suspicious": 0,
+      "without_graph": 17.44,
+      "with_graph": 16.99
+    },
+    {
+      "account_id": "A0484",
+      "is_suspicious": 0,
+      "without_graph": 19.03,
+      "with_graph": 19.56
+    },
+    {
+      "account_id": "A0490",
+      "is_suspicious": 0,
+      "without_graph": 17.24,
+      "with_graph": 21.72
+    },
+    {
+      "account_id": "A0491",
+      "is_suspicious": 0,
+      "without_graph": 13.88,
+      "with_graph": 20.47
+    },
+    {
+      "account_id": "A0499",
+      "is_suspicious": 0,
+      "without_graph": 16.79,
+      "with_graph": 18.16
+    },
+    {
+      "account_id": "A0500",
+      "is_suspicious": 0,
+      "without_graph": 14.54,
+      "with_graph": 17.48
+    },
+    {
+      "account_id": "A0502",
+      "is_suspicious": 0,
+      "without_graph": 14.13,
+      "with_graph": 19.56
+    },
+    {
+      "account_id": "A0503",
+      "is_suspicious": 0,
+      "without_graph": 14.1,
+      "with_graph": 20.53
+    },
+    {
+      "account_id": "A0504",
+      "is_suspicious": 0,
+      "without_graph": 17.76,
+      "with_graph": 18.45
+    },
+    {
+      "account_id": "A0508",
+      "is_suspicious": 0,
+      "without_graph": 17.21,
+      "with_graph": 18.28
+    },
+    {
+      "account_id": "A0518",
+      "is_suspicious": 0,
+      "without_graph": 32.26,
+      "with_graph": 28.52
+    },
+    {
+      "account_id": "A0525",
+      "is_suspicious": 0,
+      "without_graph": 14.06,
+      "with_graph": 17.34
+    },
+    {
+      "account_id": "A0526",
+      "is_suspicious": 0,
+      "without_graph": 13.86,
+      "with_graph": 17.27
+    },
+    {
+      "account_id": "A0528",
+      "is_suspicious": 0,
+      "without_graph": 15.7,
+      "with_graph": 19.05
+    },
+    {
+      "account_id": "A0529",
+      "is_suspicious": 0,
+      "without_graph": 14.6,
+      "with_graph": 14.8
+    },
+    {
+      "account_id": "A0533",
+      "is_suspicious": 0,
+      "without_graph": 25.26,
+      "with_graph": 22.78
+    },
+    {
+      "account_id": "A0534",
+      "is_suspicious": 0,
+      "without_graph": 14.38,
+      "with_graph": 18.66
+    },
+    {
+      "account_id": "A0535",
+      "is_suspicious": 0,
+      "without_graph": 15.94,
+      "with_graph": 19.12
+    },
+    {
+      "account_id": "A0540",
+      "is_suspicious": 0,
+      "without_graph": 29.08,
+      "with_graph": 24.51
+    },
+    {
+      "account_id": "A0543",
+      "is_suspicious": 0,
+      "without_graph": 13.85,
+      "with_graph": 17.27
+    },
+    {
+      "account_id": "A0547",
+      "is_suspicious": 0,
+      "without_graph": 16.48,
+      "with_graph": 18.8
+    },
+    {
+      "account_id": "A0548",
+      "is_suspicious": 0,
+      "without_graph": 14.07,
+      "with_graph": 17.83
+    },
+    {
+      "account_id": "A0553",
+      "is_suspicious": 0,
+      "without_graph": 14.08,
+      "with_graph": 20.53
+    },
+    {
+      "account_id": "A0555",
+      "is_suspicious": 0,
+      "without_graph": 15.54,
+      "with_graph": 15.35
+    },
+    {
+      "account_id": "A0560",
+      "is_suspicious": 0,
+      "without_graph": 18.56,
+      "with_graph": 22.12
+    },
+    {
+      "account_id": "A0564",
+      "is_suspicious": 0,
+      "without_graph": 14.56,
+      "with_graph": 20.67
+    },
+    {
+      "account_id": "A0583",
+      "is_suspicious": 0,
+      "without_graph": 30.28,
+      "with_graph": 27.65
+    },
+    {
+      "account_id": "A0586",
+      "is_suspicious": 0,
+      "without_graph": 27.41,
+      "with_graph": 24.81
+    },
+    {
+      "account_id": "A0590",
+      "is_suspicious": 0,
+      "without_graph": 35.74,
+      "with_graph": 30.33
+    },
+    {
+      "account_id": "A0597",
+      "is_suspicious": 0,
+      "without_graph": 14.33,
+      "with_graph": 18.64
+    },
+    {
+      "account_id": "A0599",
+      "is_suspicious": 0,
+      "without_graph": 14.38,
+      "with_graph": 19.64
+    },
+    {
+      "account_id": "A0602",
+      "is_suspicious": 0,
+      "without_graph": 13.85,
+      "with_graph": 19.48
+    },
+    {
+      "account_id": "A0609",
+      "is_suspicious": 0,
+      "without_graph": 31.81,
+      "with_graph": 28.21
+    },
+    {
+      "account_id": "A0611",
+      "is_suspicious": 0,
+      "without_graph": 13.98,
+      "with_graph": 24.91
+    },
+    {
+      "account_id": "A0615",
+      "is_suspicious": 0,
+      "without_graph": 15.56,
+      "with_graph": 18.27
+    },
+    {
+      "account_id": "A0617",
+      "is_suspicious": 0,
+      "without_graph": 14.34,
+      "with_graph": 14.19
+    },
+    {
+      "account_id": "A0621",
+      "is_suspicious": 0,
+      "without_graph": 13.95,
+      "with_graph": 18.04
+    },
+    {
+      "account_id": "A0622",
+      "is_suspicious": 0,
+      "without_graph": 14.69,
+      "with_graph": 19.73
+    },
+    {
+      "account_id": "A0628",
+      "is_suspicious": 0,
+      "without_graph": 14.92,
+      "with_graph": 17.6
+    },
+    {
+      "account_id": "A0633",
+      "is_suspicious": 0,
+      "without_graph": 23.87,
+      "with_graph": 22.33
+    },
+    {
+      "account_id": "A0634",
+      "is_suspicious": 0,
+      "without_graph": 22.4,
+      "with_graph": 20.98
+    },
+    {
+      "account_id": "A0637",
+      "is_suspicious": 0,
+      "without_graph": 29.15,
+      "with_graph": 24.87
+    },
+    {
+      "account_id": "A0640",
+      "is_suspicious": 0,
+      "without_graph": 14.31,
+      "with_graph": 18.63
+    },
+    {
+      "account_id": "A0641",
+      "is_suspicious": 0,
+      "without_graph": 13.96,
+      "with_graph": 19.02
+    },
+    {
+      "account_id": "A0642",
+      "is_suspicious": 0,
+      "without_graph": 15.98,
+      "with_graph": 19.14
+    },
+    {
+      "account_id": "A0648",
+      "is_suspicious": 0,
+      "without_graph": 29.98,
+      "with_graph": 27.55
+    },
+    {
+      "account_id": "A0651",
+      "is_suspicious": 0,
+      "without_graph": 17.7,
+      "with_graph": 18.43
+    },
+    {
+      "account_id": "A0654",
+      "is_suspicious": 0,
+      "without_graph": 14.99,
+      "with_graph": 18.59
+    },
+    {
+      "account_id": "A0667",
+      "is_suspicious": 0,
+      "without_graph": 24.45,
+      "with_graph": 22.73
+    },
+    {
+      "account_id": "A0669",
+      "is_suspicious": 0,
+      "without_graph": 13.84,
+      "with_graph": 15.31
+    },
+    {
+      "account_id": "A0672",
+      "is_suspicious": 0,
+      "without_graph": 14.36,
+      "with_graph": 25.02
+    },
+    {
+      "account_id": "A0675",
+      "is_suspicious": 0,
+      "without_graph": 15.06,
+      "with_graph": 21.06
+    },
+    {
+      "account_id": "A0687",
+      "is_suspicious": 0,
+      "without_graph": 15.21,
+      "with_graph": 18.42
+    },
+    {
+      "account_id": "A0689",
+      "is_suspicious": 0,
+      "without_graph": 14.46,
+      "with_graph": 22.01
+    },
+    {
+      "account_id": "A0699",
+      "is_suspicious": 0,
+      "without_graph": 14.89,
+      "with_graph": 18.89
+    },
+    {
+      "account_id": "A0702",
+      "is_suspicious": 0,
+      "without_graph": 23.28,
+      "with_graph": 22.44
+    },
+    {
+      "account_id": "A0706",
+      "is_suspicious": 0,
+      "without_graph": 14.25,
+      "with_graph": 19.6
+    },
+    {
+      "account_id": "A0711",
+      "is_suspicious": 0,
+      "without_graph": 14.89,
+      "with_graph": 18.32
+    },
+    {
+      "account_id": "A0718",
+      "is_suspicious": 0,
+      "without_graph": 13.86,
+      "with_graph": 20.46
+    },
+    {
+      "account_id": "A0720",
+      "is_suspicious": 0,
+      "without_graph": 13.95,
+      "with_graph": 18.85
+    },
+    {
+      "account_id": "A0721",
+      "is_suspicious": 0,
+      "without_graph": 17.63,
+      "with_graph": 21.84
+    },
+    {
+      "account_id": "A0730",
+      "is_suspicious": 0,
+      "without_graph": 13.84,
+      "with_graph": 20.45
+    },
+    {
+      "account_id": "A0732",
+      "is_suspicious": 0,
+      "without_graph": 13.97,
+      "with_graph": 24.9
+    },
+    {
+      "account_id": "A0735",
+      "is_suspicious": 0,
+      "without_graph": 17.6,
+      "with_graph": 17.1
+    },
+    {
+      "account_id": "A0736",
+      "is_suspicious": 0,
+      "without_graph": 15.57,
+      "with_graph": 17.79
+    },
+    {
+      "account_id": "A0749",
+      "is_suspicious": 0,
+      "without_graph": 17.55,
+      "with_graph": 19.12
+    },
+    {
+      "account_id": "A0752",
+      "is_suspicious": 0,
+      "without_graph": 16.21,
+      "with_graph": 17.25
+    },
+    {
+      "account_id": "A0763",
+      "is_suspicious": 0,
+      "without_graph": 13.91,
+      "with_graph": 20.72
+    },
+    {
+      "account_id": "A0779",
+      "is_suspicious": 0,
+      "without_graph": 14.25,
+      "with_graph": 17.88
+    },
+    {
+      "account_id": "A0786",
+      "is_suspicious": 0,
+      "without_graph": 13.92,
+      "with_graph": 13.9
+    },
+    {
+      "account_id": "A0790",
+      "is_suspicious": 0,
+      "without_graph": 14.17,
+      "with_graph": 14.08
+    },
+    {
+      "account_id": "A0791",
+      "is_suspicious": 0,
+      "without_graph": 21.91,
+      "with_graph": 20.64
+    },
+    {
+      "account_id": "A0809",
+      "is_suspicious": 0,
+      "without_graph": 13.87,
+      "with_graph": 17.28
+    },
+    {
+      "account_id": "A0812",
+      "is_suspicious": 0,
+      "without_graph": 15.71,
+      "with_graph": 18.56
+    },
+    {
+      "account_id": "A0820",
+      "is_suspicious": 0,
+      "without_graph": 13.93,
+      "with_graph": 18.52
+    },
+    {
+      "account_id": "A0821",
+      "is_suspicious": 0,
+      "without_graph": 16.64,
+      "with_graph": 18.11
+    },
+    {
+      "account_id": "A0827",
+      "is_suspicious": 0,
+      "without_graph": 13.91,
+      "with_graph": 19.74
+    },
+    {
+      "account_id": "A0828",
+      "is_suspicious": 0,
+      "without_graph": 20.21,
+      "with_graph": 20.41
+    },
+    {
+      "account_id": "A0832",
+      "is_suspicious": 0,
+      "without_graph": 18.18,
+      "with_graph": 18.33
+    },
+    {
+      "account_id": "A0837",
+      "is_suspicious": 0,
+      "without_graph": 16.63,
+      "with_graph": 17.37
+    },
+    {
+      "account_id": "A0843",
+      "is_suspicious": 0,
+      "without_graph": 16.45,
+      "with_graph": 18.05
+    },
+    {
+      "account_id": "A0850",
+      "is_suspicious": 0,
+      "without_graph": 13.99,
+      "with_graph": 17.32
+    },
+    {
+      "account_id": "A0851",
+      "is_suspicious": 0,
+      "without_graph": 13.97,
+      "with_graph": 20.49
+    },
+    {
+      "account_id": "A0861",
+      "is_suspicious": 0,
+      "without_graph": 14.85,
+      "with_graph": 18.06
+    },
+    {
+      "account_id": "A0863",
+      "is_suspicious": 0,
+      "without_graph": 14.09,
+      "with_graph": 16.61
+    },
+    {
+      "account_id": "A0864",
+      "is_suspicious": 0,
+      "without_graph": 14.64,
+      "with_graph": 18.74
+    },
+    {
+      "account_id": "A0877",
+      "is_suspicious": 0,
+      "without_graph": 15.08,
+      "with_graph": 16.17
+    },
+    {
+      "account_id": "A0893",
+      "is_suspicious": 0,
+      "without_graph": 25.09,
+      "with_graph": 27.79
+    },
+    {
+      "account_id": "A0908",
+      "is_suspicious": 0,
+      "without_graph": 14.18,
+      "with_graph": 17.37
+    },
+    {
+      "account_id": "A0910",
+      "is_suspicious": 0,
+      "without_graph": 16.16,
+      "with_graph": 18.46
+    },
+    {
+      "account_id": "A0912",
+      "is_suspicious": 0,
+      "without_graph": 15.61,
+      "with_graph": 17.06
+    },
+    {
+      "account_id": "A0918",
+      "is_suspicious": 0,
+      "without_graph": 20.89,
+      "with_graph": 19.93
+    },
+    {
+      "account_id": "A0927",
+      "is_suspicious": 0,
+      "without_graph": 13.89,
+      "with_graph": 17.28
+    },
+    {
+      "account_id": "A0932",
+      "is_suspicious": 0,
+      "without_graph": 16.73,
+      "with_graph": 18.14
+    },
+    {
+      "account_id": "A0939",
+      "is_suspicious": 0,
+      "without_graph": 13.96,
+      "with_graph": 17.8
+    },
+    {
+      "account_id": "A0943",
+      "is_suspicious": 0,
+      "without_graph": 20.39,
+      "with_graph": 20.21
+    },
+    {
+      "account_id": "A0948",
+      "is_suspicious": 0,
+      "without_graph": 14.88,
+      "with_graph": 19.79
+    },
+    {
+      "account_id": "A0953",
+      "is_suspicious": 0,
+      "without_graph": 23.57,
+      "with_graph": 23.17
+    },
+    {
+      "account_id": "A0956",
+      "is_suspicious": 0,
+      "without_graph": 21.52,
+      "with_graph": 22.02
+    },
+    {
+      "account_id": "A0961",
+      "is_suspicious": 0,
+      "without_graph": 14.31,
+      "with_graph": 17.9
+    },
+    {
+      "account_id": "A0962",
+      "is_suspicious": 0,
+      "without_graph": 13.87,
+      "with_graph": 16.55
+    },
+    {
+      "account_id": "A0967",
+      "is_suspicious": 0,
+      "without_graph": 14.01,
+      "with_graph": 20.75
+    },
+    {
+      "account_id": "A0970",
+      "is_suspicious": 0,
+      "without_graph": 14.71,
+      "with_graph": 15.57
+    },
+    {
+      "account_id": "A0973",
+      "is_suspicious": 0,
+      "without_graph": 15.62,
+      "with_graph": 16.33
+    },
+    {
+      "account_id": "A0974",
+      "is_suspicious": 0,
+      "without_graph": 23.6,
+      "with_graph": 27.79
+    },
+    {
+      "account_id": "A0982",
+      "is_suspicious": 0,
+      "without_graph": 14.13,
+      "with_graph": 18.58
+    },
+    {
+      "account_id": "A0992",
+      "is_suspicious": 0,
+      "without_graph": 24.2,
+      "with_graph": 22.25
+    },
+    {
+      "account_id": "A1002",
+      "is_suspicious": 1,
+      "without_graph": 33.83,
+      "with_graph": 44.34
+    },
+    {
+      "account_id": "A1008",
+      "is_suspicious": 1,
+      "without_graph": 31.56,
+      "with_graph": 43.66
+    },
+    {
+      "account_id": "A1012",
+      "is_suspicious": 1,
+      "without_graph": 38.86,
+      "with_graph": 45.85
+    },
+    {
+      "account_id": "A1014",
+      "is_suspicious": 1,
+      "without_graph": 38.34,
+      "with_graph": 45.69
+    },
+    {
+      "account_id": "A1015",
+      "is_suspicious": 1,
+      "without_graph": 36.57,
+      "with_graph": 34.48
+    },
+    {
+      "account_id": "A1018",
+      "is_suspicious": 1,
+      "without_graph": 32.62,
+      "with_graph": 43.97
+    },
+    {
+      "account_id": "A1022",
+      "is_suspicious": 1,
+      "without_graph": 35.84,
+      "with_graph": 44.94
+    },
+    {
+      "account_id": "A1035",
+      "is_suspicious": 1,
+      "without_graph": 35.78,
+      "with_graph": 44.92
+    },
+    {
+      "account_id": "A1036",
+      "is_suspicious": 1,
+      "without_graph": 35.62,
+      "with_graph": 44.87
+    }
+  ],
+  "full_ablation_note": "All test accounts receive the same neutral structured context and message, independent of target labels. The synthetic overlay topology was generated using synthetic suspicious-profile membership, so this controlled benchmark is still not independent real-world validation.",
+  "hard_negative_results": [
+    {
+      "account_id": "A0001",
+      "role": "online_merchant",
+      "graph_score": 65.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0005",
+      "role": "restaurant",
+      "graph_score": 45.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0010",
+      "role": "tuition",
+      "graph_score": 20.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0015",
+      "role": "seller",
+      "graph_score": 45.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0032",
+      "role": "payroll",
+      "graph_score": 23.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0034",
+      "role": "fundraiser",
+      "graph_score": 23.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0039",
+      "role": "online_merchant",
+      "graph_score": 45.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0041",
+      "role": "restaurant",
+      "graph_score": 17.0,
+      "recipient_score": 24.0
+    },
+    {
+      "account_id": "A0042",
+      "role": "tuition",
+      "graph_score": 20.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0049",
+      "role": "seller",
+      "graph_score": 45.0,
+      "recipient_score": 90.0
+    },
+    {
+      "account_id": "A0052",
+      "role": "payroll",
+      "graph_score": 45.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0057",
+      "role": "fundraiser",
+      "graph_score": 20.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0063",
+      "role": "online_merchant",
+      "graph_score": 65.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0065",
+      "role": "restaurant",
+      "graph_score": 45.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0069",
+      "role": "tuition",
+      "graph_score": 45.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0076",
+      "role": "seller",
+      "graph_score": 45.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0081",
+      "role": "payroll",
+      "graph_score": 20.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0087",
+      "role": "fundraiser",
+      "graph_score": 45.0,
+      "recipient_score": 80.0
+    },
+    {
+      "account_id": "A0093",
+      "role": "online_merchant",
+      "graph_score": 45.0,
+      "recipient_score": 90.0
+    },
+    {
+      "account_id": "A0102",
+      "role": "restaurant",
+      "graph_score": 23.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0105",
+      "role": "tuition",
+      "graph_score": 23.0,
+      "recipient_score": 28.0
+    },
+    {
+      "account_id": "A0106",
+      "role": "seller",
+      "graph_score": 20.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0111",
+      "role": "payroll",
+      "graph_score": 45.0,
+      "recipient_score": 20.0
+    },
+    {
+      "account_id": "A0113",
+      "role": "fundraiser",
+      "graph_score": 45.0,
+      "recipient_score": 28.0
+    }
+  ],
+  "api_core_latency_ms": {
+    "median": 15.037999954074621,
+    "p95": 25.738639943301678
+  },
+  "limitations": "Original graph crosses target partitions. Only 18 known positives; 22 suspicious unlabeled accounts are treated negative. Synthetic overlays are designed using suspicious profiles. Uncalibrated probabilities."
+}

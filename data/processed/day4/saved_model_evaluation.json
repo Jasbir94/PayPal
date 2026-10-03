@@ -1,0 +1,428 @@
+{
+  "test": {
+    "sample_count": 900,
+    "hamming_loss": 0.12811111111111112,
+    "micro_precision": 0.9469387755102041,
+    "micro_recall": 0.16909620991253643,
+    "micro_f1": 0.28695114409400124,
+    "macro_precision": 0.5664531563512887,
+    "macro_recall": 0.169413927849632,
+    "macro_f1": 0.24549023416964308,
+    "per_label": {
+      "authority": {
+        "precision": 1.0,
+        "recall": 0.22627737226277372,
+        "f1": 0.36904761904761907,
+        "average_precision": 0.9993959593425772,
+        "support": 137,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 106
+      },
+      "fear": {
+        "precision": 1.0,
+        "recall": 0.030303030303030304,
+        "f1": 0.058823529411764705,
+        "average_precision": 0.5233434223815725,
+        "support": 132,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 128
+      },
+      "urgency": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.3218097712074475,
+        "support": 129,
+        "threshold": 0.4,
+        "false_positives": 0,
+        "false_negatives": 129
+      },
+      "scarcity": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.8226830266327904,
+        "support": 147,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 147
+      },
+      "trust": {
+        "precision": 0.8181818181818182,
+        "recall": 0.15126050420168066,
+        "f1": 0.2553191489361702,
+        "average_precision": 0.542665574418191,
+        "support": 119,
+        "threshold": 0.3,
+        "false_positives": 4,
+        "false_negatives": 101
+      },
+      "reward": {
+        "precision": 0.9516129032258065,
+        "recall": 0.43703703703703706,
+        "f1": 0.5989847715736041,
+        "average_precision": 0.9212575691300844,
+        "support": 135,
+        "threshold": 0.3,
+        "false_positives": 3,
+        "false_negatives": 76
+      },
+      "social_proof": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.770070810266464,
+        "support": 153,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 153
+      },
+      "secrecy": {
+        "precision": 1.0,
+        "recall": 0.45695364238410596,
+        "f1": 0.6272727272727273,
+        "average_precision": 0.8289981148050258,
+        "support": 151,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 82
+      },
+      "commitment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.6813604355751113,
+        "support": 139,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 139
+      },
+      "emotional_pressure": {
+        "precision": 0.8947368421052632,
+        "recall": 0.3923076923076923,
+        "f1": 0.5454545454545454,
+        "average_precision": 0.8620907307087149,
+        "support": 130,
+        "threshold": 0.3,
+        "false_positives": 6,
+        "false_negatives": 79
+      }
+    },
+    "macro_average_precision": 0.7273675414467979
+  },
+  "dataset_quality": {
+    "rows": 6000,
+    "positive_counts": {
+      "authority": 923,
+      "fear": 923,
+      "urgency": 1009,
+      "scarcity": 922,
+      "trust": 1254,
+      "reward": 902,
+      "social_proof": 967,
+      "secrecy": 935,
+      "commitment": 916,
+      "emotional_pressure": 921
+    },
+    "split_counts": {
+      "train": 4200,
+      "test": 900,
+      "validation": 900
+    },
+    "positive_counts_by_split": {
+      "test": {
+        "authority": 137,
+        "fear": 132,
+        "urgency": 129,
+        "scarcity": 147,
+        "trust": 119,
+        "reward": 135,
+        "social_proof": 153,
+        "secrecy": 151,
+        "commitment": 139,
+        "emotional_pressure": 130
+      },
+      "train": {
+        "authority": 651,
+        "fear": 655,
+        "urgency": 741,
+        "scarcity": 640,
+        "trust": 942,
+        "reward": 622,
+        "social_proof": 671,
+        "secrecy": 669,
+        "commitment": 638,
+        "emotional_pressure": 671
+      },
+      "validation": {
+        "authority": 135,
+        "fear": 136,
+        "urgency": 139,
+        "scarcity": 135,
+        "trust": 193,
+        "reward": 145,
+        "social_proof": 143,
+        "secrecy": 115,
+        "commitment": 139,
+        "emotional_pressure": 120
+      }
+    },
+    "language_counts": {
+      "English": 3000,
+      "Hinglish": 3000
+    },
+    "neutral_rows": 1360,
+    "single_label_rows": 1713,
+    "multi_label_rows": 2927,
+    "average_label_count": 1.612,
+    "average_text_length": 189.63816666666668,
+    "source_family_count": 120,
+    "cross_split_source_overlap": 0,
+    "duplicate_messages": 0,
+    "stratification_note": "Exact 70/15/15 row allocation with balanced languages and randomly sampled label combinations. Source-family isolation and authored co-labels cause prevalence differences; this is not perfect iterative multi-label stratification."
+  },
+  "language_slices": {
+    "English": {
+      "sample_count": 450,
+      "hamming_loss": 0.14177777777777778,
+      "micro_precision": 0.8829787234042553,
+      "micro_recall": 0.11690140845070422,
+      "micro_f1": 0.2064676616915423,
+      "macro_precision": 0.46294691789759385,
+      "macro_recall": 0.12684759031817855,
+      "macro_f1": 0.17040223678210573,
+      "per_label": {
+        "authority": {
+          "precision": 1.0,
+          "recall": 0.013333333333333334,
+          "f1": 0.02631578947368421,
+          "average_precision": 1.0,
+          "support": 75,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 74
+        },
+        "fear": {
+          "precision": 1.0,
+          "recall": 0.05555555555555555,
+          "f1": 0.10526315789473684,
+          "average_precision": 0.6492690331146029,
+          "support": 72,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 68
+        },
+        "urgency": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.304193391936185,
+          "support": 63,
+          "threshold": 0.4,
+          "false_positives": 0,
+          "false_negatives": 63
+        },
+        "scarcity": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 1.0,
+          "support": 77,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 77
+        },
+        "trust": {
+          "precision": 0.8823529411764706,
+          "recall": 0.22058823529411764,
+          "f1": 0.35294117647058826,
+          "average_precision": 0.7062540151764349,
+          "support": 68,
+          "threshold": 0.3,
+          "false_positives": 2,
+          "false_negatives": 53
+        },
+        "reward": {
+          "precision": 0.8695652173913043,
+          "recall": 0.31746031746031744,
+          "f1": 0.46511627906976744,
+          "average_precision": 0.7798285637762525,
+          "support": 63,
+          "threshold": 0.3,
+          "false_positives": 3,
+          "false_negatives": 43
+        },
+        "social_proof": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 1.0,
+          "support": 84,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 84
+        },
+        "secrecy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.7118180183726568,
+          "support": 79,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 79
+        },
+        "commitment": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.4164630521730761,
+          "support": 64,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 64
+        },
+        "emotional_pressure": {
+          "precision": 0.8775510204081632,
+          "recall": 0.6615384615384615,
+          "f1": 0.7543859649122807,
+          "average_precision": 0.9259659225357708,
+          "support": 65,
+          "threshold": 0.3,
+          "false_positives": 6,
+          "false_negatives": 22
+        }
+      },
+      "macro_average_precision": 0.749379199708498
+    },
+    "Hinglish": {
+      "sample_count": 450,
+      "hamming_loss": 0.11444444444444445,
+      "micro_precision": 0.9867549668874173,
+      "micro_recall": 0.22507552870090636,
+      "micro_f1": 0.36654366543665434,
+      "macro_precision": 0.45999999999999996,
+      "macro_recall": 0.21657714202306236,
+      "macro_f1": 0.26599209593361384,
+      "per_label": {
+        "authority": {
+          "precision": 1.0,
+          "recall": 0.4838709677419355,
+          "f1": 0.6521739130434783,
+          "average_precision": 1.0,
+          "support": 62,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 32
+        },
+        "fear": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.4245936052657998,
+          "support": 60,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 60
+        },
+        "urgency": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.41163655956528417,
+          "support": 66,
+          "threshold": 0.4,
+          "false_positives": 0,
+          "false_negatives": 66
+        },
+        "scarcity": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.5803194932085076,
+          "support": 70,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 70
+        },
+        "trust": {
+          "precision": 0.6,
+          "recall": 0.058823529411764705,
+          "f1": 0.10714285714285714,
+          "average_precision": 0.3386110135760696,
+          "support": 51,
+          "threshold": 0.3,
+          "false_positives": 2,
+          "false_negatives": 48
+        },
+        "reward": {
+          "precision": 1.0,
+          "recall": 0.5416666666666666,
+          "f1": 0.7027027027027027,
+          "average_precision": 1.0,
+          "support": 72,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 33
+        },
+        "social_proof": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.7679438078401407,
+          "support": 69,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 69
+        },
+        "secrecy": {
+          "precision": 1.0,
+          "recall": 0.9583333333333334,
+          "f1": 0.9787234042553191,
+          "average_precision": 1.0,
+          "support": 72,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 3
+        },
+        "commitment": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.9289214560385273,
+          "support": 75,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 75
+        },
+        "emotional_pressure": {
+          "precision": 1.0,
+          "recall": 0.12307692307692308,
+          "f1": 0.2191780821917808,
+          "average_precision": 0.939073554979279,
+          "support": 65,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 57
+        }
+      },
+      "macro_average_precision": 0.7391099490473609
+    }
+  },
+  "test_review_counts": {
+    "false_positives": 11,
+    "false_negatives": 25
+  },
+  "review_note": "Test errors first; insufficient test FP examples supplemented by marked validation then training errors. No test threshold tuning.",
+  "review_counts": {
+    "false_positives": 15,
+    "false_negatives": 25
+  },
+  "weak_labels": [
+    "urgency",
+    "scarcity",
+    "social_proof"
+  ]
+}

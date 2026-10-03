@@ -1,0 +1,14 @@
+{
+  "costs": {
+    "false_negative_cost": 8.0,
+    "false_positive_cost": 1.0,
+    "soft_warning_cost": 0.1,
+    "context_check_cost": 0.25,
+    "strong_warning_cost": 0.5,
+    "step_up_verification_cost": 1.0,
+    "manual_review_cost": 1.5
+  },
+  "total_test_rows": 400,
+  "model_version": "fusion-logistic-platt-v1",
+  "notice": "Illustrative comparison parameters only; not actual provider economics or product policy."
+}

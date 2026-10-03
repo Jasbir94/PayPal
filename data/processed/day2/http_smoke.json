@@ -1,0 +1,50 @@
+{
+  "method": "20 warmed localhost HTTP requests; startup excluded; transport included",
+  "median_ms": 121.98669998906553,
+  "p95_ms": 170.87930997367948,
+  "mean_ms": 125.40751497726887,
+  "request": {
+    "sender_id": "A0001",
+    "receiver_id": "A1006",
+    "amount": 66994.74,
+    "timestamp": "2026-01-30T23:31:50+00:00",
+    "device_id": "D0001",
+    "payment_type": "bank_transfer"
+  },
+  "response": {
+    "transaction_risk": 91.24,
+    "recipient_risk": 77.97,
+    "preliminary_risk": 83.94,
+    "risk_level": "CRITICAL",
+    "reasons": [
+      "amount_much_higher_than_normal",
+      "first_time_recipient",
+      "amount_above_recent_average",
+      "transaction_model_elevated_risk",
+      "high_outgoing_ratio",
+      "multiple_prior_fraud_reports",
+      "recipient_model_elevated_risk"
+    ],
+    "transaction_details": {
+      "score": 91.24,
+      "ml_probability": 0.954067,
+      "rule_score": 85.0,
+      "reasons": [
+        "amount_much_higher_than_normal",
+        "first_time_recipient",
+        "amount_above_recent_average",
+        "transaction_model_elevated_risk"
+      ]
+    },
+    "recipient_details": {
+      "score": 77.97,
+      "ml_probability": 0.999536,
+      "rule_score": 45.0,
+      "reasons": [
+        "high_outgoing_ratio",
+        "multiple_prior_fraud_reports",
+        "recipient_model_elevated_risk"
+      ]
+    }
+  }
+}

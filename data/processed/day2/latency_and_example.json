@@ -1,0 +1,84 @@
+{
+  "suspicious_request": {
+    "sender_id": "A0001",
+    "receiver_id": "A1006",
+    "amount": 66994.74,
+    "timestamp": "2026-01-30T23:31:50+00:00",
+    "device_id": "D0001",
+    "payment_type": "bank_transfer"
+  },
+  "suspicious_response": {
+    "transaction_risk": 91.24,
+    "recipient_risk": 77.97,
+    "preliminary_risk": 83.94,
+    "risk_level": "CRITICAL",
+    "reasons": [
+      "amount_much_higher_than_normal",
+      "first_time_recipient",
+      "amount_above_recent_average",
+      "transaction_model_elevated_risk",
+      "high_outgoing_ratio",
+      "multiple_prior_fraud_reports",
+      "recipient_model_elevated_risk"
+    ],
+    "transaction_details": {
+      "score": 91.24,
+      "ml_probability": 0.954067,
+      "rule_score": 85.0,
+      "reasons": [
+        "amount_much_higher_than_normal",
+        "first_time_recipient",
+        "amount_above_recent_average",
+        "transaction_model_elevated_risk"
+      ]
+    },
+    "recipient_details": {
+      "score": 77.97,
+      "ml_probability": 0.999536,
+      "rule_score": 45.0,
+      "reasons": [
+        "high_outgoing_ratio",
+        "multiple_prior_fraud_reports",
+        "recipient_model_elevated_risk"
+      ]
+    }
+  },
+  "method": "30 warm FastAPI TestClient requests, excludes startup and network transport",
+  "median_ms": 95.64449999015778,
+  "p95_ms": 219.2509749555025,
+  "mean_ms": 117.31661662925035,
+  "request": {
+    "sender_id": "A0242",
+    "receiver_id": "A0928",
+    "amount": 2381.48,
+    "timestamp": "2026-01-30T23:31:49+00:00",
+    "device_id": "D0242",
+    "payment_type": "bank_transfer"
+  },
+  "response": {
+    "transaction_risk": 0.03,
+    "recipient_risk": 0.16,
+    "preliminary_risk": 0.1,
+    "risk_level": "LOW",
+    "reasons": [
+      "within_expected_transaction_pattern",
+      "no_recipient_rule_signals"
+    ],
+    "transaction_details": {
+      "score": 0.03,
+      "ml_probability": 0.000504,
+      "rule_score": 0.0,
+      "reasons": [
+        "within_expected_transaction_pattern"
+      ]
+    },
+    "recipient_details": {
+      "score": 0.16,
+      "ml_probability": 0.002701,
+      "rule_score": 0.0,
+      "reasons": [
+        "no_recipient_rule_signals"
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "seed": 42,
+  "base_data_unchanged": true,
+  "overlay_transactions": 4892,
+  "evaluation_accounts": 1040,
+  "intelligence_seed_count": 2,
+  "target": "Original is_known_mule; unlabeled suspicious accounts remain target-negative.",
+  "limitations": "40 suspicious accounts drive generated mule patterns; 18 are labeled known. Labels and synthetic scenario design are imperfect proxies, not real-world truth."
+}

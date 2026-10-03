@@ -1,0 +1,13 @@
+case,status,support,reason
+normal_friend,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+large_legitimate_purchase,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+known_merchant,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+government_fee,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+utility_bill,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+loan_repayment,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+known_investment_provider,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+business_supplier,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+college_fee,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+hospital_payment,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+friend_repayment,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.
+family_emergency,NOT_EVALUABLE,0,No verified intent-level hard-negative labels in the temporal holdout; Day 8 demo presets are illustrative only.

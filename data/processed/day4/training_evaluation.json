@@ -1,0 +1,720 @@
+{
+  "metadata": {
+    "seed": 42,
+    "labels": [
+      "authority",
+      "fear",
+      "urgency",
+      "scarcity",
+      "trust",
+      "reward",
+      "social_proof",
+      "secrecy",
+      "commitment",
+      "emotional_pressure"
+    ],
+    "input_features": [
+      "text"
+    ],
+    "sklearn_version": "1.5.2",
+    "threshold_selection": "maximum validation F1 per label, recall then closeness to .5 as tie-breakers",
+    "split_strategy": "Exact 70/15/15 row allocation with balanced languages and randomly sampled label combinations. Source-family isolation and authored co-labels cause prevalence differences; this is not perfect iterative multi-label stratification.",
+    "probabilities": "uncalibrated per-label logistic outputs",
+    "dataset_sha256": "0999d506b175da9ecf34032e09347bdae2aed68d30f068ba78d8ca3669b57cf2",
+    "limitations": "Synthetic component-composed messages; source phrasing and correlations can differ substantially from real conversations."
+  },
+  "thresholds": {
+    "authority": 0.3,
+    "fear": 0.3,
+    "urgency": 0.4,
+    "scarcity": 0.5,
+    "trust": 0.3,
+    "reward": 0.3,
+    "social_proof": 0.5,
+    "secrecy": 0.3,
+    "commitment": 0.3,
+    "emotional_pressure": 0.3
+  },
+  "threshold_comparison": {
+    "authority": [
+      {
+        "threshold": 0.3,
+        "f1": 0.7142857142857143,
+        "recall": 0.5555555555555556
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.6633663366336634,
+        "recall": 0.4962962962962963
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.5714285714285714,
+        "recall": 0.4
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.45714285714285713,
+        "recall": 0.2962962962962963
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.24675324675324675,
+        "recall": 0.14074074074074075
+      }
+    ],
+    "fear": [
+      {
+        "threshold": 0.3,
+        "f1": 0.6534653465346535,
+        "recall": 0.4852941176470588
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.5217391304347826,
+        "recall": 0.35294117647058826
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.34146341463414637,
+        "recall": 0.20588235294117646
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.1986754966887417,
+        "recall": 0.11029411764705882
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.028985507246376812,
+        "recall": 0.014705882352941176
+      }
+    ],
+    "urgency": [
+      {
+        "threshold": 0.3,
+        "f1": 0.6434782608695652,
+        "recall": 0.5323741007194245
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.6666666666666666,
+        "recall": 0.5107913669064749
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.6305418719211823,
+        "recall": 0.460431654676259
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.5368421052631579,
+        "recall": 0.3669064748201439
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.40229885057471265,
+        "recall": 0.2517985611510791
+      }
+    ],
+    "scarcity": [
+      {
+        "threshold": 0.3,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.0,
+        "recall": 0.0
+      }
+    ],
+    "trust": [
+      {
+        "threshold": 0.3,
+        "f1": 0.42276422764227645,
+        "recall": 0.2694300518134715
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.13526570048309178,
+        "recall": 0.07253886010362694
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.09852216748768473,
+        "recall": 0.05181347150259067
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.04060913705583756,
+        "recall": 0.02072538860103627
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.04060913705583756,
+        "recall": 0.02072538860103627
+      }
+    ],
+    "reward": [
+      {
+        "threshold": 0.3,
+        "f1": 0.9679715302491103,
+        "recall": 0.9379310344827586
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.8671875,
+        "recall": 0.7655172413793103
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.6320754716981132,
+        "recall": 0.46206896551724136
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.28402366863905326,
+        "recall": 0.16551724137931034
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.15286624203821655,
+        "recall": 0.08275862068965517
+      }
+    ],
+    "social_proof": [
+      {
+        "threshold": 0.3,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.0,
+        "recall": 0.0
+      }
+    ],
+    "secrecy": [
+      {
+        "threshold": 0.3,
+        "f1": 0.7362637362637363,
+        "recall": 0.5826086956521739
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.4563758389261745,
+        "recall": 0.2956521739130435
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.16,
+        "recall": 0.08695652173913043
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.06722689075630252,
+        "recall": 0.034782608695652174
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.017241379310344827,
+        "recall": 0.008695652173913044
+      }
+    ],
+    "commitment": [
+      {
+        "threshold": 0.3,
+        "f1": 0.40229885057471265,
+        "recall": 0.2517985611510791
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.2732919254658385,
+        "recall": 0.15827338129496402
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.12162162162162163,
+        "recall": 0.06474820143884892
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.028368794326241134,
+        "recall": 0.014388489208633094
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.0,
+        "recall": 0.0
+      }
+    ],
+    "emotional_pressure": [
+      {
+        "threshold": 0.3,
+        "f1": 0.19548872180451127,
+        "recall": 0.10833333333333334
+      },
+      {
+        "threshold": 0.4,
+        "f1": 0.06451612903225806,
+        "recall": 0.03333333333333333
+      },
+      {
+        "threshold": 0.5,
+        "f1": 0.01652892561983471,
+        "recall": 0.008333333333333333
+      },
+      {
+        "threshold": 0.6,
+        "f1": 0.0,
+        "recall": 0.0
+      },
+      {
+        "threshold": 0.7,
+        "f1": 0.0,
+        "recall": 0.0
+      }
+    ]
+  },
+  "validation": {
+    "sample_count": 900,
+    "hamming_loss": 0.09877777777777778,
+    "micro_precision": 0.9922928709055877,
+    "micro_recall": 0.3678571428571429,
+    "micro_f1": 0.5367378843147472,
+    "macro_precision": 0.7940591534931157,
+    "macro_recall": 0.3701742716541906,
+    "macro_f1": 0.47592047940213816,
+    "per_label": {
+      "authority": {
+        "precision": 1.0,
+        "recall": 0.5555555555555556,
+        "f1": 0.7142857142857143,
+        "average_precision": 0.9656116291566771,
+        "support": 135,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 60
+      },
+      "fear": {
+        "precision": 1.0,
+        "recall": 0.4852941176470588,
+        "f1": 0.6534653465346535,
+        "average_precision": 0.9866898006446876,
+        "support": 136,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 70
+      },
+      "urgency": {
+        "precision": 0.9594594594594594,
+        "recall": 0.5107913669064749,
+        "f1": 0.6666666666666666,
+        "average_precision": 0.8183496683710035,
+        "support": 139,
+        "threshold": 0.4,
+        "false_positives": 3,
+        "false_negatives": 68
+      },
+      "scarcity": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.7810447019405747,
+        "support": 135,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 135
+      },
+      "trust": {
+        "precision": 0.9811320754716981,
+        "recall": 0.2694300518134715,
+        "f1": 0.42276422764227645,
+        "average_precision": 0.7240985539412171,
+        "support": 193,
+        "threshold": 0.3,
+        "false_positives": 1,
+        "false_negatives": 141
+      },
+      "reward": {
+        "precision": 1.0,
+        "recall": 0.9379310344827586,
+        "f1": 0.9679715302491103,
+        "average_precision": 1.0,
+        "support": 145,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 9
+      },
+      "social_proof": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.3130710508000221,
+        "support": 143,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 143
+      },
+      "secrecy": {
+        "precision": 1.0,
+        "recall": 0.5826086956521739,
+        "f1": 0.7362637362637363,
+        "average_precision": 0.9393255223835443,
+        "support": 115,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 48
+      },
+      "commitment": {
+        "precision": 1.0,
+        "recall": 0.2517985611510791,
+        "f1": 0.40229885057471265,
+        "average_precision": 0.6080336836296105,
+        "support": 139,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 104
+      },
+      "emotional_pressure": {
+        "precision": 1.0,
+        "recall": 0.10833333333333334,
+        "f1": 0.19548872180451127,
+        "average_precision": 0.7449539885650731,
+        "support": 120,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 107
+      }
+    },
+    "macro_average_precision": 0.788117859943241
+  },
+  "test": {
+    "sample_count": 900,
+    "hamming_loss": 0.12811111111111112,
+    "micro_precision": 0.9469387755102041,
+    "micro_recall": 0.16909620991253643,
+    "micro_f1": 0.28695114409400124,
+    "macro_precision": 0.5664531563512887,
+    "macro_recall": 0.169413927849632,
+    "macro_f1": 0.24549023416964308,
+    "per_label": {
+      "authority": {
+        "precision": 1.0,
+        "recall": 0.22627737226277372,
+        "f1": 0.36904761904761907,
+        "average_precision": 0.9993959593425772,
+        "support": 137,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 106
+      },
+      "fear": {
+        "precision": 1.0,
+        "recall": 0.030303030303030304,
+        "f1": 0.058823529411764705,
+        "average_precision": 0.5233434223815725,
+        "support": 132,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 128
+      },
+      "urgency": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.3218097712074475,
+        "support": 129,
+        "threshold": 0.4,
+        "false_positives": 0,
+        "false_negatives": 129
+      },
+      "scarcity": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.8226830266327904,
+        "support": 147,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 147
+      },
+      "trust": {
+        "precision": 0.8181818181818182,
+        "recall": 0.15126050420168066,
+        "f1": 0.2553191489361702,
+        "average_precision": 0.542665574418191,
+        "support": 119,
+        "threshold": 0.3,
+        "false_positives": 4,
+        "false_negatives": 101
+      },
+      "reward": {
+        "precision": 0.9516129032258065,
+        "recall": 0.43703703703703706,
+        "f1": 0.5989847715736041,
+        "average_precision": 0.9212575691300844,
+        "support": 135,
+        "threshold": 0.3,
+        "false_positives": 3,
+        "false_negatives": 76
+      },
+      "social_proof": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.770070810266464,
+        "support": 153,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 153
+      },
+      "secrecy": {
+        "precision": 1.0,
+        "recall": 0.45695364238410596,
+        "f1": 0.6272727272727273,
+        "average_precision": 0.8289981148050258,
+        "support": 151,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 82
+      },
+      "commitment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.6813604355751113,
+        "support": 139,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 139
+      },
+      "emotional_pressure": {
+        "precision": 0.8947368421052632,
+        "recall": 0.3923076923076923,
+        "f1": 0.5454545454545454,
+        "average_precision": 0.8620907307087149,
+        "support": 130,
+        "threshold": 0.3,
+        "false_positives": 6,
+        "false_negatives": 79
+      }
+    },
+    "macro_average_precision": 0.7273675414467979
+  },
+  "test_default_0_5": {
+    "sample_count": 900,
+    "hamming_loss": 0.147,
+    "micro_precision": 1.0,
+    "micro_recall": 0.03571428571428571,
+    "micro_f1": 0.06896551724137931,
+    "macro_precision": 0.5,
+    "macro_recall": 0.03485008281737686,
+    "macro_f1": 0.06275158175158176,
+    "per_label": {
+      "authority": {
+        "precision": 1.0,
+        "recall": 0.021897810218978103,
+        "f1": 0.04285714285714286,
+        "average_precision": 0.9993959593425772,
+        "support": 137,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 134
+      },
+      "fear": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.5233434223815725,
+        "support": 132,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 132
+      },
+      "urgency": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.3218097712074475,
+        "support": 129,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 129
+      },
+      "scarcity": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.8226830266327904,
+        "support": 147,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 147
+      },
+      "trust": {
+        "precision": 1.0,
+        "recall": 0.008403361344537815,
+        "f1": 0.016666666666666666,
+        "average_precision": 0.542665574418191,
+        "support": 119,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 118
+      },
+      "reward": {
+        "precision": 1.0,
+        "recall": 0.05925925925925926,
+        "f1": 0.11188811188811189,
+        "average_precision": 0.9212575691300844,
+        "support": 135,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 127
+      },
+      "social_proof": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.770070810266464,
+        "support": 153,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 153
+      },
+      "secrecy": {
+        "precision": 1.0,
+        "recall": 0.15894039735099338,
+        "f1": 0.2742857142857143,
+        "average_precision": 0.8289981148050258,
+        "support": 151,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 127
+      },
+      "commitment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.6813604355751113,
+        "support": 139,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 139
+      },
+      "emotional_pressure": {
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "average_precision": 0.8620907307087149,
+        "support": 130,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 117
+      }
+    },
+    "macro_average_precision": 0.7273675414467979
+  },
+  "dataset_quality": {
+    "rows": 6000,
+    "positive_counts": {
+      "authority": 923,
+      "fear": 923,
+      "urgency": 1009,
+      "scarcity": 922,
+      "trust": 1254,
+      "reward": 902,
+      "social_proof": 967,
+      "secrecy": 935,
+      "commitment": 916,
+      "emotional_pressure": 921
+    },
+    "split_counts": {
+      "train": 4200,
+      "test": 900,
+      "validation": 900
+    },
+    "positive_counts_by_split": {
+      "test": {
+        "authority": 137,
+        "fear": 132,
+        "urgency": 129,
+        "scarcity": 147,
+        "trust": 119,
+        "reward": 135,
+        "social_proof": 153,
+        "secrecy": 151,
+        "commitment": 139,
+        "emotional_pressure": 130
+      },
+      "train": {
+        "authority": 651,
+        "fear": 655,
+        "urgency": 741,
+        "scarcity": 640,
+        "trust": 942,
+        "reward": 622,
+        "social_proof": 671,
+        "secrecy": 669,
+        "commitment": 638,
+        "emotional_pressure": 671
+      },
+      "validation": {
+        "authority": 135,
+        "fear": 136,
+        "urgency": 139,
+        "scarcity": 135,
+        "trust": 193,
+        "reward": 145,
+        "social_proof": 143,
+        "secrecy": 115,
+        "commitment": 139,
+        "emotional_pressure": 120
+      }
+    },
+    "language_counts": {
+      "English": 3000,
+      "Hinglish": 3000
+    },
+    "neutral_rows": 1360,
+    "single_label_rows": 1713,
+    "multi_label_rows": 2927,
+    "average_label_count": 1.612,
+    "average_text_length": 189.63816666666668,
+    "source_family_count": 120,
+    "cross_split_source_overlap": 0,
+    "duplicate_messages": 0,
+    "stratification_note": "Exact 70/15/15 row allocation with balanced languages and randomly sampled label combinations. Source-family isolation and authored co-labels cause prevalence differences; this is not perfect iterative multi-label stratification."
+  }
+}

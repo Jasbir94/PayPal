@@ -1,0 +1,26 @@
+{
+  "selected_model": "tfidf_logistic_regression",
+  "selected_by": "validation macro F1",
+  "seed": 42,
+  "sklearn_version": "1.5.2",
+  "labels": [
+    "normal_or_unknown",
+    "government_impersonation",
+    "bank_impersonation",
+    "investment_scam",
+    "fake_job_scam",
+    "tech_support_scam",
+    "romance_scam",
+    "family_emergency_scam",
+    "marketplace_scam",
+    "loan_scam",
+    "refund_scam"
+  ],
+  "input_features": [
+    "text"
+  ],
+  "split_strategy": "60/20/20 class/language balanced; template families stay in one split",
+  "confidence_kind": "uncalibrated logistic output",
+  "dataset_sha256": "f22749428ad19c79a3fba9be2e75aac202ad9a720c6840d4d7a5e685409f1fb1",
+  "limitations": "Synthetic narratives, only 110 source families. No real-world performance or calibrated fraud probability."
+}

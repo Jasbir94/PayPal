@@ -1,0 +1,423 @@
+{
+  "title": "APP Shield Day 8 actual demo scenario validation",
+  "generated_at": "2026-10-03T13:06:59.633513+00:00",
+  "environment": "synthetic, in-process FastAPI simulator; no external payment processing",
+  "passed": 13,
+  "failed": 0,
+  "scenario_count": 13,
+  "criteria_notice": "Pass/fail checks broad expected behaviors listed per case; they are not hidden fraud labels or calibrated performance metrics.",
+  "scenarios": [
+    {
+      "scenario_id": "normal_friend",
+      "title": "Normal friend payment",
+      "expected_general_behavior": "No severe action for the normal friend-payment scenario.",
+      "passive_risk": 0.26,
+      "passive_risk_level": "LOW",
+      "transaction_only_risk": 0.05,
+      "passive_graph_risk": 0.06,
+      "full_risk": 0.0,
+      "confidence": 0.59,
+      "scenario": "normal_or_unknown",
+      "scenario_confidence": 1.0,
+      "psychological_techniques": [],
+      "decision": "ALLOW_WITH_WARNING",
+      "intervention": {
+        "level": 1,
+        "type": "GENERAL_PAYMENT_CAUTION",
+        "title": "Verify this payment before continuing",
+        "message": "We detected unusual circumstances around this payment. Please verify the recipient independently before continuing.",
+        "recommended_action": "Contact the person or organization using a trusted contact method you found yourself."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 37.934,
+        "full_analysis_ms": 56.747,
+        "end_to_end_analysis_ms": 94.681
+      }
+    },
+    {
+      "scenario_id": "large_purchase",
+      "title": "Legitimate large purchase",
+      "expected_general_behavior": "A high amount is assessed with recipient and context evidence; never complete on its own.",
+      "passive_risk": 14.29,
+      "passive_risk_level": "LOW",
+      "transaction_only_risk": 30.07,
+      "passive_graph_risk": 0.25,
+      "full_risk": 9.2,
+      "confidence": 0.5368,
+      "scenario": "normal_or_unknown",
+      "scenario_confidence": 1.0,
+      "psychological_techniques": [],
+      "decision": "ALLOW_WITH_WARNING",
+      "intervention": {
+        "level": 1,
+        "type": "GENERAL_PAYMENT_CAUTION",
+        "title": "Verify this payment before continuing",
+        "message": "We detected unusual circumstances around this payment. Please verify the recipient independently before continuing.",
+        "recommended_action": "Contact the person or organization using a trusted contact method you found yourself."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 14.553,
+        "full_analysis_ms": 28.524,
+        "end_to_end_analysis_ms": 43.077
+      }
+    },
+    {
+      "scenario_id": "merchant",
+      "title": "Established merchant",
+      "expected_general_behavior": "An established merchant is not blocked on fan-in or volume alone.",
+      "passive_risk": 7.2,
+      "passive_risk_level": "LOW",
+      "transaction_only_risk": 14.33,
+      "passive_graph_risk": 0.25,
+      "full_risk": 0.0,
+      "confidence": 0.5897,
+      "scenario": "normal_or_unknown",
+      "scenario_confidence": 1.0,
+      "psychological_techniques": [],
+      "decision": "ALLOW",
+      "intervention": {
+        "level": 0,
+        "type": "NO_INTERVENTION",
+        "title": "No additional check needed",
+        "message": "No additional payment warning is indicated from the information provided.",
+        "recommended_action": "Continue only if the payment details are correct."
+      },
+      "context_required_first": true,
+      "final_state": "READY",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 16.26,
+        "full_analysis_ms": 18.157,
+        "end_to_end_analysis_ms": 34.417
+      }
+    },
+    {
+      "scenario_id": "government_impersonation",
+      "title": "Government impersonation — flagship",
+      "expected_general_behavior": "Government-authority and manipulation evidence is assessed before simulated completion.",
+      "passive_risk": 6.91,
+      "passive_risk_level": "LOW",
+      "transaction_only_risk": 13.69,
+      "passive_graph_risk": 0.25,
+      "full_risk": 34.58,
+      "confidence": 0.5167,
+      "scenario": "government_impersonation",
+      "scenario_confidence": 0.646953,
+      "psychological_techniques": [
+        "authority",
+        "secrecy"
+      ],
+      "decision": "ALLOW_WITH_WARNING",
+      "intervention": {
+        "level": 3,
+        "type": "GOVERNMENT_IMPERSONATION_WARNING",
+        "title": "Verify this official request independently",
+        "message": "Someone claiming to represent a government or law-enforcement office appears to be requesting this payment. Government agencies should not ask you to move money to a “safe account” to avoid an investigation.",
+        "recommended_action": "Pause and contact the agency using contact details from its official website or a document you already trust."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 15.077,
+        "full_analysis_ms": 38.742,
+        "end_to_end_analysis_ms": 53.819
+      }
+    },
+    {
+      "scenario_id": "bank_impersonation",
+      "title": "Bank impersonation",
+      "expected_general_behavior": "Bank-authority and transfer-request evidence is assessed before simulated completion.",
+      "passive_risk": 59.82,
+      "passive_risk_level": "MEDIUM",
+      "transaction_only_risk": 47.48,
+      "passive_graph_risk": 0.22,
+      "full_risk": 62.27,
+      "confidence": 0.6255,
+      "scenario": "bank_impersonation",
+      "scenario_confidence": 0.614883,
+      "psychological_techniques": [
+        "authority",
+        "fear",
+        "secrecy"
+      ],
+      "decision": "WARN_AND_REVIEW",
+      "intervention": {
+        "level": 3,
+        "type": "BANK_IMPERSONATION_WARNING",
+        "title": "Check this bank request through a trusted channel",
+        "message": "This request has indicators associated with bank impersonation. Your bank should not ask you to transfer funds to protect or verify your account.",
+        "recommended_action": "Do not use the caller’s number or link. Contact your bank using the number on your card or official app."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 15.331,
+        "full_analysis_ms": 36.347,
+        "end_to_end_analysis_ms": 51.678
+      }
+    },
+    {
+      "scenario_id": "investment_scam",
+      "title": "Investment pressure",
+      "expected_general_behavior": "Investment, promised-return and pressure evidence is assessed.",
+      "passive_risk": 0.78,
+      "passive_risk_level": "LOW",
+      "transaction_only_risk": 0.06,
+      "passive_graph_risk": 0.25,
+      "full_risk": 17.76,
+      "confidence": 0.5381,
+      "scenario": "investment_scam",
+      "scenario_confidence": 0.619612,
+      "psychological_techniques": [
+        "urgency",
+        "reward"
+      ],
+      "decision": "ALLOW",
+      "intervention": {
+        "level": 0,
+        "type": "NO_INTERVENTION",
+        "title": "No additional check needed",
+        "message": "No additional payment warning is indicated from the information provided.",
+        "recommended_action": "Continue only if the payment details are correct."
+      },
+      "context_required_first": false,
+      "final_state": "READY",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 15.574,
+        "full_analysis_ms": 37.698,
+        "end_to_end_analysis_ms": 53.272
+      }
+    },
+    {
+      "scenario_id": "fake_job",
+      "title": "Fake job fee",
+      "expected_general_behavior": "Job-fee and recruiter context are assessed.",
+      "passive_risk": 46.09,
+      "passive_risk_level": "MEDIUM",
+      "transaction_only_risk": 16.98,
+      "passive_graph_risk": 0.22,
+      "full_risk": 43.8,
+      "confidence": 0.5815,
+      "scenario": "fake_job_scam",
+      "scenario_confidence": 0.644213,
+      "psychological_techniques": [
+        "fear",
+        "urgency",
+        "reward"
+      ],
+      "decision": "WARN_AND_REVIEW",
+      "intervention": {
+        "level": 3,
+        "type": "FAKE_JOB_SCAM_WARNING",
+        "title": "Verify the employer before paying a fee",
+        "message": "This payment appears connected to a job opportunity that may request an upfront fee.",
+        "recommended_action": "Contact the employer through a separately verified channel before paying registration, training or onboarding fees."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 13.949,
+        "full_analysis_ms": 42.094,
+        "end_to_end_analysis_ms": 56.043
+      }
+    },
+    {
+      "scenario_id": "tech_support",
+      "title": "Tech support pressure",
+      "expected_general_behavior": "Remote-access and payment-request evidence are assessed.",
+      "passive_risk": 58.25,
+      "passive_risk_level": "MEDIUM",
+      "transaction_only_risk": 44.0,
+      "passive_graph_risk": 0.22,
+      "full_risk": 46.88,
+      "confidence": 0.6209,
+      "scenario": "tech_support_scam",
+      "scenario_confidence": 0.851685,
+      "psychological_techniques": [
+        "fear"
+      ],
+      "decision": "WARN_AND_REVIEW",
+      "intervention": {
+        "level": 3,
+        "type": "TECH_SUPPORT_SCAM_WARNING",
+        "title": "Verify this technical-support request independently",
+        "message": "This payment is connected to a request from someone claiming to provide technical support. Be cautious if they asked you to install remote access and transfer money to secure an account.",
+        "recommended_action": "End the remote session and contact the company using support details from its official website or app."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 20.487,
+        "full_analysis_ms": 45.225,
+        "end_to_end_analysis_ms": 65.712
+      }
+    },
+    {
+      "scenario_id": "family_emergency",
+      "title": "Family emergency request",
+      "expected_general_behavior": "Emergency context is assessed without trusting the story by itself.",
+      "passive_risk": 52.3,
+      "passive_risk_level": "MEDIUM",
+      "transaction_only_risk": 46.45,
+      "passive_graph_risk": 0.22,
+      "full_risk": 39.53,
+      "confidence": 0.6406,
+      "scenario": "family_emergency_scam",
+      "scenario_confidence": 0.630344,
+      "psychological_techniques": [
+        "urgency",
+        "trust",
+        "secrecy",
+        "emotional_pressure"
+      ],
+      "decision": "ALLOW_WITH_WARNING",
+      "intervention": {
+        "level": 1,
+        "type": "GENERAL_PAYMENT_CAUTION",
+        "title": "Verify this payment before continuing",
+        "message": "We detected unusual circumstances around this payment. Please verify the recipient independently before continuing.",
+        "recommended_action": "Contact the person or organization using a trusted contact method you found yourself."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 15.766,
+        "full_analysis_ms": 42.458,
+        "end_to_end_analysis_ms": 58.224
+      }
+    },
+    {
+      "scenario_id": "small_investment",
+      "title": "Small initial investment scam",
+      "expected_general_behavior": "The small payment is analyzed with investment and reward/urgency context.",
+      "passive_risk": 8.18,
+      "passive_risk_level": "LOW",
+      "transaction_only_risk": 16.5,
+      "passive_graph_risk": 0.25,
+      "full_risk": 35.33,
+      "confidence": 0.5125,
+      "scenario": "investment_scam",
+      "scenario_confidence": 0.571309,
+      "psychological_techniques": [
+        "fear",
+        "scarcity"
+      ],
+      "decision": "ALLOW_WITH_WARNING",
+      "intervention": {
+        "level": 3,
+        "type": "INVESTMENT_SCAM_WARNING",
+        "title": "Check the investment before sending money",
+        "message": "This payment has indicators commonly associated with investment scams, such as promised returns or pressure to act quickly.",
+        "recommended_action": "Verify the provider and recipient independently. Guaranteed returns are a warning sign."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 26.476,
+        "full_analysis_ms": 62.159,
+        "end_to_end_analysis_ms": 88.635
+      }
+    },
+    {
+      "scenario_id": "mule_network",
+      "title": "Recipient network review",
+      "expected_general_behavior": "Recipient/graph availability is reported for analyst inspection without disclosing training labels.",
+      "passive_risk": 51.58,
+      "passive_risk_level": "MEDIUM",
+      "transaction_only_risk": 44.85,
+      "passive_graph_risk": 0.22,
+      "full_risk": 16.37,
+      "confidence": 0.5309,
+      "scenario": "normal_or_unknown",
+      "scenario_confidence": 1.0,
+      "psychological_techniques": [],
+      "decision": "ALLOW",
+      "intervention": {
+        "level": 0,
+        "type": "NO_INTERVENTION",
+        "title": "No additional check needed",
+        "message": "No additional payment warning is indicated from the information provided.",
+        "recommended_action": "Continue only if the payment details are correct."
+      },
+      "context_required_first": true,
+      "final_state": "READY",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 15.374,
+        "full_analysis_ms": 18.95,
+        "end_to_end_analysis_ms": 34.324
+      }
+    },
+    {
+      "scenario_id": "hinglish_impersonation",
+      "title": "Hinglish bank impersonation",
+      "expected_general_behavior": "The Hinglish message is evaluated by actual scenario and psychology services.",
+      "passive_risk": 58.02,
+      "passive_risk_level": "MEDIUM",
+      "transaction_only_risk": 43.49,
+      "passive_graph_risk": 0.22,
+      "full_risk": 63.5,
+      "confidence": 0.6186,
+      "scenario": "bank_impersonation",
+      "scenario_confidence": 0.735757,
+      "psychological_techniques": [
+        "authority",
+        "fear",
+        "urgency",
+        "secrecy",
+        "emotional_pressure"
+      ],
+      "decision": "WARN_AND_REVIEW",
+      "intervention": {
+        "level": 3,
+        "type": "BANK_IMPERSONATION_WARNING",
+        "title": "Check this bank request through a trusted channel",
+        "message": "This request has indicators associated with bank impersonation. Your bank should not ask you to transfer funds to protect or verify your account.",
+        "recommended_action": "Do not use the caller’s number or link. Contact your bank using the number on your card or official app."
+      },
+      "context_required_first": false,
+      "final_state": "WARNING",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 12.837,
+        "full_analysis_ms": 31.551,
+        "end_to_end_analysis_ms": 44.388
+      }
+    },
+    {
+      "scenario_id": "missing_context",
+      "title": "New recipient, context not provided",
+      "expected_general_behavior": "The flow asks for context or explicitly records the absent evidence before completion.",
+      "passive_risk": 44.61,
+      "passive_risk_level": "MEDIUM",
+      "transaction_only_risk": 13.69,
+      "passive_graph_risk": 0.22,
+      "full_risk": null,
+      "confidence": null,
+      "scenario": null,
+      "scenario_confidence": null,
+      "psychological_techniques": [],
+      "decision": "CONTEXT_REQUIRED",
+      "intervention": null,
+      "context_required_first": true,
+      "final_state": "CONTEXT_REQUIRED",
+      "pass": true,
+      "latency_ms": {
+        "passive_analysis_ms": 14.283
+      }
+    }
+  ]
+}

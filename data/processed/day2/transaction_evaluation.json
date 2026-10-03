@@ -1,0 +1,150 @@
+{
+  "metadata": {
+    "seed": 42,
+    "sklearn_version": "1.5.2",
+    "selected_model": "random_forest",
+    "target": "is_fraud: synthetic transaction fraud-propensity baseline",
+    "selected_by": "validation average precision",
+    "split_strategy": "chronological 60/20/20",
+    "feature_window": "strictly before scoring timestamp; 24h recipient snapshot",
+    "probabilities": "uncalibrated synthetic baseline outputs; not APP fraud probabilities",
+    "split_counts": {
+      "test": {
+        "size": 2000,
+        "sum": 143
+      },
+      "train": {
+        "size": 6000,
+        "sum": 448
+      },
+      "validation": {
+        "size": 2000,
+        "sum": 159
+      }
+    },
+    "feature_columns": [
+      "amount_ratio",
+      "amount_vs_recent_average",
+      "first_time_recipient",
+      "device_changed",
+      "transactions_last_1h",
+      "transactions_last_24h",
+      "recipient_seen_before",
+      "outside_usual_hours"
+    ]
+  },
+  "models": {
+    "logistic_regression": {
+      "validation": {
+        "threshold": 0.73,
+        "precision": 0.3073770491803279,
+        "recall": 0.4716981132075472,
+        "f1": 0.37220843672456577,
+        "roc_auc": 0.8744768873902957,
+        "pr_auc_average_precision": 0.3446153751010489,
+        "false_positive_rate": 0.09179793590439979,
+        "confusion_matrix": [
+          [
+            1672,
+            169
+          ],
+          [
+            84,
+            75
+          ]
+        ],
+        "positive_count": 159,
+        "sample_count": 2000,
+        "always_legitimate_accuracy": 0.9205
+      },
+      "test": {
+        "threshold": 0.73,
+        "precision": 0.3623853211009174,
+        "recall": 0.5524475524475524,
+        "f1": 0.4376731301939058,
+        "roc_auc": 0.8920696965931216,
+        "pr_auc_average_precision": 0.3605622491688567,
+        "false_positive_rate": 0.07485191168551426,
+        "confusion_matrix": [
+          [
+            1718,
+            139
+          ],
+          [
+            64,
+            79
+          ]
+        ],
+        "positive_count": 143,
+        "sample_count": 2000,
+        "always_legitimate_accuracy": 0.9285
+      },
+      "feature_importance": {
+        "first_time_recipient": 1.2960722459133667,
+        "recipient_seen_before": -1.2960722459133667,
+        "amount_vs_recent_average": 0.4069980365340834,
+        "outside_usual_hours": 0.4061368188444865,
+        "amount_ratio": 0.1642850380544502,
+        "transactions_last_1h": -0.1174843172816235,
+        "transactions_last_24h": 0.0707127164273868,
+        "device_changed": -0.04535540227972335
+      }
+    },
+    "random_forest": {
+      "validation": {
+        "threshold": 0.69,
+        "precision": 0.332089552238806,
+        "recall": 0.559748427672956,
+        "f1": 0.4168618266978923,
+        "roc_auc": 0.8744068543552007,
+        "pr_auc_average_precision": 0.35885734816040127,
+        "false_positive_rate": 0.09722976643128735,
+        "confusion_matrix": [
+          [
+            1662,
+            179
+          ],
+          [
+            70,
+            89
+          ]
+        ],
+        "positive_count": 159,
+        "sample_count": 2000,
+        "always_legitimate_accuracy": 0.9205
+      },
+      "test": {
+        "threshold": 0.69,
+        "precision": 0.3092369477911647,
+        "recall": 0.5384615384615384,
+        "f1": 0.39285714285714285,
+        "roc_auc": 0.8874773583981984,
+        "pr_auc_average_precision": 0.42428637140918213,
+        "false_positive_rate": 0.09262250942380183,
+        "confusion_matrix": [
+          [
+            1685,
+            172
+          ],
+          [
+            66,
+            77
+          ]
+        ],
+        "positive_count": 143,
+        "sample_count": 2000,
+        "always_legitimate_accuracy": 0.9285
+      },
+      "feature_importance": {
+        "first_time_recipient": 0.4544606389254286,
+        "recipient_seen_before": 0.3255309447198056,
+        "amount_ratio": 0.08736322287662529,
+        "amount_vs_recent_average": 0.07460286822344996,
+        "outside_usual_hours": 0.04382755078264397,
+        "transactions_last_24h": 0.007795693284204379,
+        "device_changed": 0.0033797185625627324,
+        "transactions_last_1h": 0.0030393626252796014
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "class_distribution": {
+    "test": {
+      "0": 367,
+      "1": 33
+    },
+    "train": {
+      "0": 1105,
+      "1": 95
+    },
+    "validation": {
+      "0": 372,
+      "1": 28
+    }
+  },
+  "dataset_version": "app_shield_final_v1",
+  "frozen_at": "2026-10-03T19:49:31.533690+00:00",
+  "language_distribution": "See source_corpora.adversarial_corpus.variant_counts; authored synthetic transforms, not broad language population data.",
+  "sample_counts": {
+    "adversarial_test": 200,
+    "hard_negative_test": 100,
+    "test": 400,
+    "train": 1200,
+    "validation": 400
+  },
+  "scam_categories": [
+    "bank_impersonation",
+    "fake_job",
+    "family_emergency",
+    "government_impersonation",
+    "investment_scam",
+    "marketplace_scam",
+    "tech_support"
+  ],
+  "sha256": {
+    "adversarial_test.json": "17a9f23f6b37b309e09d58e3e5e48bb431ed7c465815ed85b3a6c9315b5c288a",
+    "hard_negative_test.json": "689f093fdc14ac5a908c6f0b1f686811ddac73790e1b1bd739bf5cee2360bce7",
+    "test.json": "60f4881e860270ed66dc640f4d817c0c209d7717dbedc3ceb2d2c3ae74693069",
+    "train.json": "ddff3665410f00d6bc14306878deb6b0dd0ca3172eaca98ec02437a72c9a5fe3",
+    "validation.json": "8ce2e5a2ccb1d85b77a5c0e379871d8cb0b29d96feb2e226002209d5bbeb114e"
+  },
+  "source": "existing synthetic fusion dataset plus existing authored Day 7 adversarial corpus",
+  "source_corpora": {
+    "adversarial_corpus": {
+      "language_notice": "One transformation per authored message; Hinglish wrapper is limited and no combined obfuscated-Hinglish subset exists.",
+      "rows": 1000,
+      "variant_counts": {
+        "all_caps": 50,
+        "base": 50,
+        "currency_format": 50,
+        "elongation": 50,
+        "emoji": 50,
+        "formal": 50,
+        "fragmented": 50,
+        "hinglish": 50,
+        "indirect": 50,
+        "leet": 50,
+        "lowercase": 50,
+        "misspelling": 50,
+        "paraphrase": 50,
+        "polite": 50,
+        "punctuation": 50,
+        "question": 50,
+        "small_amount": 50,
+        "split": 50,
+        "unicode": 50,
+        "zero_width": 50
+      }
+    },
+    "synthetic_transactions": {
+      "fraud_rows": 750,
+      "fraud_type_counts": {
+        "bank_impersonation": 107,
+        "fake_job": 99,
+        "family_emergency": 105,
+        "government_impersonation": 103,
+        "investment_scam": 103,
+        "marketplace_scam": 134,
+        "tech_support": 99
+      },
+      "rows": 10000
+    }
+  },
+  "synthetic_generation_version": "day1-transactions-v1/day7-adversarial-v1",
+  "test_policy": "Frozen copies of already generated synthetic inputs; do not tune on the test split. Existing reports have previously examined the source dataset."
+}

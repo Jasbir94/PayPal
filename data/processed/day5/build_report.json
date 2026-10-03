@@ -1,0 +1,15 @@
+{
+  "base_transactions": 10000,
+  "total_transactions": 14892,
+  "accounts": 1040,
+  "snapshot_build_count": 3,
+  "snapshot_build_ms": [
+    361.7984999436885,
+    15.745499869808555,
+    74.94429987855256
+  ],
+  "feature_ms_median": 0.3063998883590102,
+  "feature_ms_p95": 1.5317250159569074,
+  "lookback_hours": 24,
+  "split_note": "Disjoint target accounts, 60/20/20 stratified within profile-label groups. Training Jan 6, validation Jan 16, testing Jan 26. Base graph neighbors may cross splits; not a fully component-disjoint graph-inductive evaluation."
+}

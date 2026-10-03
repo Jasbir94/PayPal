@@ -1,0 +1,42 @@
+{
+  "seed": 42,
+  "sklearn_version": "1.5.2",
+  "selected_model": "logistic_regression",
+  "target": "is_suspicious: synthetic suspicious-account proxy label",
+  "selected_by": "validation average precision",
+  "split_strategy": "account-disjoint stratified 60/20/20",
+  "feature_window": "strictly before scoring timestamp; 24h recipient snapshot",
+  "probabilities": "uncalibrated synthetic baseline outputs; not APP fraud probabilities",
+  "split_counts": {
+    "test": {
+      "size": 208,
+      "sum": 8
+    },
+    "train": {
+      "size": 624,
+      "sum": 24
+    },
+    "validation": {
+      "size": 208,
+      "sum": 8
+    }
+  },
+  "feature_columns": [
+    "account_age_days",
+    "incoming_transactions_1h",
+    "incoming_transactions_24h",
+    "unique_senders_1h",
+    "unique_senders_24h",
+    "incoming_amount_24h",
+    "outgoing_amount_24h",
+    "outgoing_ratio",
+    "observed_outgoing_ratio",
+    "fraud_report_count",
+    "transaction_velocity",
+    "sender_diversity",
+    "average_incoming_amount",
+    "median_incoming_amount",
+    "inflow_outflow_imbalance",
+    "average_holding_minutes"
+  ]
+}

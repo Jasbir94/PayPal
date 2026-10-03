@@ -1,0 +1,52 @@
+{
+  "method": "PSI numeric, Jensen-Shannon divergence categorical",
+  "reference_count": 400,
+  "current_count": 400,
+  "features": {
+    "risk": {
+      "method": "PSI",
+      "value": 0.04824282433135077,
+      "alert": false
+    },
+    "confidence": {
+      "method": "PSI",
+      "value": 0.0,
+      "alert": false
+    },
+    "scenario": {
+      "method": "Jensen-Shannon divergence",
+      "value": 0.0,
+      "alert": false
+    },
+    "decision": {
+      "method": "Jensen-Shannon divergence",
+      "value": 0.0,
+      "alert": false
+    },
+    "amount_ratio_baseline": {
+      "method": "PSI",
+      "value": 0.050462243075574696,
+      "alert": false
+    },
+    "recipient_risk": {
+      "method": "PSI",
+      "value": 0.017688483041091215,
+      "alert": false
+    },
+    "transaction_risk": {
+      "method": "PSI",
+      "value": 0.04824282433135077,
+      "alert": false
+    }
+  },
+  "notice": "Synthetic input shift only; no current production stream exists and drift is not proof fraud increased.",
+  "alert_count": 0,
+  "reference_period": {
+    "start": "2026-01-01 00:16:24+00:00",
+    "end": "2026-01-19 09:18:24+00:00"
+  },
+  "current_period": {
+    "start": "2026-01-25 09:14:50+00:00",
+    "end": "2026-01-30 23:31:49+00:00"
+  }
+}

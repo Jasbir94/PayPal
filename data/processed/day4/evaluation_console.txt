@@ -1,0 +1,1628 @@
+{
+  "test": {
+    "sample_count": 900,
+    "hamming_loss": 0.12811111111111112,
+    "micro_precision": 0.9469387755102041,
+    "micro_recall": 0.16909620991253643,
+    "micro_f1": 0.28695114409400124,
+    "macro_precision": 0.5664531563512887,
+    "macro_recall": 0.169413927849632,
+    "macro_f1": 0.24549023416964308,
+    "per_label": {
+      "authority": {
+        "precision": 1.0,
+        "recall": 0.22627737226277372,
+        "f1": 0.36904761904761907,
+        "average_precision": 0.9993959593425772,
+        "support": 137,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 106
+      },
+      "fear": {
+        "precision": 1.0,
+        "recall": 0.030303030303030304,
+        "f1": 0.058823529411764705,
+        "average_precision": 0.5233434223815725,
+        "support": 132,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 128
+      },
+      "urgency": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.3218097712074475,
+        "support": 129,
+        "threshold": 0.4,
+        "false_positives": 0,
+        "false_negatives": 129
+      },
+      "scarcity": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.8226830266327904,
+        "support": 147,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 147
+      },
+      "trust": {
+        "precision": 0.8181818181818182,
+        "recall": 0.15126050420168066,
+        "f1": 0.2553191489361702,
+        "average_precision": 0.542665574418191,
+        "support": 119,
+        "threshold": 0.3,
+        "false_positives": 4,
+        "false_negatives": 101
+      },
+      "reward": {
+        "precision": 0.9516129032258065,
+        "recall": 0.43703703703703706,
+        "f1": 0.5989847715736041,
+        "average_precision": 0.9212575691300844,
+        "support": 135,
+        "threshold": 0.3,
+        "false_positives": 3,
+        "false_negatives": 76
+      },
+      "social_proof": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.770070810266464,
+        "support": 153,
+        "threshold": 0.5,
+        "false_positives": 0,
+        "false_negatives": 153
+      },
+      "secrecy": {
+        "precision": 1.0,
+        "recall": 0.45695364238410596,
+        "f1": 0.6272727272727273,
+        "average_precision": 0.8289981148050258,
+        "support": 151,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 82
+      },
+      "commitment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "average_precision": 0.6813604355751113,
+        "support": 139,
+        "threshold": 0.3,
+        "false_positives": 0,
+        "false_negatives": 139
+      },
+      "emotional_pressure": {
+        "precision": 0.8947368421052632,
+        "recall": 0.3923076923076923,
+        "f1": 0.5454545454545454,
+        "average_precision": 0.8620907307087149,
+        "support": 130,
+        "threshold": 0.3,
+        "false_positives": 6,
+        "false_negatives": 79
+      }
+    },
+    "macro_average_precision": 0.7273675414467979
+  },
+  "dataset_quality": {
+    "rows": 6000,
+    "positive_counts": {
+      "authority": 923,
+      "fear": 923,
+      "urgency": 1009,
+      "scarcity": 922,
+      "trust": 1254,
+      "reward": 902,
+      "social_proof": 967,
+      "secrecy": 935,
+      "commitment": 916,
+      "emotional_pressure": 921
+    },
+    "split_counts": {
+      "train": 4200,
+      "test": 900,
+      "validation": 900
+    },
+    "positive_counts_by_split": {
+      "test": {
+        "authority": 137,
+        "fear": 132,
+        "urgency": 129,
+        "scarcity": 147,
+        "trust": 119,
+        "reward": 135,
+        "social_proof": 153,
+        "secrecy": 151,
+        "commitment": 139,
+        "emotional_pressure": 130
+      },
+      "train": {
+        "authority": 651,
+        "fear": 655,
+        "urgency": 741,
+        "scarcity": 640,
+        "trust": 942,
+        "reward": 622,
+        "social_proof": 671,
+        "secrecy": 669,
+        "commitment": 638,
+        "emotional_pressure": 671
+      },
+      "validation": {
+        "authority": 135,
+        "fear": 136,
+        "urgency": 139,
+        "scarcity": 135,
+        "trust": 193,
+        "reward": 145,
+        "social_proof": 143,
+        "secrecy": 115,
+        "commitment": 139,
+        "emotional_pressure": 120
+      }
+    },
+    "language_counts": {
+      "English": 3000,
+      "Hinglish": 3000
+    },
+    "neutral_rows": 1360,
+    "single_label_rows": 1713,
+    "multi_label_rows": 2927,
+    "average_label_count": 1.612,
+    "average_text_length": 189.63816666666668,
+    "source_family_count": 120,
+    "cross_split_source_overlap": 0,
+    "duplicate_messages": 0,
+    "stratification_note": "Exact 70/15/15 row allocation with balanced languages and randomly sampled label combinations. Source-family isolation and authored co-labels cause prevalence differences; this is not perfect iterative multi-label stratification."
+  },
+  "language_slices": {
+    "English": {
+      "sample_count": 450,
+      "hamming_loss": 0.14177777777777778,
+      "micro_precision": 0.8829787234042553,
+      "micro_recall": 0.11690140845070422,
+      "micro_f1": 0.2064676616915423,
+      "macro_precision": 0.46294691789759385,
+      "macro_recall": 0.12684759031817855,
+      "macro_f1": 0.17040223678210573,
+      "per_label": {
+        "authority": {
+          "precision": 1.0,
+          "recall": 0.013333333333333334,
+          "f1": 0.02631578947368421,
+          "average_precision": 1.0,
+          "support": 75,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 74
+        },
+        "fear": {
+          "precision": 1.0,
+          "recall": 0.05555555555555555,
+          "f1": 0.10526315789473684,
+          "average_precision": 0.6492690331146029,
+          "support": 72,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 68
+        },
+        "urgency": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.304193391936185,
+          "support": 63,
+          "threshold": 0.4,
+          "false_positives": 0,
+          "false_negatives": 63
+        },
+        "scarcity": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 1.0,
+          "support": 77,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 77
+        },
+        "trust": {
+          "precision": 0.8823529411764706,
+          "recall": 0.22058823529411764,
+          "f1": 0.35294117647058826,
+          "average_precision": 0.7062540151764349,
+          "support": 68,
+          "threshold": 0.3,
+          "false_positives": 2,
+          "false_negatives": 53
+        },
+        "reward": {
+          "precision": 0.8695652173913043,
+          "recall": 0.31746031746031744,
+          "f1": 0.46511627906976744,
+          "average_precision": 0.7798285637762525,
+          "support": 63,
+          "threshold": 0.3,
+          "false_positives": 3,
+          "false_negatives": 43
+        },
+        "social_proof": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 1.0,
+          "support": 84,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 84
+        },
+        "secrecy": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.7118180183726568,
+          "support": 79,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 79
+        },
+        "commitment": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.4164630521730761,
+          "support": 64,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 64
+        },
+        "emotional_pressure": {
+          "precision": 0.8775510204081632,
+          "recall": 0.6615384615384615,
+          "f1": 0.7543859649122807,
+          "average_precision": 0.9259659225357708,
+          "support": 65,
+          "threshold": 0.3,
+          "false_positives": 6,
+          "false_negatives": 22
+        }
+      },
+      "macro_average_precision": 0.749379199708498
+    },
+    "Hinglish": {
+      "sample_count": 450,
+      "hamming_loss": 0.11444444444444445,
+      "micro_precision": 0.9867549668874173,
+      "micro_recall": 0.22507552870090636,
+      "micro_f1": 0.36654366543665434,
+      "macro_precision": 0.45999999999999996,
+      "macro_recall": 0.21657714202306236,
+      "macro_f1": 0.26599209593361384,
+      "per_label": {
+        "authority": {
+          "precision": 1.0,
+          "recall": 0.4838709677419355,
+          "f1": 0.6521739130434783,
+          "average_precision": 1.0,
+          "support": 62,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 32
+        },
+        "fear": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.4245936052657998,
+          "support": 60,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 60
+        },
+        "urgency": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.41163655956528417,
+          "support": 66,
+          "threshold": 0.4,
+          "false_positives": 0,
+          "false_negatives": 66
+        },
+        "scarcity": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.5803194932085076,
+          "support": 70,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 70
+        },
+        "trust": {
+          "precision": 0.6,
+          "recall": 0.058823529411764705,
+          "f1": 0.10714285714285714,
+          "average_precision": 0.3386110135760696,
+          "support": 51,
+          "threshold": 0.3,
+          "false_positives": 2,
+          "false_negatives": 48
+        },
+        "reward": {
+          "precision": 1.0,
+          "recall": 0.5416666666666666,
+          "f1": 0.7027027027027027,
+          "average_precision": 1.0,
+          "support": 72,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 33
+        },
+        "social_proof": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.7679438078401407,
+          "support": 69,
+          "threshold": 0.5,
+          "false_positives": 0,
+          "false_negatives": 69
+        },
+        "secrecy": {
+          "precision": 1.0,
+          "recall": 0.9583333333333334,
+          "f1": 0.9787234042553191,
+          "average_precision": 1.0,
+          "support": 72,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 3
+        },
+        "commitment": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "average_precision": 0.9289214560385273,
+          "support": 75,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 75
+        },
+        "emotional_pressure": {
+          "precision": 1.0,
+          "recall": 0.12307692307692308,
+          "f1": 0.2191780821917808,
+          "average_precision": 0.939073554979279,
+          "support": 65,
+          "threshold": 0.3,
+          "false_positives": 0,
+          "false_negatives": 57
+        }
+      },
+      "macro_average_precision": 0.7391099490473609
+    }
+  },
+  "test_review_counts": {
+    "false_positives": 11,
+    "false_negatives": 25
+  },
+  "review_note": "Test errors first; insufficient test FP examples supplemented by marked validation then training errors. No test threshold tuning.",
+  "review_counts": {
+    "false_positives": 15,
+    "false_negatives": 25
+  },
+  "weak_labels": [
+    "urgency",
+    "scarcity",
+    "social_proof"
+  ]
+}
+False-positive and false-negative review examples:
+{
+  "false_positives": [
+    {
+      "message_id": "PSY005294",
+      "text": "Mujhe ye text mila: Continue the deposit you started by paying an additional amount to access the balance. Refusing the deposit will leave your money blocked and expose you to a penalty. I am on your side and only trying to help you, not hurt you. My payment question involves \u20b95,600. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "fear",
+        "trust",
+        "commitment"
+      ],
+      "predicted_labels": [
+        "trust",
+        "reward",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "reward",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.04547213422125166,
+        "fear": 0.26735358114421465,
+        "urgency": 0.052994530702549565,
+        "scarcity": 0.031571003848352645,
+        "trust": 0.3789845269911318,
+        "reward": 0.32616945092231003,
+        "social_proof": 0.021923984301831248,
+        "secrecy": 0.029013762337556842,
+        "commitment": 0.1530519503811524,
+        "emotional_pressure": 0.3416675211877595
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005442",
+      "text": "Continue the deposit you started by paying an additional amount to access the balance. Refusing the deposit will leave your money blocked and expose you to a penalty. I am on your side and only trying to help you, not hurt you. My payment question involves \u20b990,100. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "fear",
+        "trust",
+        "commitment"
+      ],
+      "predicted_labels": [
+        "trust",
+        "reward",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "reward",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.049743418779701794,
+        "fear": 0.27430754326858986,
+        "urgency": 0.058760295071463166,
+        "scarcity": 0.04258918581952691,
+        "trust": 0.4064985118102932,
+        "reward": 0.3283559069047102,
+        "social_proof": 0.02834617469464236,
+        "secrecy": 0.03146549923035985,
+        "commitment": 0.16383919013582768,
+        "emotional_pressure": 0.3564596389008756
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005624",
+      "text": "The message says: Refusing the deposit will leave your money blocked and expose you to a penalty. I am calling from the Cyber Crime Department and you must follow my instructions. I am on your side and only trying to help you, not hurt you. Continue the deposit you started by paying an additional amount to access the balance. My payment question involves \u20b9120,800. Is this request appropriate?",
+      "true_labels": [
+        "authority",
+        "fear",
+        "trust",
+        "commitment"
+      ],
+      "predicted_labels": [
+        "trust",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.1653752629724213,
+        "fear": 0.2199479967581637,
+        "urgency": 0.05889534797528461,
+        "scarcity": 0.03081727712681757,
+        "trust": 0.3244573203181554,
+        "reward": 0.2330226806554062,
+        "social_proof": 0.0259255053989342,
+        "secrecy": 0.030472033008426064,
+        "commitment": 0.11840596069641995,
+        "emotional_pressure": 0.3025729342228764
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005804",
+      "text": "I am on your side and only trying to help you, not hurt you. Act now; complete the deposit before you do anything else. Continue the deposit you started by paying an additional amount to access the balance. Mera payment question \u20b9127,900 ke bare me hai.",
+      "true_labels": [
+        "urgency",
+        "trust",
+        "commitment"
+      ],
+      "predicted_labels": [
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.03640784779896448,
+        "fear": 0.15438252526298582,
+        "urgency": 0.15838775277526634,
+        "scarcity": 0.03511253384362432,
+        "trust": 0.28204077676557465,
+        "reward": 0.15347583936463924,
+        "social_proof": 0.0264252414543724,
+        "secrecy": 0.08458797281200049,
+        "commitment": 0.1977242498730206,
+        "emotional_pressure": 0.3531102507717418
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005562",
+      "text": "Continue the deposit you started by paying an additional amount to access the balance. I am on your side and only trying to help you, not hurt you. There is just one seat left for the offer. Mera payment question \u20b950,800 ke bare me hai.",
+      "true_labels": [
+        "scarcity",
+        "trust",
+        "commitment"
+      ],
+      "predicted_labels": [
+        "trust",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.03110773848506308,
+        "fear": 0.11899770201306865,
+        "urgency": 0.13903120949388853,
+        "scarcity": 0.178569245343581,
+        "trust": 0.32795472923509356,
+        "reward": 0.09812323534156007,
+        "social_proof": 0.027593023367085943,
+        "secrecy": 0.03195835926140805,
+        "commitment": 0.08139704107630906,
+        "emotional_pressure": 0.3370239737932065
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005997",
+      "text": "Company support se main official representative hu aur case mujhe assign hua hai. Paise bhejo warna arrest aur jail ka case lagega. My payment question involves \u20b94,100. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "authority",
+        "fear"
+      ],
+      "predicted_labels": [
+        "authority",
+        "trust"
+      ],
+      "error_labels": [
+        "trust"
+      ],
+      "probabilities": {
+        "authority": 0.4872793886457019,
+        "fear": 0.03073425906230674,
+        "urgency": 0.05302698490288595,
+        "scarcity": 0.014172216584074639,
+        "trust": 0.37014583151078273,
+        "reward": 0.028902632336666904,
+        "social_proof": 0.03607564284947193,
+        "secrecy": 0.017396793454086738,
+        "commitment": 0.04381386534635272,
+        "emotional_pressure": 0.1106199691351133
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005292",
+      "text": "The message says: There is just one seat left for the offer. Refusing the deposit will leave your money blocked and expose you to a penalty. I am on your side and only trying to help you, not hurt you. Continue the deposit you started by paying an additional amount to access the balance. Mera payment question \u20b977,000 ke bare me hai. Is this request appropriate?",
+      "true_labels": [
+        "fear",
+        "scarcity",
+        "trust",
+        "commitment"
+      ],
+      "predicted_labels": [
+        "trust",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.031760440513234,
+        "fear": 0.1943572692511869,
+        "urgency": 0.11315640738150319,
+        "scarcity": 0.1654005894103321,
+        "trust": 0.3472614571896179,
+        "reward": 0.23165956717442637,
+        "social_proof": 0.021332882674272604,
+        "secrecy": 0.02913118067642825,
+        "commitment": 0.10350959783345712,
+        "emotional_pressure": 0.32038086963045365
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005119",
+      "text": "I received this wording: Sir ye investment guaranteed hai aur pakka profit milega. Medical emergency bardasht nahi hoti, sirf tumhari payment madad karegi. Company support se main official representative hu aur case mujhe assign hua hai. Paise bhejo warna arrest aur jail ka case lagega. Mera payment question \u20b99,500 ke bare me hai. Is this request appropriate?",
+      "true_labels": [
+        "authority",
+        "fear",
+        "reward",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [
+        "trust",
+        "reward",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "trust"
+      ],
+      "probabilities": {
+        "authority": 0.2216050379519449,
+        "fear": 0.03487927008942829,
+        "urgency": 0.0954613218055701,
+        "scarcity": 0.0433605670735675,
+        "trust": 0.35274072029747927,
+        "reward": 0.3192587540697945,
+        "social_proof": 0.037392354699045734,
+        "secrecy": 0.026276048766573277,
+        "commitment": 0.028701312805191836,
+        "emotional_pressure": 0.34048488323559395
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005192",
+      "text": "I desperately need money for hospital treatment and I am depending on you. Refusing the deposit will leave your money blocked and expose you to a penalty. My payment question involves \u20b9104,500.",
+      "true_labels": [
+        "fear",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [
+        "trust",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "trust"
+      ],
+      "probabilities": {
+        "authority": 0.04825345163540431,
+        "fear": 0.09277245703077586,
+        "urgency": 0.15925787125512622,
+        "scarcity": 0.04082639430832081,
+        "trust": 0.40893303880527077,
+        "reward": 0.2079557289979137,
+        "social_proof": 0.035105303592712044,
+        "secrecy": 0.017756481624594738,
+        "commitment": 0.125438285712275,
+        "emotional_pressure": 0.6539483080095089
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005228",
+      "text": "Mujhe ye text mila: I am on your side and only trying to help you, not hurt you. Refusing the deposit will leave your money blocked and expose you to a penalty. My payment question involves \u20b919,100.",
+      "true_labels": [
+        "fear",
+        "trust"
+      ],
+      "predicted_labels": [
+        "trust",
+        "reward"
+      ],
+      "error_labels": [
+        "reward"
+      ],
+      "probabilities": {
+        "authority": 0.06717910706189555,
+        "fear": 0.1518522578943331,
+        "urgency": 0.06541960900156536,
+        "scarcity": 0.04891525971333195,
+        "trust": 0.3318692140102815,
+        "reward": 0.345481314972085,
+        "social_proof": 0.034875022773667774,
+        "secrecy": 0.042781280068632896,
+        "commitment": 0.13093226881292933,
+        "emotional_pressure": 0.26803167673064354
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005308",
+      "text": "The message says: Refusing the deposit will leave your money blocked and expose you to a penalty. I desperately need money for hospital treatment and I am depending on you. I am calling from the Cyber Crime Department and you must follow my instructions. My payment question involves \u20b9118,700.",
+      "true_labels": [
+        "authority",
+        "fear",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [
+        "trust",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "trust"
+      ],
+      "probabilities": {
+        "authority": 0.2786167093533163,
+        "fear": 0.09300584850262726,
+        "urgency": 0.1363751400531503,
+        "scarcity": 0.033759573573667184,
+        "trust": 0.35970778060595027,
+        "reward": 0.1819022599399613,
+        "social_proof": 0.028884892876912142,
+        "secrecy": 0.014784865615385995,
+        "commitment": 0.09950754595785465,
+        "emotional_pressure": 0.6258539951523704
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY004588",
+      "text": "You will be arrested if you do not send the requested funds. Please do not let my family suffer; I need you to pay for this crisis. My payment question involves \u20b9132,400. Is this request appropriate?",
+      "true_labels": [
+        "fear",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [
+        "fear",
+        "urgency",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "urgency"
+      ],
+      "probabilities": {
+        "authority": 0.014440142401106705,
+        "fear": 0.668688128621341,
+        "urgency": 0.43991145721458336,
+        "scarcity": 0.04768343298915241,
+        "trust": 0.16824608630760882,
+        "reward": 0.017560345333002526,
+        "social_proof": 0.011756818447838688,
+        "secrecy": 0.18136392761607298,
+        "commitment": 0.060000367697586654,
+        "emotional_pressure": 0.47060924928069114
+      },
+      "split": "validation"
+    },
+    {
+      "message_id": "PSY004638",
+      "text": "Believe me personally and stop doubting the account I gave you. You will be arrested if you do not send the requested funds. Having completed the first step, you must add funds before the earlier deposit is released. The amount I am asking about is \u20b96,300. Is this request appropriate?",
+      "true_labels": [
+        "fear",
+        "trust",
+        "commitment"
+      ],
+      "predicted_labels": [
+        "fear",
+        "urgency"
+      ],
+      "error_labels": [
+        "urgency"
+      ],
+      "probabilities": {
+        "authority": 0.014357320413954154,
+        "fear": 0.8255507501750313,
+        "urgency": 0.45555686874777895,
+        "scarcity": 0.04008288654391057,
+        "trust": 0.09223347255998436,
+        "reward": 0.02072864808964677,
+        "social_proof": 0.03150498381408461,
+        "secrecy": 0.06180828197157791,
+        "commitment": 0.07213432943360035,
+        "emotional_pressure": 0.09745327178590622
+      },
+      "split": "validation"
+    },
+    {
+      "message_id": "PSY004470",
+      "text": "THE MESSAGE SAYS: PLEASE DO NOT LET MY FAMILY SUFFER; I NEED YOU TO PAY FOR THIS CRISIS. EVERYONE IN OUR GROUP HAS COLLECTED EARNINGS FROM THIS METHOD. YOU HAVE WITHIN 10 MINUTES TO SEND THE AMOUNT. YOU WILL BE ARRESTED IF YOU DO NOT SEND THE REQUESTED FUNDS. MY PAYMENT QUESTION INVOLVES \u20b989,800.",
+      "true_labels": [
+        "fear",
+        "urgency",
+        "social_proof",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [
+        "fear",
+        "urgency",
+        "trust",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "trust"
+      ],
+      "probabilities": {
+        "authority": 0.03988502182930454,
+        "fear": 0.6077401974793317,
+        "urgency": 0.9151274182313538,
+        "scarcity": 0.061821444318656625,
+        "trust": 0.31850216277359455,
+        "reward": 0.01773854311809787,
+        "social_proof": 0.01951219368357956,
+        "secrecy": 0.13188341104350543,
+        "commitment": 0.09642237465041033,
+        "emotional_pressure": 0.4938535800573988
+      },
+      "split": "validation"
+    },
+    {
+      "message_id": "PSY005030",
+      "text": "Please do not let my family suffer; I need you to pay for this crisis. You will be arrested if you do not send the requested funds. The amount I am asking about is \u20b9127,000. What should I do?",
+      "true_labels": [
+        "fear",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [
+        "fear",
+        "urgency",
+        "emotional_pressure"
+      ],
+      "error_labels": [
+        "urgency"
+      ],
+      "probabilities": {
+        "authority": 0.01550897557401663,
+        "fear": 0.6915580384515196,
+        "urgency": 0.40694933563449476,
+        "scarcity": 0.04569249602834376,
+        "trust": 0.15563418014430178,
+        "reward": 0.01735938370579638,
+        "social_proof": 0.012219552206823362,
+        "secrecy": 0.19352951340844027,
+        "commitment": 0.06691066609419755,
+        "emotional_pressure": 0.45930091346021895
+      },
+      "split": "validation"
+    }
+  ],
+  "false_negatives": [
+    {
+      "message_id": "PSY005937",
+      "text": "I received this wording: First step ho gaya, pehle deposit release se pehle dobara funds dalo. Bahut log benefited hain, unke screenshots dekho. Sir ye investment guaranteed hai aur pakka profit milega. Meri personal baat pe yakeen karo aur diye account par doubt mat karo. My payment question involves \u20b94,400. What should I do?",
+      "true_labels": [
+        "trust",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "trust",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.03281813663603209,
+        "fear": 0.04256747246682369,
+        "urgency": 0.04247233426143412,
+        "scarcity": 0.038853937909612224,
+        "trust": 0.06284322565972095,
+        "reward": 0.29982835567337407,
+        "social_proof": 0.4658829280441348,
+        "secrecy": 0.05090706148061176,
+        "commitment": 0.2314985170612027,
+        "emotional_pressure": 0.017869488334151497
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005427",
+      "text": "Mujhe ye text mila: Bahut log benefited hain, unke screenshots dekho. Meri personal baat pe yakeen karo aur diye account par doubt mat karo. Medical emergency bardasht nahi hoti, sirf tumhari payment madad karegi. Company support se main official representative hu aur case mujhe assign hua hai. Mera payment question \u20b9149,700 ke bare me hai. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "authority",
+        "trust",
+        "social_proof",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "trust",
+        "social_proof",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.25612079789373654,
+        "fear": 0.037986409770203254,
+        "urgency": 0.09984338342249179,
+        "scarcity": 0.02264773405956992,
+        "trust": 0.24310310249840514,
+        "reward": 0.03716767610059377,
+        "social_proof": 0.18515977885918075,
+        "secrecy": 0.0455234152040245,
+        "commitment": 0.0620071101126014,
+        "emotional_pressure": 0.16344138104503148
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005118",
+      "text": "I received this wording: There is just one seat left for the offer. Refusing the deposit will leave your money blocked and expose you to a penalty. Act now; complete the deposit before you do anything else. Continue the deposit you started by paying an additional amount to access the balance. I am considering a payment of \u20b9140,700. What should I do?",
+      "true_labels": [
+        "fear",
+        "urgency",
+        "scarcity",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "fear",
+        "urgency",
+        "scarcity",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.023371247912740558,
+        "fear": 0.1538230741263479,
+        "urgency": 0.11625581615257824,
+        "scarcity": 0.13316211321438248,
+        "trust": 0.15880308062062,
+        "reward": 0.08071365340950783,
+        "social_proof": 0.01568011513451862,
+        "secrecy": 0.0321068466250829,
+        "commitment": 0.15348726811300145,
+        "emotional_pressure": 0.09517082658300628
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005286",
+      "text": "there is just one seat left for the offer. continue the deposit you started by paying an additional amount to access the balance. act now; complete the deposit before you do anything else. refusing the deposit will leave your money blocked and expose you to a penalty. the amount i am asking about is \u20b9106,700. is this request appropriate?",
+      "true_labels": [
+        "fear",
+        "urgency",
+        "scarcity",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "fear",
+        "urgency",
+        "scarcity",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.022263928753651643,
+        "fear": 0.15950289259572037,
+        "urgency": 0.14127359922991364,
+        "scarcity": 0.13017371593639226,
+        "trust": 0.1866218494442251,
+        "reward": 0.10151689888451308,
+        "social_proof": 0.017605737548143055,
+        "secrecy": 0.034254485966324716,
+        "commitment": 0.1937483473591228,
+        "emotional_pressure": 0.1231678063093661
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005594",
+      "text": "I RECEIVED THIS WORDING: THERE IS JUST ONE SEAT LEFT FOR THE OFFER. CONTINUE THE DEPOSIT YOU STARTED BY PAYING AN ADDITIONAL AMOUNT TO ACCESS THE BALANCE. OTHER MEMBERS ARE SUCCESSFUL AND HAVE RECEIVED PAYOUTS FROM THE PLAN. YOU WILL RECEIVE GUARANTEED RETURNS WITHOUT ANY INVESTMENT LOSS. I AM CONSIDERING A PAYMENT OF \u20b983,900. IS THIS REQUEST APPROPRIATE?",
+      "true_labels": [
+        "scarcity",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "scarcity",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.02073783726509471,
+        "fear": 0.08456851013667005,
+        "urgency": 0.05089676626322139,
+        "scarcity": 0.18690319334073438,
+        "trust": 0.06406918732903692,
+        "reward": 0.2635829964743573,
+        "social_proof": 0.05755910500671917,
+        "secrecy": 0.009989914470117846,
+        "commitment": 0.03338292416016865,
+        "emotional_pressure": 0.04234014450276751
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005893",
+      "text": "Mujhe ye text mila: Sir ye investment guaranteed hai aur pakka profit milega. Company support se main official representative hu aur case mujhe assign hua hai. First step ho gaya, pehle deposit release se pehle dobara funds dalo. Bahut log benefited hain, unke screenshots dekho. My payment question involves \u20b9101,300. Is this request appropriate?",
+      "true_labels": [
+        "authority",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.2600607011160709,
+        "fear": 0.026786053202315394,
+        "urgency": 0.035659833595310456,
+        "scarcity": 0.03983865531454781,
+        "trust": 0.04854194242827608,
+        "reward": 0.2722340063953915,
+        "social_proof": 0.42191513271614856,
+        "secrecy": 0.02271367085529152,
+        "commitment": 0.12913893600602772,
+        "emotional_pressure": 0.012089503064748321
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005282",
+      "text": "I received this wording: I am calling from the Cyber Crime Department and you must follow my instructions. Other members are successful and have received payouts from the plan. Continue the deposit you started by paying an additional amount to access the balance. There is just one seat left for the offer. The amount I am asking about is \u20b9119,200. Is this request appropriate?",
+      "true_labels": [
+        "authority",
+        "scarcity",
+        "social_proof",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "scarcity",
+        "social_proof",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.1188413883894731,
+        "fear": 0.04476239480900349,
+        "urgency": 0.059501022120867636,
+        "scarcity": 0.12169189194751953,
+        "trust": 0.08915671325818729,
+        "reward": 0.046944089952122535,
+        "social_proof": 0.06293456951541494,
+        "secrecy": 0.011769926309722508,
+        "commitment": 0.030665330096567984,
+        "emotional_pressure": 0.06017554748716214
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005723",
+      "text": "Mujhe ye text mila: Sir ye investment guaranteed hai aur pakka profit milega. Bahut log benefited hain, unke screenshots dekho. Company support se main official representative hu aur case mujhe assign hua hai. Payment aaj hi karo aur bilkul delay mat karna. Mera payment question \u20b9142,600 ke bare me hai. Is this request appropriate?",
+      "true_labels": [
+        "authority",
+        "urgency",
+        "reward",
+        "social_proof"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "urgency",
+        "reward",
+        "social_proof"
+      ],
+      "probabilities": {
+        "authority": 0.18334254537108552,
+        "fear": 0.02226796377692299,
+        "urgency": 0.06280915305537335,
+        "scarcity": 0.027861326450913316,
+        "trust": 0.05172402952339735,
+        "reward": 0.2885440580707341,
+        "social_proof": 0.23061934999385897,
+        "secrecy": 0.06609495739262117,
+        "commitment": 0.05361109576886229,
+        "emotional_pressure": 0.01464871481132908
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005585",
+      "text": "Paise bhejo warna arrest aur jail ka case lagega. Ye limited opportunity hai, bahut kam places baaki hain. First step ho gaya, pehle deposit release se pehle dobara funds dalo. Payment aaj hi karo aur bilkul delay mat karna. The amount I am asking about is \u20b997,300.",
+      "true_labels": [
+        "fear",
+        "urgency",
+        "scarcity",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "fear",
+        "urgency",
+        "scarcity",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.03433357641560179,
+        "fear": 0.04552358081322405,
+        "urgency": 0.1591847735992439,
+        "scarcity": 0.03360001028279138,
+        "trust": 0.11631874176982308,
+        "reward": 0.0702449342962582,
+        "social_proof": 0.26989581362001985,
+        "secrecy": 0.08446199721457255,
+        "commitment": 0.28065945640680706,
+        "emotional_pressure": 0.07391398400601994
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005598",
+      "text": "Mujhe ye text mila: I desperately need money for hospital treatment and I am depending on you. Never contact the bank to confirm the transfer I requested. Other members are successful and have received payouts from the plan. I am calling from the Cyber Crime Department and you must follow my instructions. The amount I am asking about is \u20b9123,300. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "authority",
+        "social_proof",
+        "secrecy",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "social_proof",
+        "secrecy",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.11947533234916267,
+        "fear": 0.038138279140473894,
+        "urgency": 0.11098338349666173,
+        "scarcity": 0.02814697137582757,
+        "trust": 0.09570873994993981,
+        "reward": 0.050046297816855004,
+        "social_proof": 0.07053609897243351,
+        "secrecy": 0.026922413537947536,
+        "commitment": 0.021241676258877257,
+        "emotional_pressure": 0.17737640334481755
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005444",
+      "text": "Mujhe ye text mila: Never contact the bank to confirm the transfer I requested. Act now; complete the deposit before you do anything else. I am calling from the Cyber Crime Department and you must follow my instructions. Other members are successful and have received payouts from the plan. My payment question involves \u20b934,300. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "authority",
+        "urgency",
+        "social_proof",
+        "secrecy"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "urgency",
+        "social_proof",
+        "secrecy"
+      ],
+      "probabilities": {
+        "authority": 0.10094653418595723,
+        "fear": 0.037359446012423976,
+        "urgency": 0.07128786432723146,
+        "scarcity": 0.023181229973464255,
+        "trust": 0.032533821224025955,
+        "reward": 0.04597000716381185,
+        "social_proof": 0.060754691515736925,
+        "secrecy": 0.07093315321307936,
+        "commitment": 0.04080974341565146,
+        "emotional_pressure": 0.019824780418478155
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005726",
+      "text": "I received this wording: Never contact the bank to confirm the transfer I requested. Act now; complete the deposit before you do anything else. I am calling from the Cyber Crime Department and you must follow my instructions. Other members are successful and have received payouts from the plan. I am considering a payment of \u20b930,800. Is this request appropriate?",
+      "true_labels": [
+        "authority",
+        "urgency",
+        "social_proof",
+        "secrecy"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "urgency",
+        "social_proof",
+        "secrecy"
+      ],
+      "probabilities": {
+        "authority": 0.09256956408288604,
+        "fear": 0.04289682511739484,
+        "urgency": 0.08048948108098346,
+        "scarcity": 0.024236028083666403,
+        "trust": 0.030913257202284106,
+        "reward": 0.06329122255835062,
+        "social_proof": 0.06447809225759553,
+        "secrecy": 0.08849131234021365,
+        "commitment": 0.03593318804320061,
+        "emotional_pressure": 0.016606334070691627
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005960",
+      "text": "the message says: continue the deposit you started by paying an additional amount to access the balance. you will receive guaranteed returns without any investment loss. i am calling from the cyber crime department and you must follow my instructions. never contact the bank to confirm the transfer i requested. mera payment question \u20b997,300 ke bare me hai. is payment ka matlab kya hai?",
+      "true_labels": [
+        "authority",
+        "reward",
+        "secrecy",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "reward",
+        "secrecy",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.06754149861376853,
+        "fear": 0.18176117720561147,
+        "urgency": 0.025909444779640557,
+        "scarcity": 0.01653968664152963,
+        "trust": 0.04805634338479616,
+        "reward": 0.16956789135390085,
+        "social_proof": 0.013548089973242113,
+        "secrecy": 0.03095379184440849,
+        "commitment": 0.0492572379564758,
+        "emotional_pressure": 0.04584321629943246
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005954",
+      "text": "act now; complete the deposit before you do anything else. there is just one seat left for the offer. i am on your side and only trying to help you, not hurt you. other members are successful and have received payouts from the plan. the amount i am asking about is \u20b975,900. what should i do?",
+      "true_labels": [
+        "urgency",
+        "scarcity",
+        "trust",
+        "social_proof"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "urgency",
+        "scarcity",
+        "trust",
+        "social_proof"
+      ],
+      "probabilities": {
+        "authority": 0.05230429543248047,
+        "fear": 0.03433496751226438,
+        "urgency": 0.23710026280115715,
+        "scarcity": 0.22812192069357273,
+        "trust": 0.16092725119001353,
+        "reward": 0.15681324480665815,
+        "social_proof": 0.09624588524903319,
+        "secrecy": 0.05868754152656154,
+        "commitment": 0.07675542698734923,
+        "emotional_pressure": 0.15214241200628625
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005424",
+      "text": "Mujhe ye text mila: There is just one seat left for the offer. Refusing the deposit will leave your money blocked and expose you to a penalty. I am calling from the Cyber Crime Department and you must follow my instructions. Never contact the bank to confirm the transfer I requested. The amount I am asking about is \u20b9144,400. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "authority",
+        "fear",
+        "scarcity",
+        "secrecy"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "fear",
+        "scarcity",
+        "secrecy"
+      ],
+      "probabilities": {
+        "authority": 0.1350280271025305,
+        "fear": 0.12720909673780392,
+        "urgency": 0.08204648363076245,
+        "scarcity": 0.09026517134567166,
+        "trust": 0.07251382187357756,
+        "reward": 0.05830623421899477,
+        "social_proof": 0.01749554154971328,
+        "secrecy": 0.03090512346416477,
+        "commitment": 0.05263546807404195,
+        "emotional_pressure": 0.04603065547530525
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005895",
+      "text": "I received this wording: Medical emergency bardasht nahi hoti, sirf tumhari payment madad karegi. Meri personal baat pe yakeen karo aur diye account par doubt mat karo. Bahut log benefited hain, unke screenshots dekho. Sir ye investment guaranteed hai aur pakka profit milega. The amount I am asking about is \u20b929,300. What should I do?",
+      "true_labels": [
+        "trust",
+        "reward",
+        "social_proof",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "trust",
+        "reward",
+        "social_proof",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.020303112547951665,
+        "fear": 0.03737619600862831,
+        "urgency": 0.05262486347956346,
+        "scarcity": 0.04977840388814189,
+        "trust": 0.11944784364130763,
+        "reward": 0.2084557358372397,
+        "social_proof": 0.13490391618395295,
+        "secrecy": 0.044429993251149276,
+        "commitment": 0.05103380702976976,
+        "emotional_pressure": 0.12415296492612544
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005540",
+      "text": "The message says: Never contact the bank to confirm the transfer I requested. I am on your side and only trying to help you, not hurt you. There is just one seat left for the offer. Other members are successful and have received payouts from the plan. My payment question involves \u20b915,600.",
+      "true_labels": [
+        "scarcity",
+        "trust",
+        "social_proof",
+        "secrecy"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "scarcity",
+        "trust",
+        "social_proof",
+        "secrecy"
+      ],
+      "probabilities": {
+        "authority": 0.04754131662766059,
+        "fear": 0.08309266380490236,
+        "urgency": 0.15474928604872132,
+        "scarcity": 0.2150628379143057,
+        "trust": 0.1614670774737902,
+        "reward": 0.10996869487878863,
+        "social_proof": 0.08319202302788657,
+        "secrecy": 0.08031432694069796,
+        "commitment": 0.02804246351100331,
+        "emotional_pressure": 0.12481073237245477
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005187",
+      "text": "The message says: Medical emergency bardasht nahi hoti, sirf tumhari payment madad karegi. Company support se main official representative hu aur case mujhe assign hua hai. Ye limited opportunity hai, bahut kam places baaki hain. Payment aaj hi karo aur bilkul delay mat karna. Mera payment question \u20b9142,200 ke bare me hai. Is this request appropriate?",
+      "true_labels": [
+        "authority",
+        "urgency",
+        "scarcity",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "urgency",
+        "scarcity",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.1630686629653603,
+        "fear": 0.020777088221949847,
+        "urgency": 0.12111232673698297,
+        "scarcity": 0.03245449505833898,
+        "trust": 0.09618059135536762,
+        "reward": 0.032172769262246284,
+        "social_proof": 0.05369260987067109,
+        "secrecy": 0.08910257706567962,
+        "commitment": 0.046609435894848596,
+        "emotional_pressure": 0.11863570694394956
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005105",
+      "text": "Mujhe ye text mila: First step ho gaya, pehle deposit release se pehle dobara funds dalo. Ye limited opportunity hai, bahut kam places baaki hain. Bahut log benefited hain, unke screenshots dekho. Sir ye investment guaranteed hai aur pakka profit milega. Mera payment question \u20b963,200 ke bare me hai. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "scarcity",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "scarcity",
+        "reward",
+        "social_proof",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.025599623767232724,
+        "fear": 0.020107912245739795,
+        "urgency": 0.03309100267269037,
+        "scarcity": 0.07711136261785911,
+        "trust": 0.03505214438085162,
+        "reward": 0.26266442409488355,
+        "social_proof": 0.4141274260320924,
+        "secrecy": 0.025043314056298022,
+        "commitment": 0.092449005958827,
+        "emotional_pressure": 0.01208739220309192
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005626",
+      "text": "mujhe ye text mila: act now; complete the deposit before you do anything else. i am calling from the cyber crime department and you must follow my instructions. other members are successful and have received payouts from the plan. never contact the bank to confirm the transfer i requested. mera payment question \u20b947,000 ke bare me hai.",
+      "true_labels": [
+        "authority",
+        "urgency",
+        "social_proof",
+        "secrecy"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "urgency",
+        "social_proof",
+        "secrecy"
+      ],
+      "probabilities": {
+        "authority": 0.11865529077288257,
+        "fear": 0.0478488102365268,
+        "urgency": 0.09432287397138195,
+        "scarcity": 0.02618511992952138,
+        "trust": 0.045133292161710525,
+        "reward": 0.04944459778338984,
+        "social_proof": 0.08577754985049939,
+        "secrecy": 0.10083068097717433,
+        "commitment": 0.04655288228856281,
+        "emotional_pressure": 0.0253997859005398
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005621",
+      "text": "Mujhe ye text mila: Bahut log benefited hain, unke screenshots dekho. Ye limited opportunity hai, bahut kam places baaki hain. Ye investigation confidential hai, details share nahi karni. First step ho gaya, pehle deposit release se pehle dobara funds dalo. The amount I am asking about is \u20b951,200. Is payment ka matlab kya hai?",
+      "true_labels": [
+        "scarcity",
+        "social_proof",
+        "secrecy",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "scarcity",
+        "social_proof",
+        "secrecy",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.04805614895723876,
+        "fear": 0.027794686099886813,
+        "urgency": 0.029247481147381193,
+        "scarcity": 0.03085718896098005,
+        "trust": 0.037011539901288144,
+        "reward": 0.03129245144796656,
+        "social_proof": 0.2830999534454264,
+        "secrecy": 0.2646376571813403,
+        "commitment": 0.08299865968373454,
+        "emotional_pressure": 0.012004252885383314
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005342",
+      "text": "I received this wording: Continue the deposit you started by paying an additional amount to access the balance. Never contact the bank to confirm the transfer I requested. Other members are successful and have received payouts from the plan. I am on your side and only trying to help you, not hurt you. My payment question involves \u20b9137,900. Is this request appropriate?",
+      "true_labels": [
+        "trust",
+        "social_proof",
+        "secrecy",
+        "commitment"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "trust",
+        "social_proof",
+        "secrecy",
+        "commitment"
+      ],
+      "probabilities": {
+        "authority": 0.04180268088517198,
+        "fear": 0.17908795942624173,
+        "urgency": 0.09239094103581776,
+        "scarcity": 0.04009279298950307,
+        "trust": 0.171937724907536,
+        "reward": 0.14874780653023453,
+        "social_proof": 0.06224100823477232,
+        "secrecy": 0.06752024570626265,
+        "commitment": 0.0437303922083666,
+        "emotional_pressure": 0.13868050919835934
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005446",
+      "text": "I RECEIVED THIS WORDING: I DESPERATELY NEED MONEY FOR HOSPITAL TREATMENT AND I AM DEPENDING ON YOU. REFUSING THE DEPOSIT WILL LEAVE YOUR MONEY BLOCKED AND EXPOSE YOU TO A PENALTY. ACT NOW; COMPLETE THE DEPOSIT BEFORE YOU DO ANYTHING ELSE. OTHER MEMBERS ARE SUCCESSFUL AND HAVE RECEIVED PAYOUTS FROM THE PLAN. MERA PAYMENT QUESTION \u20b973,900 KE BARE ME HAI. WHAT SHOULD I DO?",
+      "true_labels": [
+        "fear",
+        "urgency",
+        "social_proof",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "fear",
+        "urgency",
+        "social_proof",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.04548282905126711,
+        "fear": 0.051467200490532924,
+        "urgency": 0.20452816541383267,
+        "scarcity": 0.040918821201214615,
+        "trust": 0.21916080938084595,
+        "reward": 0.2109155264609389,
+        "social_proof": 0.09516838227165914,
+        "secrecy": 0.028973219557985493,
+        "commitment": 0.0985422087712476,
+        "emotional_pressure": 0.2884572511471613
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005533",
+      "text": "Mujhe ye text mila: Company support se main official representative hu aur case mujhe assign hua hai. Paise bhejo warna arrest aur jail ka case lagega. Medical emergency bardasht nahi hoti, sirf tumhari payment madad karegi. Sir ye investment guaranteed hai aur pakka profit milega. The amount I am asking about is \u20b926,000. What should I do?",
+      "true_labels": [
+        "authority",
+        "fear",
+        "reward",
+        "emotional_pressure"
+      ],
+      "predicted_labels": [],
+      "error_labels": [
+        "authority",
+        "fear",
+        "reward",
+        "emotional_pressure"
+      ],
+      "probabilities": {
+        "authority": 0.19103855826218905,
+        "fear": 0.03851944869575179,
+        "urgency": 0.07615808540277075,
+        "scarcity": 0.040730211469190855,
+        "trust": 0.2602248983873833,
+        "reward": 0.23436000393235917,
+        "social_proof": 0.02976724568632296,
+        "secrecy": 0.024734247721138202,
+        "commitment": 0.029817844725904336,
+        "emotional_pressure": 0.27996084375070324
+      },
+      "split": "test"
+    },
+    {
+      "message_id": "PSY005459",
+      "text": "The message says: Payment aaj hi karo aur bilkul delay mat karna. Ye investigation confidential hai, details share nahi karni. Paise bhejo warna arrest aur jail ka case lagega. Ye limited opportunity hai, bahut kam places baaki hain. My payment question involves \u20b959,200. What should I do?",
+      "true_labels": [
+        "fear",
+        "urgency",
+        "scarcity",
+        "secrecy"
+      ],
+      "predicted_labels": [
+        "secrecy"
+      ],
+      "error_labels": [
+        "fear",
+        "urgency",
+        "scarcity"
+      ],
+      "probabilities": {
+        "authority": 0.04307872222192428,
+        "fear": 0.03977659958893361,
+        "urgency": 0.0901865054916067,
+        "scarcity": 0.02552588292810648,
+        "trust": 0.09548467147896114,
+        "reward": 0.04498004023196105,
+        "social_proof": 0.04761185960253762,
+        "secrecy": 0.5378368343185519,
+        "commitment": 0.048916453344747576,
+        "emotional_pressure": 0.05532931553975056
+      },
+      "split": "test"
+    }
+  ]
+}

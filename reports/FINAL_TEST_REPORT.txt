@@ -1,0 +1,25 @@
+APP Shield Day 10 final test report
+==================================
+
+Regression command:
+  .venv\Scripts\python.exe -m pytest -q --ignore=tests/test_database.py
+
+Result:
+  Passed: 255
+  Failed: 0
+  Skipped: 0
+  Runtime: 38.23 seconds
+  Warning: existing Starlette/httpx TestClient deprecation warning
+
+Full-suite collection attempt:
+  tests/test_database.py could not import SQLAlchemy's compiled _util_cy extension.
+  Classification: ENVIRONMENT FAILURE (Windows Application Control blocked DLL).
+  No test was disabled to hide an assertion failure; this module was excluded only
+  for the passing regression run after its collection blocker was verified.
+
+Additional validation:
+  - Five actual-engine simulator scenarios: passed.
+  - Frontend: npm run build passed.
+  - Docker Compose configuration: docker compose config passed.
+  - Local API /health, /model-info, /monitoring/summary smoke checks: passed.
+  - Docker image build: not run; Docker Desktop Linux engine named pipe unavailable.

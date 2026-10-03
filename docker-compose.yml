@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      APP_ENV: demo
+      APP_SHIELD_FEEDBACK_DB: /app/data/processed/day9/feedback.sqlite
+      APP_SHIELD_CORS_ORIGINS: http://127.0.0.1:8080
+    volumes:
+      - feedback_data:/app/data/processed/day9
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+volumes:
+  feedback_data:

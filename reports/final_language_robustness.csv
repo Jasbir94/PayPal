@@ -1,0 +1,9 @@
+transformation,cases,scam_recall,message_false_positive_rate,scope
+base,50,0.4,0.0,Authored synthetic message-level subset; not payment-level or representative language evaluation.
+hinglish,50,0.4,0.0,Authored synthetic message-level subset; not payment-level or representative language evaluation.
+leet,50,0.4,0.0,Authored synthetic message-level subset; not payment-level or representative language evaluation.
+split,50,0.4,0.0,Authored synthetic message-level subset; not payment-level or representative language evaluation.
+indirect,50,0.24,0.0,Authored synthetic message-level subset; not payment-level or representative language evaluation.
+misspelling,50,0.36,0.0,Authored synthetic message-level subset; not payment-level or representative language evaluation.
+paraphrase,50,0.16,0.0,Authored synthetic message-level subset; not payment-level or representative language evaluation.
+obfuscated_hinglish_combination,0,,,NOT_EVALUABLE: the generator applies one transformation at a time and does not create a combined obfuscated-Hinglish holdout.

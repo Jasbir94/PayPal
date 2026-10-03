@@ -1,0 +1,330 @@
+{
+  "title": "APP Shield Day 9 temporal evaluation",
+  "generated_at": "2026-10-03T19:59:16.604827+00:00",
+  "dataset": "Synthetic point-in-time transaction/recipient fusion rows; chronological 60/20/20 split.",
+  "split": {
+    "train": 1200,
+    "validation": 400,
+    "test": 400,
+    "train_start": "2026-01-01 00:16:24+00:00",
+    "train_end": "2026-01-19 09:18:24+00:00",
+    "validation_start": "2026-01-19 09:35:43+00:00",
+    "validation_end": "2026-01-25 08:49:35+00:00",
+    "test_start": "2026-01-25 09:14:50+00:00",
+    "test_end": "2026-01-30 23:31:49+00:00",
+    "time_ordered": true
+  },
+  "test_positive_count": 33,
+  "models": {
+    "Amount ratio threshold": {
+      "samples": 400,
+      "positives": 33,
+      "threshold": 4.900000000000004,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "pr_auc": 0.1847824487053631,
+      "roc_auc": 0.6576665840971019,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "brier": 0.07801903074178641,
+      "test_recall_at_validation_fpr_le_5pct_threshold": 0.030303030303030304,
+      "confusion": {
+        "tn": 367,
+        "fp": 0,
+        "fn": 33,
+        "tp": 0
+      },
+      "status": "MEASURED",
+      "validation_recall_at_fpr_le_5pct": 0.17857142857142858,
+      "validation_threshold_at_fpr_le_5pct": 0.5,
+      "validation_threshold_selection": "F1, then precision; validation only",
+      "features": [
+        "amount_ratio_baseline"
+      ],
+      "model_version": "day9-temporal-logistic-v1"
+    },
+    "Transaction Rules": {
+      "samples": 400,
+      "positives": 33,
+      "threshold": 0.44000000000000006,
+      "precision": 0.225,
+      "recall": 0.2727272727272727,
+      "f1": 0.2465753424657534,
+      "pr_auc": 0.2483032708032708,
+      "roc_auc": 0.7965073074064899,
+      "false_positive_rate": 0.08446866485013624,
+      "false_negative_rate": 0.7272727272727273,
+      "brier": 0.07935624999999999,
+      "test_recall_at_validation_fpr_le_5pct_threshold": 0.15151515151515152,
+      "confusion": {
+        "tn": 336,
+        "fp": 31,
+        "fn": 24,
+        "tp": 9
+      },
+      "status": "MEASURED",
+      "validation_recall_at_fpr_le_5pct": 0.17857142857142858,
+      "validation_threshold_at_fpr_le_5pct": 0.6900000000000001,
+      "validation_threshold_selection": "F1, then precision; validation only",
+      "features": [
+        "amount_ratio_baseline",
+        "new_recipient_baseline"
+      ],
+      "model_version": "day9-temporal-logistic-v1"
+    },
+    "Amount ratio + new recipient": {
+      "samples": 400,
+      "positives": 33,
+      "threshold": 0.22000000000000003,
+      "precision": 0.3333333333333333,
+      "recall": 0.24242424242424243,
+      "f1": 0.2807017543859649,
+      "pr_auc": 0.44131588233877034,
+      "roc_auc": 0.8982742960944595,
+      "false_positive_rate": 0.043596730245231606,
+      "false_negative_rate": 0.7575757575757576,
+      "brier": 0.06056404823997596,
+      "test_recall_at_validation_fpr_le_5pct_threshold": 0.21212121212121213,
+      "confusion": {
+        "tn": 351,
+        "fp": 16,
+        "fn": 25,
+        "tp": 8
+      },
+      "status": "MEASURED",
+      "validation_recall_at_fpr_le_5pct": 0.2857142857142857,
+      "validation_threshold_at_fpr_le_5pct": 0.26,
+      "validation_threshold_selection": "F1, then precision; validation only",
+      "features": [
+        "amount_ratio_baseline",
+        "new_recipient_baseline"
+      ],
+      "model_version": "day9-temporal-logistic-v1"
+    },
+    "Transaction ML": {
+      "samples": 400,
+      "positives": 33,
+      "threshold": 0.19,
+      "precision": 0.35,
+      "recall": 0.42424242424242425,
+      "f1": 0.3835616438356164,
+      "pr_auc": 0.42294592524419217,
+      "roc_auc": 0.8550078441086615,
+      "false_positive_rate": 0.07084468664850137,
+      "false_negative_rate": 0.5757575757575758,
+      "brier": 0.06277715960243953,
+      "test_recall_at_validation_fpr_le_5pct_threshold": 0.2727272727272727,
+      "confusion": {
+        "tn": 341,
+        "fp": 26,
+        "fn": 19,
+        "tp": 14
+      },
+      "status": "MEASURED",
+      "validation_recall_at_fpr_le_5pct": 0.2857142857142857,
+      "validation_threshold_at_fpr_le_5pct": 0.29000000000000004,
+      "validation_threshold_selection": "F1, then precision; validation only",
+      "features": [
+        "transaction_risk",
+        "transaction_confidence",
+        "amount_ratio_baseline",
+        "new_recipient_baseline"
+      ],
+      "model_version": "day9-temporal-logistic-v1"
+    },
+    "Transaction + Recipient": {
+      "samples": 400,
+      "positives": 33,
+      "threshold": 0.4700000000000001,
+      "precision": 0.875,
+      "recall": 0.6363636363636364,
+      "f1": 0.7368421052631579,
+      "pr_auc": 0.7693808217989045,
+      "roc_auc": 0.9565684088844851,
+      "false_positive_rate": 0.008174386920980926,
+      "false_negative_rate": 0.36363636363636365,
+      "brier": 0.03879387285758577,
+      "test_recall_at_validation_fpr_le_5pct_threshold": 0.6363636363636364,
+      "confusion": {
+        "tn": 364,
+        "fp": 3,
+        "fn": 12,
+        "tp": 21
+      },
+      "status": "MEASURED",
+      "validation_recall_at_fpr_le_5pct": 0.6071428571428571,
+      "validation_threshold_at_fpr_le_5pct": 0.47000000000000003,
+      "validation_threshold_selection": "F1, then precision; validation only",
+      "features": [
+        "transaction_risk",
+        "transaction_confidence",
+        "recipient_risk",
+        "recipient_confidence",
+        "amount_ratio_baseline",
+        "new_recipient_baseline"
+      ],
+      "model_version": "day9-temporal-logistic-v1"
+    },
+    "Transaction + Recipient + Graph": {
+      "status": "NOT_EVALUABLE",
+      "reason": "No transaction-linked graph_available evidence in the shared temporal dataset.",
+      "coverage": 0,
+      "samples": 400
+    },
+    "Transaction + Recipient + Context": {
+      "status": "NOT_EVALUABLE",
+      "reason": "No transaction-linked context_available evidence in the shared temporal dataset.",
+      "coverage": 0,
+      "samples": 400
+    },
+    "Transaction + Recipient + Scenario": {
+      "status": "NOT_EVALUABLE",
+      "reason": "No transaction-linked scenario_available evidence in the shared temporal dataset.",
+      "coverage": 0,
+      "samples": 400
+    },
+    "Transaction + Recipient + Psychology": {
+      "status": "NOT_EVALUABLE",
+      "reason": "No transaction-linked psychology_available evidence in the shared temporal dataset.",
+      "coverage": 0,
+      "samples": 400
+    },
+    "Full APP Shield registered fusion": {
+      "samples": 400,
+      "positives": 33,
+      "threshold": 0.325,
+      "precision": 0.8888888888888888,
+      "recall": 0.48484848484848486,
+      "f1": 0.6274509803921569,
+      "pr_auc": 0.7144431113548761,
+      "roc_auc": 0.9219304764263894,
+      "false_positive_rate": 0.005449591280653951,
+      "false_negative_rate": 0.5151515151515151,
+      "brier": 0.03713689974190834,
+      "test_recall_at_validation_fpr_le_5pct_threshold": 0.6363636363636364,
+      "confusion": {
+        "tn": 365,
+        "fp": 2,
+        "fn": 17,
+        "tp": 16
+      },
+      "status": "MEASURED",
+      "validation_recall_at_fpr_le_5pct": 0.6071428571428571,
+      "validation_threshold_at_fpr_le_5pct": 0.3,
+      "validation_threshold_selection": "F1, then precision; validation only",
+      "features": [
+        "transaction_risk",
+        "transaction_confidence",
+        "recipient_risk",
+        "recipient_confidence",
+        "graph_risk",
+        "graph_confidence",
+        "graph_available",
+        "context_risk",
+        "context_confidence",
+        "context_available",
+        "scenario_risk",
+        "scenario_confidence",
+        "scenario_available",
+        "psychology_risk",
+        "psychology_confidence",
+        "psychology_available",
+        "amount_ratio_baseline",
+        "new_recipient_baseline"
+      ],
+      "model_version": "fusion-logistic-platt-v1"
+    }
+  },
+  "calibration": {
+    "status": "MEASURED_SYNTHETIC",
+    "model_version": "fusion-logistic-platt-v1",
+    "test_samples": 400,
+    "test_positives": 33,
+    "brier": 0.03713689974190834,
+    "expected_calibration_error": 0.01457584918401866,
+    "reliability_bins": [
+      {
+        "mean_predicted": 0.0,
+        "observed_rate": 0.010135135135135136
+      },
+      {
+        "mean_predicted": 0.06779661016949144,
+        "observed_rate": 0.08064516129032258
+      },
+      {
+        "mean_predicted": 0.1286586938222989,
+        "observed_rate": 0.0
+      },
+      {
+        "mean_predicted": 0.5677238277059865,
+        "observed_rate": 0.625
+      }
+    ],
+    "notice": "Calibrated probability belongs to the registered transaction/recipient fusion modality profile; it is not evidence of real-world calibration."
+  },
+  "drift": {
+    "method": "PSI numeric, Jensen-Shannon divergence categorical",
+    "reference_count": 400,
+    "current_count": 400,
+    "features": {
+      "risk": {
+        "method": "PSI",
+        "value": 0.04824282433135077,
+        "alert": false
+      },
+      "confidence": {
+        "method": "PSI",
+        "value": 0.0,
+        "alert": false
+      },
+      "scenario": {
+        "method": "Jensen-Shannon divergence",
+        "value": 0.0,
+        "alert": false
+      },
+      "decision": {
+        "method": "Jensen-Shannon divergence",
+        "value": 0.0,
+        "alert": false
+      },
+      "amount_ratio_baseline": {
+        "method": "PSI",
+        "value": 0.050462243075574696,
+        "alert": false
+      },
+      "recipient_risk": {
+        "method": "PSI",
+        "value": 0.017688483041091215,
+        "alert": false
+      },
+      "transaction_risk": {
+        "method": "PSI",
+        "value": 0.04824282433135077,
+        "alert": false
+      }
+    },
+    "notice": "Synthetic input shift only; no current production stream exists and drift is not proof fraud increased.",
+    "alert_count": 0,
+    "reference_period": {
+      "start": "2026-01-01 00:16:24+00:00",
+      "end": "2026-01-19 09:18:24+00:00"
+    },
+    "current_period": {
+      "start": "2026-01-25 09:14:50+00:00",
+      "end": "2026-01-30 23:31:49+00:00"
+    }
+  },
+  "outputs": [
+    "final_model_comparison.csv",
+    "scenario_performance.csv",
+    "hard_negative_performance.csv",
+    "calibration_report.json",
+    "drift_report.json",
+    "threshold_analysis.csv",
+    "cost_analysis_config.json",
+    "flagship_experiments.json",
+    "latency_summary.json"
+  ],
+  "limitations": "Only transaction and recipient features are linked to payment IDs and time. Graph, context, scenario, psychology, named scenarios and intended hard negatives are excluded from supervised metrics rather than filled with zero or assigned labels. Synthetic results do not establish production accuracy."
+}

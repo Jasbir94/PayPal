@@ -1,0 +1,34 @@
+{
+  "seed": 42,
+  "sklearn_version": "1.5.2",
+  "selected_model": "random_forest",
+  "target": "is_fraud: synthetic transaction fraud-propensity baseline",
+  "selected_by": "validation average precision",
+  "split_strategy": "chronological 60/20/20",
+  "feature_window": "strictly before scoring timestamp; 24h recipient snapshot",
+  "probabilities": "uncalibrated synthetic baseline outputs; not APP fraud probabilities",
+  "split_counts": {
+    "test": {
+      "size": 2000,
+      "sum": 143
+    },
+    "train": {
+      "size": 6000,
+      "sum": 448
+    },
+    "validation": {
+      "size": 2000,
+      "sum": 159
+    }
+  },
+  "feature_columns": [
+    "amount_ratio",
+    "amount_vs_recent_average",
+    "first_time_recipient",
+    "device_changed",
+    "transactions_last_1h",
+    "transactions_last_24h",
+    "recipient_seen_before",
+    "outside_usual_hours"
+  ]
+}

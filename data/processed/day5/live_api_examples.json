@@ -1,0 +1,386 @@
+{
+  "graph_request": {
+    "account_id": "A1006",
+    "at": "2026-01-30T23:31:50+00:00"
+  },
+  "graph_response": {
+    "account_id": "A1006",
+    "graph_risk": 0.21,
+    "risk_level": "LOW",
+    "score": 0.21,
+    "features": {
+      "in_degree": 0,
+      "out_degree": 0,
+      "unique_incoming_senders": 0,
+      "unique_outgoing_receivers": 0,
+      "incoming_amount": 0,
+      "outgoing_amount": 0,
+      "in_out_amount_ratio": 0.0,
+      "rapid_outflow_ratio": 0.0,
+      "matched_outflow_ratio": 0.0,
+      "median_fund_holding_time": null,
+      "matched_inflow_amount": 0.0,
+      "known_mule_neighbors": 0,
+      "fraud_reported_neighbors": 0,
+      "distance_to_known_mule": null,
+      "cycle_count": 0,
+      "cycle_search_truncated": false,
+      "connected_component_size": 1,
+      "pagerank": 0.0007573806103987951,
+      "suspicious_path_depth": 0,
+      "path_search_truncated": false
+    },
+    "reasons": [
+      "no_graph_rule_signals"
+    ],
+    "rule_score": 0.0,
+    "ml_probability": 0.0021432306282256107,
+    "model_available": true,
+    "as_of": "2026-01-30T23:31:50+00:00",
+    "lookback_hours": 24,
+    "account_age_days": 33,
+    "timing_ms": {
+      "snapshot_build": 61.55309989117086,
+      "total": 84.54970014281571
+    }
+  },
+  "contextual_request": {
+    "transaction": {
+      "sender_id": "A0001",
+      "receiver_id": "A1006",
+      "amount": 85000,
+      "timestamp": "2026-01-30T23:31:50+00:00",
+      "device_id": "D0001",
+      "payment_type": "bank_transfer"
+    },
+    "context": {
+      "payment_reason": "government",
+      "contacted_by_unknown_person": true,
+      "claimed_authority": true,
+      "authority_type": "police",
+      "urgent_payment_requested": true,
+      "threatened_consequences": true,
+      "requested_secrecy": true,
+      "fund_transfer_requested": true
+    },
+    "message": "I am from Cyber Crime. Transfer immediately or you will be arrested. Do not tell anyone."
+  },
+  "contextual_response": {
+    "transaction_risk": {
+      "score": 91.24,
+      "ml_probability": 0.954067,
+      "rule_score": 85.0,
+      "reasons": [
+        "amount_much_higher_than_normal",
+        "first_time_recipient",
+        "amount_above_recent_average",
+        "transaction_model_elevated_risk"
+      ],
+      "evidence": {
+        "amount": 85000.0,
+        "sender_average_amount": 2233.158,
+        "amount_ratio": 38.06268969772851,
+        "first_time_recipient": 1.0,
+        "transaction_hour": 23.0,
+        "device_changed": 0.0,
+        "transactions_last_1h": 0.0,
+        "transactions_last_24h": 0.0,
+        "amount_vs_recent_average": 38.06268969772851,
+        "amount_deviation": 37.06268969772851,
+        "recipient_seen_before": 0.0,
+        "outside_usual_hours": 1.0,
+        "history_count": 5.0,
+        "baseline_available": 1.0
+      }
+    },
+    "recipient_risk": {
+      "score": 77.97,
+      "ml_probability": 0.999536,
+      "rule_score": 45.0,
+      "reasons": [
+        "high_outgoing_ratio",
+        "multiple_prior_fraud_reports",
+        "recipient_model_elevated_risk"
+      ],
+      "evidence": {
+        "account_age_days": 33.0,
+        "incoming_transactions_1h": 0.0,
+        "incoming_transactions_24h": 0.0,
+        "unique_senders_1h": 0.0,
+        "unique_senders_24h": 0.0,
+        "incoming_amount_24h": 0.0,
+        "outgoing_amount_24h": 0.0,
+        "outgoing_ratio": 0.9060308797089864,
+        "observed_outgoing_ratio": 0.0,
+        "fraud_report_count": 2.0,
+        "transaction_velocity": 0.0,
+        "sender_diversity": 0.0,
+        "average_incoming_amount": 0.0,
+        "median_incoming_amount": 0.0,
+        "inflow_outflow_imbalance": 0.0,
+        "average_holding_minutes": 316.00930004987663
+      }
+    },
+    "context_risk": {
+      "score": 100.0,
+      "reasons": [
+        "unknown_contact",
+        "authority_claim",
+        "urgent_payment_request",
+        "threatened_consequences",
+        "secrecy_request",
+        "fund_transfer_request",
+        "authority_threat_urgency_combination"
+      ],
+      "evidence": {
+        "unknown_contact": true,
+        "authority_claim": true,
+        "urgent_payment_request": true,
+        "threatened_consequences": true,
+        "secrecy_request": true,
+        "fund_transfer_request": true,
+        "authority_threat_urgency_combination": true
+      },
+      "context_available": true
+    },
+    "scenario": {
+      "type": "government_impersonation",
+      "confidence": 0.761194,
+      "confidence_kind": "structured_and_text_evidence",
+      "top_scenarios": [
+        {
+          "scenario": "government_impersonation",
+          "score": 0.761194
+        },
+        {
+          "scenario": "normal_or_unknown",
+          "score": 0.035399
+        },
+        {
+          "scenario": "family_emergency_scam",
+          "score": 0.027022
+        }
+      ],
+      "reason_codes": [
+        "authority_claim",
+        "government_impersonation_pattern",
+        "crime_or_legal_threat",
+        "text_classifier_evidence"
+      ],
+      "evidence": {
+        "structured_scenario": "government_impersonation",
+        "structured_strength": 0.9,
+        "text_scenario": "government_impersonation",
+        "text_support_terms": [
+          "tell",
+          "cyber crime",
+          "crime",
+          "cyber",
+          "from"
+        ],
+        "message_available": true,
+        "text_model_available": true
+      }
+    },
+    "scenario_risk": {
+      "score": 91.64,
+      "reasons": [
+        "government_impersonation_context_supported"
+      ],
+      "evidence": {
+        "matching_structured_strength": 0.9,
+        "context_score": 100.0
+      },
+      "context_available": null
+    },
+    "psychology": {
+      "psychology_risk": 98.84,
+      "scores": {
+        "authority": 0.84,
+        "fear": 0.84,
+        "urgency": 0.83,
+        "scarcity": 0.11778339206552776,
+        "trust": 0.09021667571099744,
+        "reward": 0.03667540749672596,
+        "social_proof": 0.03485868958313724,
+        "secrecy": 0.9959283717777346,
+        "commitment": 0.0686271986656897,
+        "emotional_pressure": 0.04048895310015108
+      },
+      "rule_scores": {
+        "authority": 0.84,
+        "fear": 0.84,
+        "urgency": 0.83,
+        "scarcity": 0.0,
+        "trust": 0.0,
+        "reward": 0.0,
+        "social_proof": 0.0,
+        "secrecy": 0.88,
+        "commitment": 0.0,
+        "emotional_pressure": 0.0
+      },
+      "ml_probabilities": {
+        "authority": 0.07162488732397877,
+        "fear": 0.8322559114341176,
+        "urgency": 0.6544244639833505,
+        "scarcity": 0.11778339206552776,
+        "trust": 0.09021667571099744,
+        "reward": 0.03667540749672596,
+        "social_proof": 0.03485868958313724,
+        "secrecy": 0.9959283717777346,
+        "commitment": 0.0686271986656897,
+        "emotional_pressure": 0.04048895310015108
+      },
+      "thresholds": {
+        "authority": 0.3,
+        "fear": 0.3,
+        "urgency": 0.4,
+        "scarcity": 0.5,
+        "trust": 0.3,
+        "reward": 0.3,
+        "social_proof": 0.5,
+        "secrecy": 0.3,
+        "commitment": 0.3,
+        "emotional_pressure": 0.3
+      },
+      "detected_techniques": [
+        "authority",
+        "fear",
+        "urgency",
+        "secrecy"
+      ],
+      "reason_codes": [
+        "authority_claim_detected",
+        "legal_threat_detected",
+        "urgent_action_language",
+        "secrecy_request_detected",
+        "manipulation_evidence_detected",
+        "authority_fear_urgency_combination"
+      ],
+      "evidence": {
+        "rule_patterns": {
+          "authority": {
+            "pattern_codes": [
+              "authority_claim_detected"
+            ],
+            "distinct_pattern_count": 1
+          },
+          "fear": {
+            "pattern_codes": [
+              "legal_threat_detected"
+            ],
+            "distinct_pattern_count": 1
+          },
+          "urgency": {
+            "pattern_codes": [
+              "urgent_action_language"
+            ],
+            "distinct_pattern_count": 1
+          },
+          "secrecy": {
+            "pattern_codes": [
+              "secrecy_request_detected"
+            ],
+            "distinct_pattern_count": 1
+          }
+        },
+        "benign_suppressed_techniques": [],
+        "combination_requires_strong_rule_support": true
+      },
+      "model_available": true,
+      "message_available": true,
+      "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+    },
+    "scenario_psychology_alignment": 0.836667,
+    "psychology_overlap_adjustment": {
+      "adjusted_psychology_risk": 49.42,
+      "discount_factor": 0.5,
+      "overlapping_techniques": [
+        "authority",
+        "fear",
+        "urgency",
+        "secrecy"
+      ],
+      "reason_code": "context_psychology_overlap_discounted"
+    },
+    "extended_risk": 81.37,
+    "graph_risk": {
+      "score": 0.21,
+      "features": {
+        "in_degree": 0,
+        "out_degree": 0,
+        "unique_incoming_senders": 0,
+        "unique_outgoing_receivers": 0,
+        "incoming_amount": 0,
+        "outgoing_amount": 0,
+        "in_out_amount_ratio": 0.0,
+        "rapid_outflow_ratio": 0.0,
+        "matched_outflow_ratio": 0.0,
+        "median_fund_holding_time": null,
+        "matched_inflow_amount": 0.0,
+        "known_mule_neighbors": 0,
+        "fraud_reported_neighbors": 0,
+        "distance_to_known_mule": null,
+        "cycle_count": 0,
+        "cycle_search_truncated": false,
+        "connected_component_size": 1,
+        "pagerank": 0.0007573806103987951,
+        "suspicious_path_depth": 0,
+        "path_search_truncated": false
+      },
+      "reasons": [
+        "no_graph_rule_signals"
+      ],
+      "rule_score": 0.0,
+      "ml_probability": 0.0021432306282256107,
+      "model_available": true,
+      "risk_level": "LOW",
+      "as_of": "2026-01-30T23:31:50+00:00",
+      "lookback_hours": 24,
+      "account_age_days": 33,
+      "timing_ms": {
+        "snapshot_build": 61.55309989117086,
+        "total": 11.135000037029386
+      }
+    },
+    "grouped_scores": {
+      "user_side": 91.24,
+      "recipient_side": 54.64,
+      "manipulation_side": 91.16
+    },
+    "overall_risk": 78.4,
+    "fusion_policy": "temporary_grouped_weights",
+    "overall_risk_level": "HIGH",
+    "extended_risk_level": "CRITICAL",
+    "extended_preliminary_risk": 89.53,
+    "risk_level": "CRITICAL",
+    "reason_codes": [
+      "amount_much_higher_than_normal",
+      "first_time_recipient",
+      "amount_above_recent_average",
+      "transaction_model_elevated_risk",
+      "high_outgoing_ratio",
+      "multiple_prior_fraud_reports",
+      "recipient_model_elevated_risk",
+      "unknown_contact",
+      "authority_claim",
+      "urgent_payment_request",
+      "threatened_consequences",
+      "secrecy_request",
+      "fund_transfer_request",
+      "authority_threat_urgency_combination",
+      "government_impersonation_pattern",
+      "crime_or_legal_threat",
+      "text_classifier_evidence",
+      "government_impersonation_context_supported",
+      "authority_claim_detected",
+      "legal_threat_detected",
+      "urgent_action_language",
+      "secrecy_request_detected",
+      "manipulation_evidence_detected",
+      "authority_fear_urgency_combination",
+      "context_psychology_overlap_discounted",
+      "no_graph_rule_signals"
+    ]
+  }
+}

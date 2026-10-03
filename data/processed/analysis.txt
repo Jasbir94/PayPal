@@ -1,0 +1,27 @@
+Transactions: 10000
+Accounts: 1040
+Fraud percentage: 7.50%
+Class balance (0 legitimate, 1 fraud):
+          count  average_amount  new_recipient_rate  average_amount_ratio
+is_fraud                                                                 
+0          9250     8091.483655            0.281730              1.173567
+1           750    14502.723827            0.970667              2.120276
+Fraud count by type:
+fraud_type
+normal                      9250
+marketplace_scam             134
+bank_impersonation           107
+family_emergency             105
+government_impersonation     103
+investment_scam              103
+tech_support                  99
+fake_job                      99
+Recipient fraud-report distribution (one row per account):
+fraud_report_count
+0    976
+1     53
+2      9
+3      2
+Integrity checks: {'missing_values': 0, 'duplicate_transaction_ids': 0, 'duplicate_account_ids': 0, 'nonpositive_amounts': 0, 'invalid_timestamps': 0, 'future_timestamps': 0, 'unknown_accounts': 0, 'negative_account_ages': 0, 'invalid_labels': 0, 'invalid_scenarios': 0, 'inconsistent_labels': 0, 'impossible_velocity': 0, 'invalid_outgoing_ratio': 0, 'payments_before_account_creation': 0}
+Class imbalance is intentional. Use stratified/temporal evaluation and PR-AUC later.
+Synthetic data is for pipeline development; it does not establish real-world model performance.

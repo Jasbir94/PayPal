@@ -1,0 +1,1465 @@
+{
+  "examples": {
+    "techniques_1": {
+      "request": {
+        "message": "I am from police. Transfer now or you will be arrested."
+      },
+      "response": {
+        "psychology_risk": 89.02,
+        "scores": {
+          "authority": 0.84,
+          "fear": 0.9503952203220039,
+          "urgency": 0.83,
+          "scarcity": 0.11985698361070465,
+          "trust": 0.10985324423596196,
+          "reward": 0.041485253403408855,
+          "social_proof": 0.034449810144910026,
+          "secrecy": 0.21928656579293565,
+          "commitment": 0.07743319536289692,
+          "emotional_pressure": 0.0418953929356389
+        },
+        "rule_scores": {
+          "authority": 0.84,
+          "fear": 0.84,
+          "urgency": 0.83,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.32250654506002624,
+          "fear": 0.9503952203220039,
+          "urgency": 0.47095636212731123,
+          "scarcity": 0.11985698361070465,
+          "trust": 0.10985324423596196,
+          "reward": 0.041485253403408855,
+          "social_proof": 0.034449810144910026,
+          "secrecy": 0.21928656579293565,
+          "commitment": 0.07743319536289692,
+          "emotional_pressure": 0.0418953929356389
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "authority",
+          "fear",
+          "urgency"
+        ],
+        "reason_codes": [
+          "authority_claim_detected",
+          "legal_threat_detected",
+          "urgent_action_language",
+          "manipulation_evidence_detected",
+          "authority_fear_urgency_combination"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "authority": {
+              "pattern_codes": [
+                "authority_claim_detected"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "fear": {
+              "pattern_codes": [
+                "legal_threat_detected"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "urgency": {
+              "pattern_codes": [
+                "urgent_action_language"
+              ],
+              "distinct_pattern_count": 1
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 146.2046999949962
+    },
+    "techniques_2": {
+      "request": {
+        "message": "Guaranteed 30% return. Only two slots remain. Invest today."
+      },
+      "response": {
+        "psychology_risk": 90.76,
+        "scores": {
+          "authority": 0.023640377429400016,
+          "fear": 0.021688526103640002,
+          "urgency": 0.83,
+          "scarcity": 0.9939766424829839,
+          "trust": 0.03590305443961924,
+          "reward": 0.85,
+          "social_proof": 0.029630070603389957,
+          "secrecy": 0.03153819828393118,
+          "commitment": 0.023655160292697573,
+          "emotional_pressure": 0.039895490805619244
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.83,
+          "scarcity": 0.84,
+          "trust": 0.0,
+          "reward": 0.85,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.023640377429400016,
+          "fear": 0.021688526103640002,
+          "urgency": 0.07106451296104423,
+          "scarcity": 0.9939766424829839,
+          "trust": 0.03590305443961924,
+          "reward": 0.804471132552189,
+          "social_proof": 0.029630070603389957,
+          "secrecy": 0.03153819828393118,
+          "commitment": 0.023655160292697573,
+          "emotional_pressure": 0.039895490805619244
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "urgency",
+          "scarcity",
+          "reward"
+        ],
+        "reason_codes": [
+          "urgent_action_language",
+          "limited_availability_claim",
+          "guaranteed_gain_claim",
+          "manipulation_evidence_detected",
+          "reward_scarcity_urgency_combination"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "urgency": {
+              "pattern_codes": [
+                "urgent_action_language"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "scarcity": {
+              "pattern_codes": [
+                "limited_availability_claim"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "reward": {
+              "pattern_codes": [
+                "guaranteed_gain_claim"
+              ],
+              "distinct_pattern_count": 1
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 25.62709990888834
+    },
+    "techniques_3": {
+      "request": {
+        "message": "Do not tell your bank or family. This investigation is confidential."
+      },
+      "response": {
+        "psychology_risk": 40.0,
+        "scores": {
+          "authority": 0.1262968856972901,
+          "fear": 0.025815911237919105,
+          "urgency": 0.04370234763963717,
+          "scarcity": 0.03964987269865784,
+          "trust": 0.027143357072556985,
+          "reward": 0.04067925677885748,
+          "social_proof": 0.033765009104031976,
+          "secrecy": 0.999989084369225,
+          "commitment": 0.024924983044281427,
+          "emotional_pressure": 0.026150267580818443
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.958,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.1262968856972901,
+          "fear": 0.025815911237919105,
+          "urgency": 0.04370234763963717,
+          "scarcity": 0.03964987269865784,
+          "trust": 0.027143357072556985,
+          "reward": 0.04067925677885748,
+          "social_proof": 0.033765009104031976,
+          "secrecy": 0.999989084369225,
+          "commitment": 0.024924983044281427,
+          "emotional_pressure": 0.026150267580818443
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "secrecy"
+        ],
+        "reason_codes": [
+          "secrecy_request_detected",
+          "confidential_investigation_pressure",
+          "manipulation_evidence_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "secrecy": {
+              "pattern_codes": [
+                "secrecy_request_detected",
+                "confidential_investigation_pressure"
+              ],
+              "distinct_pattern_count": 2
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 20.07289999164641
+    },
+    "techniques_4": {
+      "request": {
+        "message": "If you really care about me, please send money for my emergency."
+      },
+      "response": {
+        "psychology_risk": 63.0,
+        "scores": {
+          "authority": 0.040012122042606214,
+          "fear": 0.06007280512703518,
+          "urgency": 0.04686447140217371,
+          "scarcity": 0.049082825195538166,
+          "trust": 0.9999685985536689,
+          "reward": 0.048539158808231175,
+          "social_proof": 0.03151579754730686,
+          "secrecy": 0.027630266166867232,
+          "commitment": 0.06733198626182106,
+          "emotional_pressure": 0.9999910209087313
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.75,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.86
+        },
+        "ml_probabilities": {
+          "authority": 0.040012122042606214,
+          "fear": 0.06007280512703518,
+          "urgency": 0.04686447140217371,
+          "scarcity": 0.049082825195538166,
+          "trust": 0.9999685985536689,
+          "reward": 0.048539158808231175,
+          "social_proof": 0.03151579754730686,
+          "secrecy": 0.027630266166867232,
+          "commitment": 0.06733198626182106,
+          "emotional_pressure": 0.9999910209087313
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "trust",
+          "emotional_pressure"
+        ],
+        "reason_codes": [
+          "relationship_trust_appeal",
+          "conditional_care_pressure",
+          "manipulation_evidence_detected",
+          "relationship_emotional_pressure_combination"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "trust": {
+              "pattern_codes": [
+                "relationship_trust_appeal"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "emotional_pressure": {
+              "pattern_codes": [
+                "conditional_care_pressure"
+              ],
+              "distinct_pattern_count": 1
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 15.362499980255961
+    },
+    "techniques_5": {
+      "request": {
+        "message": "Main RBI se bol raha hu. Abhi transfer karo warna account freeze ho jayega."
+      },
+      "response": {
+        "psychology_risk": 89.94,
+        "scores": {
+          "authority": 0.9734934500056217,
+          "fear": 0.896691160094697,
+          "urgency": 0.83,
+          "scarcity": 0.03366398757856814,
+          "trust": 0.055331716040474904,
+          "reward": 0.02766864781553628,
+          "social_proof": 0.06004356239625596,
+          "secrecy": 0.04267673659838164,
+          "commitment": 0.03933288556926547,
+          "emotional_pressure": 0.028261352975741373
+        },
+        "rule_scores": {
+          "authority": 0.86,
+          "fear": 0.82,
+          "urgency": 0.83,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.9734934500056217,
+          "fear": 0.896691160094697,
+          "urgency": 0.46493566963464295,
+          "scarcity": 0.03366398757856814,
+          "trust": 0.055331716040474904,
+          "reward": 0.02766864781553628,
+          "social_proof": 0.06004356239625596,
+          "secrecy": 0.04267673659838164,
+          "commitment": 0.03933288556926547,
+          "emotional_pressure": 0.028261352975741373
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "authority",
+          "fear",
+          "urgency"
+        ],
+        "reason_codes": [
+          "authority_claim_detected",
+          "conditional_threat_detected",
+          "urgent_action_language",
+          "manipulation_evidence_detected",
+          "authority_fear_urgency_combination"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "authority": {
+              "pattern_codes": [
+                "authority_claim_detected"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "fear": {
+              "pattern_codes": [
+                "conditional_threat_detected"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "urgency": {
+              "pattern_codes": [
+                "urgent_action_language"
+              ],
+              "distinct_pattern_count": 1
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 21.863600006327033
+    },
+    "techniques_6": {
+      "request": {
+        "message": "Sir ye investment guaranteed hai, aaj last opportunity hai."
+      },
+      "response": {
+        "psychology_risk": 85.0,
+        "scores": {
+          "authority": 0.03128561799849024,
+          "fear": 0.016449616283755485,
+          "urgency": 0.77,
+          "scarcity": 0.84,
+          "trust": 0.030649921812250572,
+          "reward": 0.85,
+          "social_proof": 0.02705516068051556,
+          "secrecy": 0.036997068026545704,
+          "commitment": 0.020903334203380933,
+          "emotional_pressure": 0.019087225959274454
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.77,
+          "scarcity": 0.84,
+          "trust": 0.0,
+          "reward": 0.85,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.03128561799849024,
+          "fear": 0.016449616283755485,
+          "urgency": 0.023862593721197374,
+          "scarcity": 0.1630732390587976,
+          "trust": 0.030649921812250572,
+          "reward": 0.4182041727697674,
+          "social_proof": 0.02705516068051556,
+          "secrecy": 0.036997068026545704,
+          "commitment": 0.020903334203380933,
+          "emotional_pressure": 0.019087225959274454
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "urgency",
+          "scarcity",
+          "reward"
+        ],
+        "reason_codes": [
+          "same_day_expiry_pressure",
+          "limited_availability_claim",
+          "guaranteed_gain_claim",
+          "manipulation_evidence_detected",
+          "reward_scarcity_urgency_combination"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "urgency": {
+              "pattern_codes": [
+                "same_day_expiry_pressure"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "scarcity": {
+              "pattern_codes": [
+                "limited_availability_claim"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "reward": {
+              "pattern_codes": [
+                "guaranteed_gain_claim"
+              ],
+              "distinct_pattern_count": 1
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 26.84980002231896
+    },
+    "techniques_7": {
+      "request": {
+        "message": "Kisi ko mat batana, ye confidential police investigation hai."
+      },
+      "response": {
+        "psychology_risk": 47.97,
+        "scores": {
+          "authority": 0.8,
+          "fear": 0.037088923718905396,
+          "urgency": 0.03000265447020808,
+          "scarcity": 0.05411733339403348,
+          "trust": 0.03503740943496059,
+          "reward": 0.06727785907119768,
+          "social_proof": 0.033668535828136885,
+          "secrecy": 0.9992644422069973,
+          "commitment": 0.05195874520717953,
+          "emotional_pressure": 0.03492529575135067
+        },
+        "rule_scores": {
+          "authority": 0.8,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.958,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.18241170764354786,
+          "fear": 0.037088923718905396,
+          "urgency": 0.03000265447020808,
+          "scarcity": 0.05411733339403348,
+          "trust": 0.03503740943496059,
+          "reward": 0.06727785907119768,
+          "social_proof": 0.033668535828136885,
+          "secrecy": 0.9992644422069973,
+          "commitment": 0.05195874520717953,
+          "emotional_pressure": 0.03492529575135067
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "authority",
+          "secrecy"
+        ],
+        "reason_codes": [
+          "official_investigation_claim",
+          "secrecy_request_detected",
+          "confidential_investigation_pressure",
+          "manipulation_evidence_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "authority": {
+              "pattern_codes": [
+                "official_investigation_claim"
+              ],
+              "distinct_pattern_count": 1
+            },
+            "secrecy": {
+              "pattern_codes": [
+                "secrecy_request_detected",
+                "confidential_investigation_pressure"
+              ],
+              "distinct_pattern_count": 2
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 21.384499967098236
+    },
+    "techniques_8": {
+      "request": {
+        "message": "You've already invested 50000. Pay 10000 more to unlock withdrawal."
+      },
+      "response": {
+        "psychology_risk": 40.0,
+        "scores": {
+          "authority": 0.0427966014133224,
+          "fear": 0.08496738442959798,
+          "urgency": 0.08112647243542688,
+          "scarcity": 0.04267585807900161,
+          "trust": 0.1184184310284052,
+          "reward": 0.1639986702585326,
+          "social_proof": 0.08305173124431832,
+          "secrecy": 0.047481124974942404,
+          "commitment": 0.999994904549793,
+          "emotional_pressure": 0.06319922550538276
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.81,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.0427966014133224,
+          "fear": 0.08496738442959798,
+          "urgency": 0.08112647243542688,
+          "scarcity": 0.04267585807900161,
+          "trust": 0.1184184310284052,
+          "reward": 0.1639986702585326,
+          "social_proof": 0.08305173124431832,
+          "secrecy": 0.047481124974942404,
+          "commitment": 0.999994904549793,
+          "emotional_pressure": 0.06319922550538276
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "commitment"
+        ],
+        "reason_codes": [
+          "withdrawal_unlock_payment",
+          "manipulation_evidence_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "commitment": {
+              "pattern_codes": [
+                "withdrawal_unlock_payment"
+              ],
+              "distinct_pattern_count": 1
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 23.02580000832677
+    },
+    "techniques_9": {
+      "request": {
+        "message": "Thousands of users have already earned profits."
+      },
+      "response": {
+        "psychology_risk": 40.0,
+        "scores": {
+          "authority": 0.03710876339997201,
+          "fear": 0.028464445803726673,
+          "urgency": 0.06292446360871265,
+          "scarcity": 0.02825795141614713,
+          "trust": 0.06691908557594829,
+          "reward": 0.042529357543780066,
+          "social_proof": 0.9998909555684236,
+          "secrecy": 0.03304365227534226,
+          "commitment": 0.06180983064057768,
+          "emotional_pressure": 0.03404021912405808
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.84,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.03710876339997201,
+          "fear": 0.028464445803726673,
+          "urgency": 0.06292446360871265,
+          "scarcity": 0.02825795141614713,
+          "trust": 0.06691908557594829,
+          "reward": 0.042529357543780066,
+          "social_proof": 0.9998909555684236,
+          "secrecy": 0.03304365227534226,
+          "commitment": 0.06180983064057768,
+          "emotional_pressure": 0.03404021912405808
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [
+          "social_proof"
+        ],
+        "reason_codes": [
+          "others_benefited_claim",
+          "manipulation_evidence_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {
+            "social_proof": {
+              "pattern_codes": [
+                "others_benefited_claim"
+              ],
+              "distinct_pattern_count": 1
+            }
+          },
+          "benign_suppressed_techniques": [],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 8.569200057536364
+    },
+    "neutral_1": {
+      "request": {
+        "message": "RBI announced a new policy today."
+      },
+      "response": {
+        "psychology_risk": 0.0,
+        "scores": {
+          "authority": 0.030597010159928092,
+          "fear": 0.013256692288464452,
+          "urgency": 0.02866022510907525,
+          "scarcity": 0.018338125093514127,
+          "trust": 0.01943988848666247,
+          "reward": 0.02241965729651162,
+          "social_proof": 0.016539558535677585,
+          "secrecy": 0.015766876929525452,
+          "commitment": 0.015542601415601744,
+          "emotional_pressure": 0.014378725467763205
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.030597010159928092,
+          "fear": 0.013256692288464452,
+          "urgency": 0.02866022510907525,
+          "scarcity": 0.018338125093514127,
+          "trust": 0.01943988848666247,
+          "reward": 0.02241965729651162,
+          "social_proof": 0.016539558535677585,
+          "secrecy": 0.015766876929525452,
+          "commitment": 0.015542601415601744,
+          "emotional_pressure": 0.014378725467763205
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [],
+        "reason_codes": [
+          "no_rule_manipulation_evidence",
+          "no_manipulation_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {},
+          "benign_suppressed_techniques": [
+            "authority"
+          ],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 7.7593999449163675
+    },
+    "neutral_2": {
+      "request": {
+        "message": "My bank account is frozen."
+      },
+      "response": {
+        "psychology_risk": 0.0,
+        "scores": {
+          "authority": 0.015550711306239074,
+          "fear": 0.09629692093053115,
+          "urgency": 0.013637174339404931,
+          "scarcity": 0.018260840567923795,
+          "trust": 0.01935755076308362,
+          "reward": 0.020520973145493795,
+          "social_proof": 0.03842847159169725,
+          "secrecy": 0.03669125762613989,
+          "commitment": 0.013551773365481934,
+          "emotional_pressure": 0.01520724806313825
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.015550711306239074,
+          "fear": 0.09629692093053115,
+          "urgency": 0.013637174339404931,
+          "scarcity": 0.018260840567923795,
+          "trust": 0.01935755076308362,
+          "reward": 0.020520973145493795,
+          "social_proof": 0.03842847159169725,
+          "secrecy": 0.03669125762613989,
+          "commitment": 0.013551773365481934,
+          "emotional_pressure": 0.01520724806313825
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [],
+        "reason_codes": [
+          "no_rule_manipulation_evidence",
+          "no_manipulation_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {},
+          "benign_suppressed_techniques": [
+            "fear"
+          ],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 21.468000020831823
+    },
+    "neutral_3": {
+      "request": {
+        "message": "Your bank statement for September is available."
+      },
+      "response": {
+        "psychology_risk": 0.0,
+        "scores": {
+          "authority": 0.0191545375381267,
+          "fear": 0.012679647685989023,
+          "urgency": 0.009703908002323371,
+          "scarcity": 0.04315926587708865,
+          "trust": 0.017664176300907237,
+          "reward": 0.021835584893959523,
+          "social_proof": 0.014978069951861557,
+          "secrecy": 0.050196349827550876,
+          "commitment": 0.013724247188704202,
+          "emotional_pressure": 0.013638020689364524
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.0191545375381267,
+          "fear": 0.012679647685989023,
+          "urgency": 0.009703908002323371,
+          "scarcity": 0.04315926587708865,
+          "trust": 0.017664176300907237,
+          "reward": 0.021835584893959523,
+          "social_proof": 0.014978069951861557,
+          "secrecy": 0.050196349827550876,
+          "commitment": 0.013724247188704202,
+          "emotional_pressure": 0.013638020689364524
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [],
+        "reason_codes": [
+          "no_rule_manipulation_evidence",
+          "no_manipulation_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {},
+          "benign_suppressed_techniques": [
+            "authority"
+          ],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 25.25860001333058
+    },
+    "neutral_4": {
+      "request": {
+        "message": "Your electricity bill is due tomorrow."
+      },
+      "response": {
+        "psychology_risk": 0.0,
+        "scores": {
+          "authority": 0.027276293927501753,
+          "fear": 0.025435863220328016,
+          "urgency": 0.01133309607471384,
+          "scarcity": 0.02278388777256351,
+          "trust": 0.01733751877352881,
+          "reward": 0.04779781217097034,
+          "social_proof": 0.026418064405085376,
+          "secrecy": 0.021844334856620358,
+          "commitment": 0.02335924851668754,
+          "emotional_pressure": 0.017834811357247765
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.027276293927501753,
+          "fear": 0.025435863220328016,
+          "urgency": 0.01133309607471384,
+          "scarcity": 0.02278388777256351,
+          "trust": 0.01733751877352881,
+          "reward": 0.04779781217097034,
+          "social_proof": 0.026418064405085376,
+          "secrecy": 0.021844334856620358,
+          "commitment": 0.02335924851668754,
+          "emotional_pressure": 0.017834811357247765
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [],
+        "reason_codes": [
+          "no_rule_manipulation_evidence",
+          "no_manipulation_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {},
+          "benign_suppressed_techniques": [
+            "urgency"
+          ],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 8.688800036907196
+    },
+    "neutral_5": {
+      "request": {
+        "message": "Please make the payment today if convenient."
+      },
+      "response": {
+        "psychology_risk": 0.0,
+        "scores": {
+          "authority": 0.013736998403874769,
+          "fear": 0.0219101343384781,
+          "urgency": 0.008999790176050874,
+          "scarcity": 0.015240343726231892,
+          "trust": 0.04520894923591765,
+          "reward": 0.016985002488187437,
+          "social_proof": 0.014273637256764584,
+          "secrecy": 0.01220726350232842,
+          "commitment": 0.014658162378239489,
+          "emotional_pressure": 0.03362128260251165
+        },
+        "rule_scores": {
+          "authority": 0.0,
+          "fear": 0.0,
+          "urgency": 0.0,
+          "scarcity": 0.0,
+          "trust": 0.0,
+          "reward": 0.0,
+          "social_proof": 0.0,
+          "secrecy": 0.0,
+          "commitment": 0.0,
+          "emotional_pressure": 0.0
+        },
+        "ml_probabilities": {
+          "authority": 0.013736998403874769,
+          "fear": 0.0219101343384781,
+          "urgency": 0.008999790176050874,
+          "scarcity": 0.015240343726231892,
+          "trust": 0.04520894923591765,
+          "reward": 0.016985002488187437,
+          "social_proof": 0.014273637256764584,
+          "secrecy": 0.01220726350232842,
+          "commitment": 0.014658162378239489,
+          "emotional_pressure": 0.03362128260251165
+        },
+        "thresholds": {
+          "authority": 0.3,
+          "fear": 0.3,
+          "urgency": 0.4,
+          "scarcity": 0.5,
+          "trust": 0.3,
+          "reward": 0.3,
+          "social_proof": 0.5,
+          "secrecy": 0.3,
+          "commitment": 0.3,
+          "emotional_pressure": 0.3
+        },
+        "detected_techniques": [],
+        "reason_codes": [
+          "no_rule_manipulation_evidence",
+          "no_manipulation_detected"
+        ],
+        "evidence": {
+          "rule_patterns": {},
+          "benign_suppressed_techniques": [
+            "urgency"
+          ],
+          "combination_requires_strong_rule_support": true
+        },
+        "model_available": true,
+        "message_available": true,
+        "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+      },
+      "latency_ms": 8.323000045493245
+    },
+    "full_contextual": {
+      "request": {
+        "transaction": {
+          "sender_id": "A0001",
+          "receiver_id": "A1006",
+          "amount": 85000,
+          "timestamp": "2026-01-30T23:31:50+00:00",
+          "device_id": "D0001",
+          "payment_type": "bank_transfer"
+        },
+        "context": {
+          "payment_reason": "government",
+          "contacted_by_unknown_person": true,
+          "contact_channel": "phone",
+          "claimed_authority": true,
+          "authority_type": "police",
+          "urgent_payment_requested": true,
+          "threatened_consequences": true,
+          "requested_secrecy": true,
+          "fund_transfer_requested": true
+        },
+        "message": "I am from Cyber Crime. Your Aadhaar is involved in money laundering. Transfer 80000 immediately or you will be arrested. Do not tell anyone."
+      },
+      "response": {
+        "transaction_risk": {
+          "score": 91.24,
+          "ml_probability": 0.954067,
+          "rule_score": 85.0,
+          "reasons": [
+            "amount_much_higher_than_normal",
+            "first_time_recipient",
+            "amount_above_recent_average",
+            "transaction_model_elevated_risk"
+          ],
+          "evidence": {
+            "amount": 85000.0,
+            "sender_average_amount": 2233.158,
+            "amount_ratio": 38.06268969772851,
+            "first_time_recipient": 1.0,
+            "transaction_hour": 23.0,
+            "device_changed": 0.0,
+            "transactions_last_1h": 0.0,
+            "transactions_last_24h": 0.0,
+            "amount_vs_recent_average": 38.06268969772851,
+            "amount_deviation": 37.06268969772851,
+            "recipient_seen_before": 0.0,
+            "outside_usual_hours": 1.0,
+            "history_count": 5.0,
+            "baseline_available": 1.0
+          }
+        },
+        "recipient_risk": {
+          "score": 77.97,
+          "ml_probability": 0.999536,
+          "rule_score": 45.0,
+          "reasons": [
+            "high_outgoing_ratio",
+            "multiple_prior_fraud_reports",
+            "recipient_model_elevated_risk"
+          ],
+          "evidence": {
+            "account_age_days": 33.0,
+            "incoming_transactions_1h": 0.0,
+            "incoming_transactions_24h": 0.0,
+            "unique_senders_1h": 0.0,
+            "unique_senders_24h": 0.0,
+            "incoming_amount_24h": 0.0,
+            "outgoing_amount_24h": 0.0,
+            "outgoing_ratio": 0.9060308797089864,
+            "observed_outgoing_ratio": 0.0,
+            "fraud_report_count": 2.0,
+            "transaction_velocity": 0.0,
+            "sender_diversity": 0.0,
+            "average_incoming_amount": 0.0,
+            "median_incoming_amount": 0.0,
+            "inflow_outflow_imbalance": 0.0,
+            "average_holding_minutes": 316.00930004987663
+          }
+        },
+        "context_risk": {
+          "score": 100.0,
+          "reasons": [
+            "unknown_contact",
+            "authority_claim",
+            "urgent_payment_request",
+            "threatened_consequences",
+            "secrecy_request",
+            "fund_transfer_request",
+            "authority_threat_urgency_combination"
+          ],
+          "evidence": {
+            "unknown_contact": true,
+            "authority_claim": true,
+            "urgent_payment_request": true,
+            "threatened_consequences": true,
+            "secrecy_request": true,
+            "fund_transfer_request": true,
+            "authority_threat_urgency_combination": true
+          },
+          "context_available": true
+        },
+        "scenario": {
+          "type": "government_impersonation",
+          "confidence": 0.874664,
+          "confidence_kind": "structured_and_text_evidence",
+          "top_scenarios": [
+            {
+              "scenario": "government_impersonation",
+              "score": 0.874664
+            },
+            {
+              "scenario": "normal_or_unknown",
+              "score": 0.011496
+            },
+            {
+              "scenario": "family_emergency_scam",
+              "score": 0.00846
+            }
+          ],
+          "reason_codes": [
+            "authority_claim",
+            "government_impersonation_pattern",
+            "crime_or_legal_threat",
+            "text_classifier_evidence"
+          ],
+          "evidence": {
+            "structured_scenario": "government_impersonation",
+            "structured_strength": 0.9,
+            "text_scenario": "government_impersonation",
+            "text_support_terms": [
+              "money",
+              "money laundering",
+              "laundering",
+              "aadhaar",
+              "crime"
+            ],
+            "message_available": true,
+            "text_model_available": true
+          }
+        },
+        "scenario_risk": {
+          "score": 95.61,
+          "reasons": [
+            "government_impersonation_context_supported"
+          ],
+          "evidence": {
+            "matching_structured_strength": 0.9,
+            "context_score": 100.0
+          },
+          "context_available": null
+        },
+        "psychology": {
+          "psychology_risk": 98.74,
+          "scores": {
+            "authority": 0.84,
+            "fear": 0.9552,
+            "urgency": 0.83,
+            "scarcity": 0.1981795697899788,
+            "trust": 0.15490245323942717,
+            "reward": 0.08535103865841927,
+            "social_proof": 0.042980629495332046,
+            "secrecy": 0.9935509818176811,
+            "commitment": 0.15568964172767663,
+            "emotional_pressure": 0.06266771139574302
+          },
+          "rule_scores": {
+            "authority": 0.84,
+            "fear": 0.9552,
+            "urgency": 0.83,
+            "scarcity": 0.0,
+            "trust": 0.0,
+            "reward": 0.0,
+            "social_proof": 0.0,
+            "secrecy": 0.88,
+            "commitment": 0.0,
+            "emotional_pressure": 0.0
+          },
+          "ml_probabilities": {
+            "authority": 0.1041955520890529,
+            "fear": 0.864909332930434,
+            "urgency": 0.5852420784900579,
+            "scarcity": 0.1981795697899788,
+            "trust": 0.15490245323942717,
+            "reward": 0.08535103865841927,
+            "social_proof": 0.042980629495332046,
+            "secrecy": 0.9935509818176811,
+            "commitment": 0.15568964172767663,
+            "emotional_pressure": 0.06266771139574302
+          },
+          "thresholds": {
+            "authority": 0.3,
+            "fear": 0.3,
+            "urgency": 0.4,
+            "scarcity": 0.5,
+            "trust": 0.3,
+            "reward": 0.3,
+            "social_proof": 0.5,
+            "secrecy": 0.3,
+            "commitment": 0.3,
+            "emotional_pressure": 0.3
+          },
+          "detected_techniques": [
+            "authority",
+            "fear",
+            "urgency",
+            "secrecy"
+          ],
+          "reason_codes": [
+            "authority_claim_detected",
+            "identity_crime_threat",
+            "legal_threat_detected",
+            "urgent_action_language",
+            "secrecy_request_detected",
+            "manipulation_evidence_detected",
+            "authority_fear_urgency_combination"
+          ],
+          "evidence": {
+            "rule_patterns": {
+              "authority": {
+                "pattern_codes": [
+                  "authority_claim_detected"
+                ],
+                "distinct_pattern_count": 1
+              },
+              "fear": {
+                "pattern_codes": [
+                  "identity_crime_threat",
+                  "legal_threat_detected"
+                ],
+                "distinct_pattern_count": 2
+              },
+              "urgency": {
+                "pattern_codes": [
+                  "urgent_action_language"
+                ],
+                "distinct_pattern_count": 1
+              },
+              "secrecy": {
+                "pattern_codes": [
+                  "secrecy_request_detected"
+                ],
+                "distinct_pattern_count": 1
+              }
+            },
+            "benign_suppressed_techniques": [],
+            "combination_requires_strong_rule_support": true
+          },
+          "model_available": true,
+          "message_available": true,
+          "scores_kind": "hybrid_evidence_not_calibrated_probabilities"
+        },
+        "scenario_psychology_alignment": 0.875067,
+        "psychology_overlap_adjustment": {
+          "adjusted_psychology_risk": 49.37,
+          "discount_factor": 0.5,
+          "overlapping_techniques": [
+            "authority",
+            "fear",
+            "urgency",
+            "secrecy"
+          ],
+          "reason_code": "context_psychology_overlap_discounted"
+        },
+        "extended_risk": 81.96,
+        "extended_risk_level": "CRITICAL",
+        "extended_preliminary_risk": 90.32,
+        "risk_level": "CRITICAL",
+        "reason_codes": [
+          "amount_much_higher_than_normal",
+          "first_time_recipient",
+          "amount_above_recent_average",
+          "transaction_model_elevated_risk",
+          "high_outgoing_ratio",
+          "multiple_prior_fraud_reports",
+          "recipient_model_elevated_risk",
+          "unknown_contact",
+          "authority_claim",
+          "urgent_payment_request",
+          "threatened_consequences",
+          "secrecy_request",
+          "fund_transfer_request",
+          "authority_threat_urgency_combination",
+          "government_impersonation_pattern",
+          "crime_or_legal_threat",
+          "text_classifier_evidence",
+          "government_impersonation_context_supported",
+          "authority_claim_detected",
+          "identity_crime_threat",
+          "legal_threat_detected",
+          "urgent_action_language",
+          "secrecy_request_detected",
+          "manipulation_evidence_detected",
+          "authority_fear_urgency_combination",
+          "context_psychology_overlap_discounted"
+        ]
+      },
+      "latency_ms": 75.33210003748536
+    }
+  },
+  "missing_message_preserves_day3": true,
+  "day2_endpoint_compatible": true,
+  "latency_note": "Single localhost requests include transport; not production benchmarks."
+}
