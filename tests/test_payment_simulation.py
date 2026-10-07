@@ -34,6 +34,43 @@ def test_creation_idempotency_and_no_automatic_payment_execution():
         assert two.json()['created'] is False
         assert two.json()['simulated_status']=='NOT_EXECUTED'
 
+def test_payment_note_is_preserved_for_receipt_and_recent_activity():
+    with TestClient(app) as client:
+        created=client.post('/api/v1/simulated-payments',json={
+          'sender_alias':'U101','recipient_alias':'R201','amount':1200,
+          'payment_reason':'friend','payment_type':'upi','note':'Dinner share',
+          'idempotency_key':'payment-note-receipt-001'})
+        assert created.status_code==200
+        attempt_id=created.json()['payment_attempt_id']
+        assert client.get(f'/api/v1/simulated-payments/{attempt_id}').json()['note']=='Dinner share'
+        activity=client.get('/api/v1/simulated-payments/analytics').json()['recent_attempts']
+        assert next(row for row in activity if row['payment_attempt_id']==attempt_id)['note']=='Dinner share'
+
+def test_payment_note_rejects_credentials_like_context_messages():
+    with TestClient(app) as client:
+        response=client.post('/api/v1/simulated-payments',json={
+          'sender_alias':'U101','recipient_alias':'R201','amount':1200,
+          'payment_reason':'friend','payment_type':'upi','note':'OTP: 123456',
+          'idempotency_key':'payment-note-credential-001'})
+    assert response.status_code==422
+
+def test_customer_activity_hides_risk_scores_while_analyst_table_receives_them():
+    with TestClient(app) as client:
+        scenario=client.get('/api/v1/simulated-payments/scenarios/government_impersonation').json()
+        created=client.post('/api/v1/simulated-payments',json={
+          'sender_alias':scenario['sender_alias'],'recipient_alias':scenario['recipient_alias'],
+          'amount':scenario['amount'],'payment_reason':scenario['payment_reason'],'payment_type':'upi',
+          'idempotency_key':'phase11-separated-score-001'}).json()
+        client.post(f"/api/v1/simulated-payments/{created['payment_attempt_id']}/analyze",json={
+          'context':scenario['context'],'messages':scenario['messages']})
+        customer_rows=client.get('/api/v1/simulated-payments/analytics').json()['recent_attempts']
+        analyst_rows=client.get('/api/v1/simulated-payments/analyst/analytics').json()['recent_attempts']
+        customer_row=next(row for row in customer_rows if row['payment_attempt_id']==created['payment_attempt_id'])
+        analyst_row=next(row for row in analyst_rows if row['payment_attempt_id']==created['payment_attempt_id'])
+        assert 'risk_score' not in customer_row and 'confidence' not in customer_row
+        assert analyst_row['risk_score'] is not None
+        assert analyst_row['confidence'] is not None
+
 def test_idempotency_key_cannot_be_reused_for_a_different_payment():
     with TestClient(app) as client:
         first=create_attempt(client,'reused-different-payload-001')

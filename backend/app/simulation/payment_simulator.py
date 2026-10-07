@@ -12,6 +12,8 @@ from fastapi import HTTPException
 from backend.app.schemas.context import PaymentContext
 from backend.app.services.fraud_engine import FraudEngine
 from backend.app.simulation.payment_state import PaymentState, transition, InvalidPaymentTransition
+from backend.app.graph.graph_features import calculate_graph_features
+from backend.app.features.recipient_features import calculate_account_age
 
 _CREDENTIAL_VALUE = re.compile(
     r'(?i)\b(?:otp|pin|cvv|cvc)\s*[:=]\s*[A-Za-z0-9-]{3,}|'
@@ -96,6 +98,7 @@ class PaymentSimulator:
         return {k:v for k,v in item.items() if k!='id'} | {'scenario_id':item['id']}
 
     def create(self, request):
+        self._safe_message(request.note)
         with self._lock:
             fingerprint=hashlib.sha256(json.dumps(
                 request.model_dump(exclude={'idempotency_key'}),sort_keys=True,
@@ -124,12 +127,14 @@ class PaymentSimulator:
                 'sender_id':sender['account_id'],'recipient_alias':request.recipient_alias,
                 'recipient_name':recipient['display_name'],'recipient_id':recipient['account_id'],
                 'amount':float(request.amount),'currency':'INR','payment_reason':reason,
+                'note':request.note.strip(),
                 'request_fingerprint':fingerprint,
                 'context_reason':context_reason,'payment_type':request.payment_type,
                 'device_id':sender['device_id'],'timestamp':(
                     self.repository.end.normalize()+pd.Timedelta(days=1,hours=12)).isoformat(),
                 'state':PaymentState.DRAFT.value,'created_at':pd.Timestamp.now(tz='UTC').isoformat(),
                 'passive':None,'assessment':None,'contextual_result':None,'context':None,'conversation_evidence':None,
+                'context_questions':[],
                 'user_action':None,'simulated_status':'NOT_EXECUTED','latency_ms':{},'verified':False}
             self._attempts[attempt_id]=attempt
             self._idempotency[request.idempotency_key]=attempt_id
@@ -182,13 +187,15 @@ class PaymentSimulator:
                             'preliminary_risk':passive['preliminary_risk'],'risk_level':passive['risk_level'],
                             'graph_available':passive.get('graph_risk') is not None})
                 if needs_context and not self._has_answers(request):
+                    questions=self._targeted_questions(attempt,passive)
                     with self._lock:
                         transition(attempt,PaymentState.CONTEXT_REQUIRED)
+                        attempt['context_questions']=questions
                         if self.feedback:
                             self.feedback.repository.append_audit(attempt_id,'CONTEXT_REQUESTED',{
-                                'question_ids':[item['id'] for item in self._targeted_questions(attempt,passive)]})
+                                'question_ids':[item['id'] for item in questions]})
                     return {'payment':self.user_view(attempt),'context_required':True,
-                      'context_questions':self._targeted_questions(attempt,passive)}
+                      'context_questions':questions}
 
             context_data=request.context.model_dump(mode='python')
             context_data['payment_reason']=attempt['context_reason']
@@ -325,17 +332,41 @@ class PaymentSimulator:
             attempt=self._get(attempt_id)
             return {'payment':self.user_view(attempt),'attempt':self._analyst_fields(attempt)}
 
-    def analytics(self):
+    def ablate_context(self, attempt_id):
+        """Rerun the real engine after removing structured context and message evidence."""
+        with self._lock:
+            attempt=self._get(attempt_id)
+            if attempt['assessment'] is None:
+                raise HTTPException(409,'Analyze this payment before requesting an evidence ablation.')
+            transaction=self._transaction(attempt)
+            passive=attempt['passive']
+            full=attempt['assessment']
+            context=PaymentContext(payment_reason=attempt['context_reason'])
+        contextual=self.risk.score_contextual(transaction,context,None)
+        ablated=self.engine.analyze_payment(transaction,context,None,contextual_result=contextual)
+        return {'payment_attempt_id':attempt_id,'method':'Rerun the APP Shield engine with structured context and message evidence unavailable; payment, recipient, and graph inputs remain unchanged.',
+            'full_assessment':full,'ablated_assessment':ablated,'passive_assessment':passive,
+            'removed_evidence':['structured context answers','message and conversation evidence'],
+            'unchanged_evidence':['transaction inputs','recipient history','historical network']}
+
+    def analytics(self, analyst=False):
         with self._lock:
             attempts=list(self._attempts.values())
             actions=Counter(item['user_action'] for item in attempts if item['user_action'])
             risks=Counter(item['assessment']['risk_level'] for item in attempts if item['assessment'])
             recent=[{'payment_attempt_id':item['payment_attempt_id'],'recipient':item['recipient_name'],
               'amount':item['amount'],'currency':'INR','state':item['state'],
+              'created_at':item['created_at'],'note':item.get('note',''),
               'risk_level':item['assessment']['risk_level'] if item['assessment'] else 'NOT_ANALYZED',
               'scenario':item['assessment']['likely_scam_scenario'] if item['assessment'] else 'unknown',
               'decision':item['assessment']['decision'] if item['assessment'] else 'PENDING',
               'user_action':item['user_action']} for item in reversed(attempts[-30:])]
+            if analyst:
+                for row in recent:
+                    item=self._attempts[row['payment_attempt_id']]
+                    assessment=item['assessment']
+                    row['risk_score']=assessment['app_scam_risk'] if assessment else None
+                    row['confidence']=assessment['confidence'] if assessment else None
             return {'label':'SIMULATED DATA','payments_analyzed':sum(bool(i['assessment']) for i in attempts),
               'warnings_shown':sum(i['state'] in ('WARNING','VERIFICATION_REQUIRED','SIMULATED_HELD','CANCELLED','SIMULATED_COMPLETED') and i['assessment'] is not None and i['assessment']['decision']!='ALLOW' for i in attempts),
               'cancelled_after_warning':actions['CANCELLED_AFTER_WARNING'],
@@ -365,8 +396,21 @@ class PaymentSimulator:
         selected_order=[center]+sorted(selected-{center})
         aliases={value['account_id']:alias for alias,value in self._scenario_data['recipients'].items()}
         names={value['account_id']:value['display_name'] for value in self._scenario_data['recipients'].values()}
-        nodes=[{'id':node,'label':names.get(node,aliases.get(node,'Account '+str(node)[-4:])),
-                'role':'recipient' if node==center else 'connected account'} for node in selected_order]
+        nodes=[]
+        graph_risk=(attempt.get('passive') or {}).get('graph_risk') or {}
+        for node in selected_order:
+            try:
+                features=calculate_graph_features(graph,node)
+                account=self.repository.accounts.loc[node]
+                details={'account_age_days':calculate_account_age(account['created_at'],pd.Timestamp(attempt['timestamp'])),
+                    'incoming_payments':features['in_degree'],'outgoing_payments':features['out_degree'],
+                    'unique_senders':features['unique_incoming_senders'],
+                    'rapid_outflow_ratio':features['rapid_outflow_ratio']}
+                if node==center:details['risk_indicators']=graph_risk.get('reasons',[])
+            except (KeyError,ValueError,TypeError):
+                details={'available':False}
+            nodes.append({'id':node,'label':names.get(node,aliases.get(node,'Account '+str(node)[-4:])),
+                'role':'recipient' if node==center else 'connected account','details':details})
         edges=[]
         for source,target,key,data in graph.edges(keys=True,data=True):
             if source in selected and target in selected and len(edges)<40:
@@ -397,11 +441,28 @@ class PaymentSimulator:
           'sender':{'alias':attempt['sender_alias'],'display_name':attempt['sender_name']},
           'recipient':{'alias':attempt['recipient_alias'],'display_name':attempt['recipient_name']},
           'amount':attempt['amount'],'currency':attempt['currency'],'payment_reason':attempt['payment_reason'],
+          'payment_type':attempt['payment_type'],'note':attempt.get('note',''),
           'created_at':attempt['created_at'],'decision':assessment['decision'] if assessment else None,
           'intervention':assessment['intervention'] if assessment else None,
           'top_reasons':[item.get('description','Please verify this payment independently.') for item in assessment.get('top_reasons',[])[:4]] if assessment else [],
+          'protective_reasons':PaymentSimulator._protective_reasons(assessment),
+          'context_questions':attempt.get('context_questions',[]),
           'user_action':attempt['user_action'],'simulated_status':attempt['simulated_status'],
           'message':'Simulated environment only. No real money moves.'}
+
+    @staticmethod
+    def _protective_reasons(assessment):
+        if not assessment:
+            return []
+        language={
+          'KNOWN_RECIPIENT_LONG_TERM':'You have paid this recipient before.',
+          'REPEATED_PRIOR_PAYMENTS':'There is a history of repeated payments to this recipient.',
+          'ESTABLISHED_RECIPIENT_ACCOUNT':'This recipient has an established payment history with you.',
+          'NORMAL_AMOUNT_PATTERN':'The amount is within your usual payment pattern.',
+          'NO_UNKNOWN_CONTACT_REPORTED':'You did not report being contacted by an unknown person.',
+          'NO_REPORTED_MANIPULATION_SIGNALS':'You did not report the listed pressure signals.',
+        }
+        return [language[item] for item in assessment.get('protective_evidence',[]) if item in language]
 
 
 _FLAGSHIP=('Sir verification department se bol raha hu. Aapke Aadhaar ke regarding suspicious activity mili hai. '
@@ -441,6 +502,12 @@ _SCENARIOS=[
   'difficulty':'hard','sender_alias':'U103','recipient_alias':'R205','amount':5000,'payment_reason':'family',
   'context':{'contacted_by_unknown_person':True,'contact_channel':'sms','urgent_payment_requested':True,'threatened_consequences':True},
   'messages':[{'speaker':'other','text':'I am in trouble and need money right away. Please send it now and do not call anyone yet.'}]},
+ {'id':'legitimate_family_emergency','title':'Legitimate family emergency','description':'An urgent request to a familiar family member; urgency alone is not proof of a scam.',
+  'difficulty':'hard negative','sender_alias':'U101','recipient_alias':'R201','amount':20000,'payment_reason':'family',
+  'context':{'contacted_by_unknown_person':False,'urgent_payment_requested':True,
+    'threatened_consequences':False,'claimed_authority':False,'requested_secrecy':False,
+    'relationship_duration_days':3650},
+  'messages':[{'speaker':'other','text':'Hospital emergency hai. Please abhi ₹20,000 bhej. Main tumhara bhai bol raha hoon.'}]},
  {'id':'small_investment','title':'Small initial investment scam','description':'A low payment is paired with a promised reward and limited-time pressure.',
   'difficulty':'hard','sender_alias':'U101','recipient_alias':'R203','amount':500,'payment_reason':'investment',
   'context':{'contacted_by_unknown_person':True,'promised_profit':True,'guaranteed_returns_promised':True,'urgent_payment_requested':True},

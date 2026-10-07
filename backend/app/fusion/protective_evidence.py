@@ -1,19 +1,22 @@
 """Conservative reductions supported only by observed, affirmative facts."""
 from backend.app.config.risk_config import MAX_PROTECTIVE_REDUCTION, PROTECTIVE_EVIDENCE_WEIGHTS, clamp_score
 
+def _affirmative(value):
+    return value is True or (isinstance(value, (int, float)) and not isinstance(value, bool) and value == 1)
+
 def assess_protective_evidence(transaction, recipient, context):
     tx = transaction.get('evidence', {})
     rec = recipient.get('evidence', {})
     ctx = context.get('evidence', {})
     found = []
-    if tx.get('recipient_seen_before') is True:
+    if _affirmative(tx.get('recipient_seen_before')):
         found.append(('KNOWN_RECIPIENT_LONG_TERM', PROTECTIVE_EVIDENCE_WEIGHTS['known_recipient']))
     if int(tx.get('prior_payments_to_recipient', 0) or 0) >= 3:
         found.append(('REPEATED_PRIOR_PAYMENTS', PROTECTIVE_EVIDENCE_WEIGHTS['repeated_payments']))
     # An old account is not evidence that this sender knows or trusts its owner.
     # Only describe it as established relationship evidence when we have observed
     # a prior payment relationship with this recipient.
-    if (tx.get('recipient_seen_before') is True
+    if (_affirmative(tx.get('recipient_seen_before'))
             and rec.get('account_age_days') is not None
             and float(rec['account_age_days']) >= 365):
         found.append(('ESTABLISHED_RECIPIENT_ACCOUNT', PROTECTIVE_EVIDENCE_WEIGHTS['established_account']))

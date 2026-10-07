@@ -27,11 +27,18 @@ def create_payment_attempt(payload:CreatePaymentAttempt,request:Request):
 @router.get('/analytics')
 def get_simulation_analytics(request:Request): return simulator(request).analytics()
 
+@router.get('/analyst/analytics')
+def get_analyst_analytics(request:Request): return simulator(request).analytics(analyst=True)
+
 @router.get('/{attempt_id}/analyst')
 def get_analyst_assessment(attempt_id:str,request:Request): return simulator(request).analyst(attempt_id)
 
 @router.get('/{attempt_id}/network')
 def get_analyst_network(attempt_id:str,request:Request): return simulator(request).graph_neighborhood(attempt_id)
+
+@router.post('/{attempt_id}/ablation')
+def rerun_context_ablation(attempt_id:str,request:Request):
+    return simulator(request).ablate_context(attempt_id)
 
 @router.post('/{attempt_id}/analyze')
 def analyze_payment_attempt(attempt_id:str,payload:AnalyzePaymentAttempt,request:Request):

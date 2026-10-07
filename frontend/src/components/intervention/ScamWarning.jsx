@@ -11,7 +11,8 @@ export default function ScamWarning({ payment, checked, onCheck, onCancel, onCon
     <h2 id="warning-title">{intervention.title || 'Verify this payment before continuing'}</h2>
     <p>{intervention.message || 'We detected unusual circumstances around this payment.'}</p>
     <div className="recommended"><strong>Recommended next step</strong><span>{intervention.recommended_action}</span></div>
-    {payment.top_reasons?.length > 0 && <div className="reason-list"><strong>Why we’re asking</strong><ul>{payment.top_reasons.slice(0, 4).map((reason, i) => <li key={`${i}-${reason}`}>{reason}</li>)}</ul></div>}
+    {payment.top_reasons?.length > 0 && <details className="reason-list warning-explanation"><summary>Why did I see this warning?</summary><ul>{payment.top_reasons.slice(0, 3).map((reason, i) => <li key={`${i}-${reason}`}>{reason}</li>)}</ul></details>}
+    {payment.protective_reasons?.length > 0 && <div className="warning-protective"><strong>Signals that lowered concern</strong><ul>{payment.protective_reasons.slice(0,3).map((reason,i)=><li key={`${i}-${reason}`}>✓ {reason}</li>)}</ul></div>}
     {payment.state === 'VERIFICATION_REQUIRED' && <div className="verification-note"><strong>Additional verification required</strong><span>Choose a demo action to verify independently. APP Shield will never ask for an OTP, PIN, password or card security code.</span>
       <button className="button button-primary" onClick={onVerify} disabled={busy}>I verified independently</button>
     </div>}

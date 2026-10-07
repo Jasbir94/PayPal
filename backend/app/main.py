@@ -27,7 +27,7 @@ from backend.app.config.risk_config import (MAX_REQUEST_BODY_BYTES,API_RATE_LIMI
     API_RATE_LIMIT_WINDOW_SECONDS,PROJECT_ROOT)
 from backend.app.api.simulation_routes import router as simulation_router
 from backend.app.simulation.payment_simulator import PaymentSimulator
-from backend.app.api.day9_routes import feedback_router,review_router,monitor_router
+from backend.app.api.day9_routes import feedback_router,review_router,monitor_router,research_router
 from backend.app.feedback.service import FeedbackService
 from backend.app.review.review_service import ReviewService
 
@@ -86,6 +86,7 @@ def create_app() -> FastAPI:
     application.include_router(feedback_router)
     application.include_router(review_router)
     application.include_router(monitor_router)
+    application.include_router(research_router)
     application.add_middleware(RequestGuardMiddleware,max_body_bytes=MAX_REQUEST_BODY_BYTES,
         rate_limit=API_RATE_LIMIT_REQUESTS,window_seconds=API_RATE_LIMIT_WINDOW_SECONDS)
     allowed_origins=[item.strip() for item in os.getenv('APP_SHIELD_CORS_ORIGINS','').split(',') if item.strip()]

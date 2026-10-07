@@ -1,5 +1,6 @@
 """Research-only endpoints for delayed labels, audit, review, and monitoring."""
 from fastapi import APIRouter, HTTPException, Request
+import csv
 from backend.app.feedback.schemas import FraudLabelRequest, UserActionRequest
 from backend.app.review.schemas import ReviewOutcomeRequest
 from backend.app.monitoring.metrics import prediction_summary,shadow_summary
@@ -11,6 +12,7 @@ from backend.app.monitoring.health import data_quality_summary
 feedback_router=APIRouter(prefix='/api/v1/feedback',tags=['research feedback'])
 review_router=APIRouter(prefix='/api/v1/reviews',tags=['analyst review'])
 monitor_router=APIRouter(prefix='/api/v1/monitoring',tags=['monitoring'])
+research_router=APIRouter(prefix='/api/v1/research',tags=['research artifacts'])
 
 
 def _feedback(request:Request):
@@ -95,3 +97,32 @@ def monitor_summary(request:Request):
         'data_quality':data_quality_summary(snapshots),
         'feedback_counts':repository.aggregate_counts(),
         'automatic_retraining':'DISABLED'}
+
+
+@research_router.get('/failures')
+def failure_replays():
+    """Return measured message-level adversarial errors; absent fields stay unavailable."""
+    from backend.app.config.risk_config import PROJECT_ROOT
+    path=PROJECT_ROOT/'reports'/'final_adversarial_results.csv'
+    if not path.is_file():
+        raise HTTPException(503,'The frozen adversarial evaluation report is unavailable.')
+    with path.open('r',encoding='utf-8',newline='') as handle:
+        rows=list(csv.DictReader(handle))
+    failures=[]
+    for row in rows:
+        bucket=row.get('failure_bucket','')
+        if bucket not in ('false_positive','false_negative'):
+            continue
+        expected=int(row['label'])
+        predicted=int(row['hardened_prediction'])
+        failures.append({'case_id':row.get('case_id'),'case_category':row.get('category'),
+            'expected_label':'SCAM' if expected else 'BENIGN',
+            'prediction':'SCAM' if predicted else 'BENIGN','risk':None,'confidence':None,
+            'evidence':[],'failure_category':'MESSAGE_CLASSIFICATION',
+            'failure_bucket':bucket})
+    return {'label':'FROZEN SYNTHETIC ADVERSARIAL TEXT EVALUATION',
+        'source':'reports/final_adversarial_results.csv',
+        'note':'The source artifact has message-level predictions only; payment risk, confidence, and feature evidence are unavailable.',
+        'count':len(failures),'false_positives':sum(x['failure_bucket']=='false_positive' for x in failures),
+        'false_negatives':sum(x['failure_bucket']=='false_negative' for x in failures),
+        'cases':failures[:100]}

@@ -49,3 +49,11 @@ def test_old_recipient_account_alone_is_not_trusted_relationship_evidence():
     protective=assess_protective_evidence(tx,recipient,{'available':False,'evidence':{}})
     assert 'ESTABLISHED_RECIPIENT_ACCOUNT' not in protective['items']
     assert protective['reduction']==0
+
+def test_integer_relationship_evidence_from_feature_pipeline_is_recognized():
+    protective=assess_protective_evidence(
+        {'evidence':{'recipient_seen_before':1}},
+        {'evidence':{'account_age_days':900}},
+        {'available':False,'evidence':{}})
+    assert 'KNOWN_RECIPIENT_LONG_TERM' in protective['items']
+    assert 'ESTABLISHED_RECIPIENT_ACCOUNT' in protective['items']

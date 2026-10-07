@@ -13,6 +13,7 @@ class CreatePaymentAttempt(BaseModel):
     payment_reason: Literal['family','friend','shopping','investment','job','government',
         'bank_support','loan','refund','relationship','marketplace','emergency','tech_support','other'] = 'other'
     payment_type: Literal['upi','wallet','bank_transfer'] = 'upi'
+    note: str = Field(default='', max_length=240)
     idempotency_key: str = Field(min_length=8, max_length=100)
 
 
