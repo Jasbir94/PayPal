@@ -14,6 +14,10 @@ from backend.app.services.fraud_engine import FraudEngine
 from backend.app.simulation.payment_state import PaymentState, transition, InvalidPaymentTransition
 from backend.app.graph.graph_features import calculate_graph_features
 from backend.app.features.recipient_features import calculate_account_age
+from backend.app.conversation.adaptive_question_engine import select_critical_questions
+from backend.app.fusion.evidence_consistency_engine import (
+    build_evidence_records, compare_claims, evidence_record,
+)
 
 _CREDENTIAL_VALUE = re.compile(
     r'(?i)\b(?:otp|pin|cvv|cvc)\s*[:=]\s*[A-Za-z0-9-]{3,}|'
@@ -30,6 +34,7 @@ class PaymentSimulator:
         self.engine=FraudEngine(risk_service)
         self.feedback=feedback_service
         self.review=review_service
+        self.banking_service=None
         self._lock=RLock()
         self._attempts={}
         self._idempotency={}
@@ -76,10 +81,13 @@ class PaymentSimulator:
             suspicious,mule,quiet[0] if quiet else suspicious]
         recipient_aliases=['R201','R202','R203','R204','R205','R206']
         labels=['Known friend','Established merchant','New recipient','Limited history','New contact','Another new recipient']
+        raw_recipients.append(senders['U102']['account_id'])
+        recipient_aliases.append('R207')
+        labels.append(senders['U102']['display_name'])
         recipients={alias:{'account_id':str(account_id),'display_name':label}
                     for alias,account_id,label in zip(recipient_aliases,raw_recipients,labels)}
         accounts={'senders':[{'alias':alias,'display_name':v['display_name']} for alias,v in senders.items()],
-          'recipients':[{'alias':alias,'display_name':v['display_name']} for alias,v in recipients.items()]}
+          'recipients':[{'alias':alias,'account_id':v['account_id'],'display_name':v['display_name']} for alias,v in recipients.items()]}
         return {'senders':senders,'recipients':recipients},accounts
 
     @property
@@ -97,7 +105,7 @@ class PaymentSimulator:
         if item is None: raise HTTPException(404,'Demo scenario not found')
         return {k:v for k,v in item.items() if k!='id'} | {'scenario_id':item['id']}
 
-    def create(self, request):
+    def create(self, request, *, wallet_account_id=None, payment_detail_version=1):
         self._safe_message(request.note)
         with self._lock:
             fingerprint=hashlib.sha256(json.dumps(
@@ -119,6 +127,8 @@ class PaymentSimulator:
             sender=self._scenario_data['senders'].get(request.sender_alias)
             recipient=self._scenario_data['recipients'].get(request.recipient_alias)
             if sender is None or recipient is None: raise HTTPException(422,'Choose a listed simulated account.')
+            if wallet_account_id is not None and sender['account_id']!=wallet_account_id:
+                raise HTTPException(403,'This chat session cannot use a different sender account.')
             attempt_id=str(uuid4())
             reason=request.payment_reason
             context_reason=reason
@@ -127,15 +137,20 @@ class PaymentSimulator:
                 'sender_id':sender['account_id'],'recipient_alias':request.recipient_alias,
                 'recipient_name':recipient['display_name'],'recipient_id':recipient['account_id'],
                 'amount':float(request.amount),'currency':'INR','payment_reason':reason,
+                'payment_detail_version':int(payment_detail_version),
                 'note':request.note.strip(),
                 'request_fingerprint':fingerprint,
                 'context_reason':context_reason,'payment_type':request.payment_type,
                 'device_id':sender['device_id'],'timestamp':(
                     self.repository.end.normalize()+pd.Timedelta(days=1,hours=12)).isoformat(),
+                'wallet_account_id':wallet_account_id,'ledger_receipt':None,
                 'state':PaymentState.DRAFT.value,'created_at':pd.Timestamp.now(tz='UTC').isoformat(),
                 'passive':None,'assessment':None,'contextual_result':None,'context':None,'conversation_evidence':None,
                 'context_questions':[],
-                'user_action':None,'simulated_status':'NOT_EXECUTED','latency_ms':{},'verified':False}
+                'user_action':None,'simulated_status':'NOT_EXECUTED','latency_ms':{},'verified':False,
+                'verification_claimed':False,'evidence_records':[],
+                'payment_fingerprint':None,'assessment_fingerprint':None}
+            attempt['payment_fingerprint']=self._payment_fingerprint(attempt)
             self._attempts[attempt_id]=attempt
             self._idempotency[request.idempotency_key]=attempt_id
             if self.feedback:
@@ -151,6 +166,13 @@ class PaymentSimulator:
           'first_time_recipient':False,'payment_reason':_REASON_MAP.get(attempt['payment_reason'],attempt['payment_reason'])}
 
     @staticmethod
+    def _payment_fingerprint(attempt):
+        bound={key:attempt.get(key) for key in (
+            'sender_id','recipient_id','amount','currency','payment_reason','payment_type',
+            'note','payment_detail_version')}
+        return hashlib.sha256(json.dumps(bound,sort_keys=True,separators=(',',':')).encode('utf-8')).hexdigest()
+
+    @staticmethod
     def _safe_message(text):
         if _CREDENTIAL_VALUE.search(text or ''):
             raise HTTPException(422,'Do not enter passwords, PINs, OTPs, CVVs, or card credentials.')
@@ -164,6 +186,8 @@ class PaymentSimulator:
             state=PaymentState(attempt['state'])
             if state not in (PaymentState.DRAFT,PaymentState.CONTEXT_REQUIRED):
                 raise HTTPException(409,f'Payment attempt cannot be analyzed from {state.value}.')
+            if attempt['payment_fingerprint']!=self._payment_fingerprint(attempt):
+                raise HTTPException(409,'Payment details changed; create a new attempt and run a fresh safety check.')
             initial=state==PaymentState.DRAFT
             if initial: transition(attempt,PaymentState.REVIEW)
             transition(attempt,PaymentState.ANALYZING)
@@ -198,7 +222,10 @@ class PaymentSimulator:
                       'context_questions':questions}
 
             context_data=request.context.model_dump(mode='python')
-            context_data['payment_reason']=attempt['context_reason']
+            # A later, explicit context answer may clarify a purpose that was
+            # initially unknown. It remains evidence, never payment authority.
+            context_data['payment_reason']=(attempt['context_reason'] if context_data.get('payment_reason')=='other'
+                else context_data['payment_reason'])
             context=PaymentContext.model_validate(context_data)
             if request.messages:
                 conversation=self.risk.psychology
@@ -211,6 +238,20 @@ class PaymentSimulator:
                 message=context.user_message
             contextual=self.risk.score_contextual(transaction,context,message)
             assessment=self.engine.analyze_payment(transaction,context,message,contextual_result=contextual)
+            try:
+                history=self.repository.sender_history(attempt['sender_id'],pd.Timestamp(attempt['timestamp']),
+                    attempt['payment_attempt_id'])
+                history=history[history.receiver_id.astype(str)==str(attempt['recipient_id'])]
+                history_available=True
+            except (AttributeError,KeyError,ValueError):
+                history=None;history_available=False
+            consistency=compare_claims(payment_id=attempt_id,
+                context=context.model_dump(mode='json'),history=history,
+                backend_history_available=history_available)
+            assessment['evidence_consistency']=consistency
+            evidence_records=build_evidence_records(payment_id=attempt_id,transaction=transaction,
+                context=context.model_dump(mode='json'),history=history,assessment=assessment,
+                backend_history_available=history_available)
             elapsed=round((perf_counter()-started)*1000,3)
             # FraudEngine's own timer covers fusion only when supplied with a
             # precomputed contextual result. Report the complete stage-two time.
@@ -224,6 +265,8 @@ class PaymentSimulator:
                 attempt['assessment']=assessment
                 attempt['contextual_result']=contextual
                 attempt['context']=context.model_dump(mode='json')
+                attempt['evidence_records']=evidence_records
+                attempt['assessment_fingerprint']=attempt['payment_fingerprint']
                 attempt['latency_ms']['full_analysis_ms']=elapsed
                 attempt['latency_ms']['end_to_end_analysis_ms']=round(
                     attempt['latency_ms'].get('passive_analysis_ms',0)+elapsed,3)
@@ -262,22 +305,40 @@ class PaymentSimulator:
 
     @staticmethod
     def _targeted_questions(attempt, passive):
-        questions=[{'id':'contacted_by_unknown_person','label':'Did someone ask you to make this payment?'}]
-        if passive['risk_level'] in ('HIGH','CRITICAL'):
-            questions.append({'id':'urgent_payment_requested','label':'Did they ask you to act quickly or threaten a consequence?'})
-        return questions
+        selected=select_critical_questions(payment_reason=attempt.get('payment_reason'),
+            passive_risk=passive.get('risk_level'),max_questions=1)
+        return selected['questions']
 
     def continue_payment(self, attempt_id, acknowledged):
         with self._lock:
             attempt=self._get(attempt_id)
             state=PaymentState(attempt['state'])
+            if state==PaymentState.SIMULATED_COMPLETED and attempt.get('payment_fingerprint')!=self._payment_fingerprint(attempt):
+                raise HTTPException(409,'This completed payment has immutable details; retrieve its original transaction record.')
+            if state==PaymentState.SIMULATED_COMPLETED and attempt.get('wallet_account_id') and attempt.get('ledger_receipt'):
+                return self.user_view(attempt)
             if state==PaymentState.WARNING and not acknowledged:
                 raise HTTPException(422,'Acknowledge the warning to continue this simulated payment.')
             if state not in (PaymentState.READY,PaymentState.WARNING):
                 raise HTTPException(409,'This payment is not ready to continue. Complete verification or cancel it.')
             if state==PaymentState.WARNING and attempt['assessment']['decision']=='BLOCK_AND_ESCALATE':
                 raise HTTPException(409,'The current policy does not permit continuation.')
+            if (attempt.get('assessment') is None or
+                    attempt.get('assessment_fingerprint')!=self._payment_fingerprint(attempt)):
+                attempt['assessment']=None
+                attempt['simulated_status']='NOT_EXECUTED'
+                transition(attempt,PaymentState.ERROR)
+                raise HTTPException(409,'The payment details no longer match this safety check. Start a new check; no payment was made.')
             decision=attempt['assessment']['decision']
+            if attempt.get('wallet_account_id'):
+                if self.banking_service is None:
+                    raise HTTPException(503,'Simulated banking is unavailable. No payment was made.')
+                attempt['ledger_receipt']=self.banking_service.settle(
+                    transaction_id=attempt['payment_attempt_id'],
+                    idempotency_key='chat-settlement-'+attempt['payment_attempt_id'],
+                    sender_account_id=attempt['wallet_account_id'],
+                    recipient_alias=attempt['recipient_alias'],amount=attempt['amount'],
+                    purpose=attempt['payment_reason'])
             attempt['user_action']=('VERIFIED_AND_CONTINUED' if attempt['verified'] else
                 'CONTINUED_AFTER_WARNING' if state==PaymentState.WARNING else
                 'PAYMENT_ALLOWED_WITHOUT_WARNING')
@@ -299,10 +360,31 @@ class PaymentSimulator:
                 raise HTTPException(409,'Additional verification is not required for this attempt.')
             if action=='cancel':
                 return self._cancel_locked(attempt)
-            attempt['verified']=True
-            attempt['user_action']='VERIFIED_INDEPENDENTLY'
-            transition(attempt,PaymentState.READY)
+            if action!='verified_independently':
+                raise HTTPException(422,'Choose cancellation or report that you checked independently.')
+            # A button click is a customer report, not a result from an
+            # authorized identity-verification service. No such service is
+            # configured in this demo, so this claim cannot clear the hold.
+            attempt['verification_claimed']=True
+            attempt['user_action']='USER_REPORTED_INDEPENDENT_VERIFICATION'
+            attempt['evidence_records'].append(evidence_record(payment_id=attempt_id,
+                source_type='USER_REPORTED',source_reference='payment_action.verify',
+                interpretation='Customer says they independently verified the recipient; no trusted verification result is connected.',
+                confidence=0.5,verification_status='unverified'))
             return self.user_view(attempt)
+
+    def attach_trusted_references(self, attempt_id, references):
+        """Attach source-attributed approved guidance to the analyst provenance ledger."""
+        with self._lock:
+            attempt=self._get(attempt_id)
+            existing={row['source_reference'] for row in attempt['evidence_records']
+                if row['source_type']=='TRUSTED_REFERENCE'}
+            for row in build_evidence_records(payment_id=attempt_id,
+                    transaction=self._transaction(attempt),context={},history=None,
+                    trusted_references=references,backend_history_available=False):
+                if row['source_type']=='TRUSTED_REFERENCE' and row['source_reference'] not in existing:
+                    attempt['evidence_records'].append(row)
+                    existing.add(row['source_reference'])
 
     def cancel(self, attempt_id):
         with self._lock:
@@ -349,7 +431,7 @@ class PaymentSimulator:
             'removed_evidence':['structured context answers','message and conversation evidence'],
             'unchanged_evidence':['transaction inputs','recipient history','historical network']}
 
-    def analytics(self, analyst=False):
+    def analytics(self, analyst=False, limit=30):
         with self._lock:
             attempts=list(self._attempts.values())
             actions=Counter(item['user_action'] for item in attempts if item['user_action'])
@@ -360,7 +442,7 @@ class PaymentSimulator:
               'risk_level':item['assessment']['risk_level'] if item['assessment'] else 'NOT_ANALYZED',
               'scenario':item['assessment']['likely_scam_scenario'] if item['assessment'] else 'unknown',
               'decision':item['assessment']['decision'] if item['assessment'] else 'PENDING',
-              'user_action':item['user_action']} for item in reversed(attempts[-30:])]
+              'user_action':item['user_action']} for item in reversed(attempts[-limit:])]
             if analyst:
                 for row in recent:
                     item=self._attempts[row['payment_attempt_id']]
@@ -419,6 +501,43 @@ class PaymentSimulator:
         return {'available':bool(edges),'reason':None if edges else 'No observed transfers connect this recipient',
                 'nodes':nodes,'edges':edges}
 
+    def account_neighborhood(self, account_id, max_nodes=16):
+        """Show bounded, past-only network evidence for a recipient without creating a payment."""
+        graph_service=self.risk.graph
+        if graph_service is None:
+            return {'available':False,'reason':'Graph intelligence unavailable','account_id':account_id,'nodes':[],'edges':[]}
+        if account_id not in self.repository.accounts.index:
+            raise HTTPException(404,'Recipient account not found')
+        stamp=graph_service.builder.transactions.timestamp.max()+pd.Timedelta(nanoseconds=1)
+        graph=graph_service.builder.build_graph_until(stamp)
+        if account_id not in graph:
+            return {'available':False,'reason':'Recipient has no available network history','account_id':account_id,'nodes':[],'edges':[]}
+        selected={account_id}; frontier={account_id}
+        for _ in range(2):
+            adjacent=set()
+            for node in frontier:
+                adjacent.update(graph.predecessors(node)); adjacent.update(graph.successors(node))
+            frontier=adjacent-selected
+            selected.update(sorted(frontier)[:max(0,max_nodes-len(selected))])
+            if len(selected)>=max_nodes: break
+        order=[account_id]+sorted(selected-{account_id})
+        nodes=[]
+        for node in order:
+            try:
+                features=calculate_graph_features(graph,node)
+                details={'incoming_payments':features['in_degree'],'outgoing_payments':features['out_degree'],
+                    'unique_senders':features['unique_incoming_senders'],'rapid_outflow_ratio':features['rapid_outflow_ratio']}
+            except (KeyError,ValueError,TypeError):
+                details={'available':False}
+            nodes.append({'id':node,'label':'Recipient' if node==account_id else 'Connected account',
+                'role':'recipient' if node==account_id else 'connected account','details':details})
+        edges=[{'source':source,'target':target,'amount':float(data.get('amount',0)),
+                'timestamp':str(data.get('timestamp',''))}
+               for source,target,_key,data in graph.edges(keys=True,data=True)
+               if source in selected and target in selected][:40]
+        return {'available':bool(edges),'reason':None if edges else 'No observed transfers connect this recipient',
+            'account_id':account_id,'as_of':str(stamp),'nodes':nodes,'edges':edges}
+
     def _get(self,attempt_id):
         attempt=self._attempts.get(attempt_id)
         if attempt is None: raise HTTPException(404,'Payment attempt not found')
@@ -431,6 +550,10 @@ class PaymentSimulator:
           'recipient_id':attempt['recipient_id'],'passive':attempt['passive'],'assessment':assessment,
           'contextual_result':attempt['contextual_result'],
           'context':attempt['context'],'conversation_evidence':attempt['conversation_evidence'],
+          'evidence_records':attempt.get('evidence_records',[]),
+          'payment_detail_version':attempt.get('payment_detail_version',1),
+          'payment_fingerprint':attempt.get('payment_fingerprint'),
+          'assessment_fingerprint':attempt.get('assessment_fingerprint'),
           'latency_ms':attempt['latency_ms'],'user_action':attempt['user_action'],
           'simulated_status':attempt['simulated_status']}
 
@@ -439,13 +562,17 @@ class PaymentSimulator:
         assessment=attempt['assessment']
         return {'payment_attempt_id':attempt['payment_attempt_id'],'state':attempt['state'],
           'sender':{'alias':attempt['sender_alias'],'display_name':attempt['sender_name']},
-          'recipient':{'alias':attempt['recipient_alias'],'display_name':attempt['recipient_name']},
+          'recipient':{'alias':attempt['recipient_alias'],'account_id':attempt['recipient_id'],
+            'display_name':attempt['recipient_name']},
           'amount':attempt['amount'],'currency':attempt['currency'],'payment_reason':attempt['payment_reason'],
           'payment_type':attempt['payment_type'],'note':attempt.get('note',''),
           'created_at':attempt['created_at'],'decision':assessment['decision'] if assessment else None,
+          'payment_detail_version':attempt.get('payment_detail_version',1),
+          'verification_claimed':attempt.get('verification_claimed',False),
           'intervention':assessment['intervention'] if assessment else None,
           'top_reasons':[item.get('description','Please verify this payment independently.') for item in assessment.get('top_reasons',[])[:4]] if assessment else [],
           'protective_reasons':PaymentSimulator._protective_reasons(assessment),
+          'receipt':attempt.get('ledger_receipt'),
           'context_questions':attempt.get('context_questions',[]),
           'user_action':attempt['user_action'],'simulated_status':attempt['simulated_status'],
           'message':'Simulated environment only. No real money moves.'}
@@ -459,8 +586,6 @@ class PaymentSimulator:
           'REPEATED_PRIOR_PAYMENTS':'There is a history of repeated payments to this recipient.',
           'ESTABLISHED_RECIPIENT_ACCOUNT':'This recipient has an established payment history with you.',
           'NORMAL_AMOUNT_PATTERN':'The amount is within your usual payment pattern.',
-          'NO_UNKNOWN_CONTACT_REPORTED':'You did not report being contacted by an unknown person.',
-          'NO_REPORTED_MANIPULATION_SIGNALS':'You did not report the listed pressure signals.',
         }
         return [language[item] for item in assessment.get('protective_evidence',[]) if item in language]
 

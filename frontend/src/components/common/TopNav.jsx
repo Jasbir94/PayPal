@@ -3,7 +3,7 @@ import React from 'react';
 export default function TopNav({ active='home', analyst=false, research=false, onReset }) {
   return <header className="topbar shieldpay-topbar">
     <a className="wordmark shieldpay-wordmark" href="/" aria-label="ShieldPay home">
-      <span className="brand-mini">S</span><span>ShieldPay <small>POWERED BY APP SHIELD</small></span>
+      <span className="brand-mini">S</span><span>APP Shield AI <small>PAYMENT SAFETY</small></span>
     </a>
     <nav className="topbar-right" aria-label="Main navigation">
       <span className="simulation-badge"><i/> DEMO ENVIRONMENT</span>

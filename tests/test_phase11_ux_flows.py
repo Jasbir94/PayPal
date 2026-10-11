@@ -61,3 +61,33 @@ def test_legitimate_family_emergency_is_in_demo_library_with_observed_relationsh
         assert assessment.status_code==200
         payment=assessment.json()['payment']
         assert 'You have paid this recipient before.' in payment['protective_reasons']
+
+
+def test_emergency_demo_distinguishes_urgency_from_social_engineering():
+    with TestClient(app) as client:
+        results = {}
+        for scenario_id in ('family_emergency', 'legitimate_family_emergency'):
+            scenario = client.get(f'/api/v1/simulated-payments/scenarios/{scenario_id}').json()
+            created = _create(client, scenario, f'phase11-emergency-pair-{uuid4().hex[:12]}')
+            attempt_id = created['payment_attempt_id']
+            analyzed = client.post(f'/api/v1/simulated-payments/{attempt_id}/analyze', json={
+                'context': scenario['context'], 'messages': scenario['messages']})
+            assert analyzed.status_code == 200
+            results[scenario_id] = {
+                'assessment': client.get(
+                    f'/api/v1/simulated-payments/{attempt_id}/analyst').json()['attempt']['assessment'],
+                'network': client.get(f'/api/v1/simulated-payments/{attempt_id}/network').json(),
+            }
+
+        scam = results['family_emergency']['assessment']
+        legitimate = results['legitimate_family_emergency']['assessment']
+        assert legitimate['app_scam_risk'] < scam['app_scam_risk']
+        assert legitimate['decision'] == 'ALLOW'
+        assert scam['decision'] != 'ALLOW'
+        assert any(item['code'] == 'CTX_URGENT_REQUEST' for item in legitimate['top_reasons'])
+        assert 'KNOWN_RECIPIENT_LONG_TERM' in legitimate['protective_evidence']
+        assert 'NO_UNKNOWN_CONTACT_REPORTED' not in legitimate['protective_evidence']
+        network = results['legitimate_family_emergency']['network']
+        assert network['available'] is True
+        recipient = next(node for node in network['nodes'] if node['role'] == 'recipient')
+        assert 'no_graph_rule_signals' in recipient['details']['risk_indicators']

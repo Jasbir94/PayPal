@@ -125,7 +125,9 @@ class FraudEngine:
         if not context_available: missing.append('structured_context')
         if not message_available: missing.append('message_text')
         if not tx_data.get('baseline_available'): missing.append('sender_baseline')
-        decision = recommend(score, confidence, available_count)
+        decision = recommend(score, confidence, available_count,
+            reason_codes=[item['id'] for item in canonical], context=context_data,
+            recipient_score=recipient['score'])
         intervention = build_intervention(decision, scenario['type'],
             {'scenario':result['scenario_risk']['score']}, context_data.get('payment_reason','other'))
         versions = {'transaction': 'day2-rule+logistic-v1', 'recipient': 'day2-rule+logistic-v1',

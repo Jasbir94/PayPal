@@ -34,7 +34,8 @@ def calculate_context_risk(context: PaymentContext, new_recipient: bool = False)
     reasons = [key for key, value in evidence.items() if value]
     score = sum(CONTEXT_POINTS[key] for key in reasons)
     available = any(value is not None for key, value in context.model_dump().items()
-                    if key not in ('payment_reason', 'user_message'))
+                    if key not in ('payment_reason', 'user_message', 'reported_contradictions'))
+    available = available or bool(context.reported_contradictions)
     return {'score': clamp_score(score), 'reasons': reasons or (['no_reported_context_risk_signals'] if available else ['insufficient_context_information']),
             'evidence': {key: value for key, value in evidence.items() if value},
             'context_available': available}

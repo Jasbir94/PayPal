@@ -50,6 +50,7 @@ class PaymentContext(BaseModel):
     fund_transfer_requested: StrictBool | None = None
     online_relationship: StrictBool | None = None
     relationship_duration_days: int | None = Field(default=None, ge=0, le=36500)
+    reported_contradictions: list[str] = Field(default_factory=list, max_length=20)
     user_message: str | None = Field(default=None, max_length=MAX_MESSAGE_LENGTH)
 
     @field_validator('user_message')

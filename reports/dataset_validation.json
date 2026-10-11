@@ -1,0 +1,592 @@
+{
+  "findings": {
+    "fraud_reports_mean_by_hidden_suspicious_label": {
+      "False": {
+        "accounts": 1000,
+        "mean_reports": 0.043
+      },
+      "True": {
+        "accounts": 40,
+        "mean_reports": 0.85
+      }
+    },
+    "generated_transaction_temporal_split": {
+      "test": {
+        "first": "2026-01-25T08:54:19+00:00",
+        "fraud": 143,
+        "last": "2026-01-30T23:31:49+00:00",
+        "rows": 2000
+      },
+      "train": {
+        "first": "2026-01-01T00:16:24+00:00",
+        "fraud": 448,
+        "last": "2026-01-19T09:21:44+00:00",
+        "rows": 6000
+      },
+      "validation": {
+        "first": "2026-01-19T09:24:25+00:00",
+        "fraud": 159,
+        "last": "2026-01-25T08:50:15+00:00",
+        "rows": 2000
+      }
+    },
+    "graph_known_mule_labels": 18,
+    "graph_suspicious_labels": 40,
+    "graph_suspicious_unlabeled_as_known_mule_negative": 22,
+    "raw_data_files": [],
+    "synthetic_campaign_group_id_available": false
+  },
+  "frozen_benchmark": {
+    "canonical_hashes_valid": {
+      "adversarial_test.json": true,
+      "hard_negative_test.json": true,
+      "test.json": true,
+      "train.json": true,
+      "validation.json": true
+    },
+    "chronological": true,
+    "dataset_version": "app_shield_final_v1",
+    "id_overlap": 0,
+    "scenario_modality_coverage": {
+      "graph_available_rows": 0,
+      "psychology_available_rows": 0,
+      "scenario_available_rows": 0
+    },
+    "splits": {
+      "test": {
+        "class_distribution": {
+          "0": 367,
+          "1": 33
+        },
+        "end": "2026-01-30T23:31:49+00:00",
+        "rows": 400,
+        "start": "2026-01-25T09:14:50+00:00"
+      },
+      "train": {
+        "class_distribution": {
+          "0": 1105,
+          "1": 95
+        },
+        "end": "2026-01-19T09:18:24+00:00",
+        "rows": 1200,
+        "start": "2026-01-01T00:16:24+00:00"
+      },
+      "validation": {
+        "class_distribution": {
+          "0": 372,
+          "1": 28
+        },
+        "end": "2026-01-25T08:49:35+00:00",
+        "rows": 400,
+        "start": "2026-01-19T09:35:43+00:00"
+      }
+    }
+  },
+  "inventory": {
+    "data/adversarial/benchmark.json": {
+      "columns": [
+        "case_id",
+        "label",
+        "text",
+        "amount",
+        "category",
+        "source_template",
+        "split",
+        "difficulty",
+        "synthetic",
+        "ground_truth_scope"
+      ],
+      "duplicate_rows": 0,
+      "rows": 1000,
+      "split_audit": {
+        "cross_split_normalized_messages": 0,
+        "cross_split_source_groups": 0,
+        "normalized_duplicate_rows": 297,
+        "rows": 1000,
+        "source_groups": 50,
+        "split_counts": {
+          "development": 600,
+          "holdout": 200,
+          "validation": 200
+        }
+      }
+    },
+    "data/graph/account_features.csv": {
+      "columns": [
+        "Index",
+        "account_id",
+        "split",
+        "at",
+        "is_known_mule",
+        "is_suspicious",
+        "role",
+        "in_degree",
+        "out_degree",
+        "unique_incoming_senders",
+        "unique_outgoing_receivers",
+        "incoming_amount",
+        "outgoing_amount",
+        "in_out_amount_ratio",
+        "rapid_outflow_ratio",
+        "matched_outflow_ratio",
+        "median_fund_holding_time",
+        "matched_inflow_amount",
+        "known_mule_neighbors",
+        "fraud_reported_neighbors",
+        "distance_to_known_mule",
+        "cycle_count",
+        "cycle_search_truncated",
+        "connected_component_size",
+        "pagerank",
+        "suspicious_path_depth",
+        "path_search_truncated",
+        "account_age_days"
+      ],
+      "distributions": {
+        "is_known_mule": {
+          "0": 1022,
+          "1": 18
+        },
+        "is_suspicious": {
+          "0": 1000,
+          "1": 40
+        },
+        "split": {
+          "test": 209,
+          "train": 623,
+          "validation": 208
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {
+        "distance_to_known_mule": 220,
+        "median_fund_holding_time": 643
+      },
+      "rows": 1040
+    },
+    "data/graph/evaluation_accounts.csv": {
+      "columns": [
+        "account_id",
+        "split",
+        "at",
+        "is_known_mule",
+        "is_suspicious",
+        "role"
+      ],
+      "distributions": {
+        "is_known_mule": {
+          "0": 1022,
+          "1": 18
+        },
+        "is_suspicious": {
+          "0": 1000,
+          "1": 40
+        },
+        "split": {
+          "test": 209,
+          "train": 623,
+          "validation": 208
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 1040
+    },
+    "data/graph/intelligence.csv": {
+      "columns": [
+        "account_id",
+        "kind",
+        "observed_at"
+      ],
+      "date_ranges": {
+        "observed_at": [
+          "2025-12-31T00:00:00+00:00",
+          "2025-12-31T00:00:00+00:00"
+        ]
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 66
+    },
+    "data/graph/network_transactions.csv": {
+      "columns": [
+        "transaction_id",
+        "sender_id",
+        "receiver_id",
+        "amount",
+        "timestamp"
+      ],
+      "date_ranges": {
+        "timestamp": [
+          "2026-01-05T08:00:00+00:00",
+          "2026-01-25T23:35:00+00:00"
+        ]
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 4892
+    },
+    "data/processed/day2/recipient_features.csv": {
+      "columns": [
+        "account_age_days",
+        "incoming_transactions_1h",
+        "incoming_transactions_24h",
+        "unique_senders_1h",
+        "unique_senders_24h",
+        "incoming_amount_24h",
+        "outgoing_amount_24h",
+        "outgoing_ratio",
+        "observed_outgoing_ratio",
+        "fraud_report_count",
+        "transaction_velocity",
+        "sender_diversity",
+        "average_incoming_amount",
+        "median_incoming_amount",
+        "inflow_outflow_imbalance",
+        "average_holding_minutes",
+        "entity_id",
+        "timestamp",
+        "target",
+        "split"
+      ],
+      "date_ranges": {
+        "timestamp": [
+          "2026-01-30T23:31:50+00:00",
+          "2026-01-30T23:31:50+00:00"
+        ]
+      },
+      "distributions": {
+        "split": {
+          "test": 208,
+          "train": 624,
+          "validation": 208
+        },
+        "target": {
+          "0": 1000,
+          "1": 40
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 1040
+    },
+    "data/processed/day2/transaction_features.csv": {
+      "columns": [
+        "amount",
+        "sender_average_amount",
+        "amount_ratio",
+        "first_time_recipient",
+        "transaction_hour",
+        "device_changed",
+        "transactions_last_1h",
+        "transactions_last_24h",
+        "amount_vs_recent_average",
+        "amount_deviation",
+        "recipient_seen_before",
+        "outside_usual_hours",
+        "history_count",
+        "baseline_available",
+        "entity_id",
+        "timestamp",
+        "target",
+        "split"
+      ],
+      "date_ranges": {
+        "timestamp": [
+          "2026-01-01T00:16:24+00:00",
+          "2026-01-30T23:31:49+00:00"
+        ]
+      },
+      "distributions": {
+        "split": {
+          "test": 2000,
+          "train": 6000,
+          "validation": 2000
+        },
+        "target": {
+          "0": 9250,
+          "1": 750
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 10000
+    },
+    "data/processed/day3/manual_hinglish_holdout.csv": {
+      "columns": [
+        "text",
+        "scenario_label",
+        "language"
+      ],
+      "distributions": {
+        "language": {
+          "Hinglish": 55
+        },
+        "scenario_label": {
+          "bank_impersonation": 5,
+          "fake_job_scam": 5,
+          "family_emergency_scam": 5,
+          "government_impersonation": 5,
+          "investment_scam": 5,
+          "loan_scam": 5,
+          "marketplace_scam": 5,
+          "normal_or_unknown": 5,
+          "refund_scam": 5,
+          "romance_scam": 5,
+          "tech_support_scam": 5
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 55
+    },
+    "data/processed/fusion_dataset.csv": {
+      "columns": [
+        "transaction_risk",
+        "transaction_confidence",
+        "recipient_risk",
+        "recipient_confidence",
+        "graph_risk",
+        "graph_confidence",
+        "graph_available",
+        "context_risk",
+        "context_confidence",
+        "context_available",
+        "scenario_risk",
+        "scenario_confidence",
+        "scenario_available",
+        "psychology_risk",
+        "psychology_confidence",
+        "psychology_available",
+        "amount_ratio_baseline",
+        "new_recipient_baseline",
+        "transaction_id",
+        "timestamp",
+        "is_fraud"
+      ],
+      "date_ranges": {
+        "timestamp": [
+          "2026-01-01T00:16:24+00:00",
+          "2026-01-30T23:31:49+00:00"
+        ]
+      },
+      "distributions": {
+        "is_fraud": {
+          "0": 1844,
+          "1": 156
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 2000
+    },
+    "data/synthetic/accounts.csv": {
+      "columns": [
+        "account_id",
+        "created_at",
+        "fraud_report_count",
+        "is_known_mule",
+        "is_suspicious",
+        "average_transaction_amount",
+        "normal_hour_start",
+        "normal_hour_end",
+        "usual_device",
+        "transaction_frequency",
+        "usual_recipients",
+        "average_holding_minutes",
+        "outgoing_ratio"
+      ],
+      "date_ranges": {
+        "created_at": [
+          "2021-01-28T00:00:00+00:00",
+          "2025-12-30T00:00:00+00:00"
+        ]
+      },
+      "distributions": {
+        "is_known_mule": {
+          "False": 1022,
+          "True": 18
+        },
+        "is_suspicious": {
+          "False": 1000,
+          "True": 40
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 1040
+    },
+    "data/synthetic/psychology_messages.csv": {
+      "columns": [
+        "message_id",
+        "text",
+        "authority",
+        "fear",
+        "urgency",
+        "scarcity",
+        "trust",
+        "reward",
+        "social_proof",
+        "secrecy",
+        "commitment",
+        "emotional_pressure",
+        "language",
+        "split",
+        "source_families",
+        "neutral"
+      ],
+      "distributions": {
+        "language": {
+          "English": 3000,
+          "Hinglish": 3000
+        },
+        "neutral": {
+          "False": 4640,
+          "True": 1360
+        },
+        "split": {
+          "test": 900,
+          "train": 4200,
+          "validation": 900
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 6000,
+      "split_audit": {
+        "cross_split_normalized_messages": 0,
+        "cross_split_source_groups": 0,
+        "normalized_duplicate_rows": 0,
+        "rows": 6000,
+        "source_groups": 120,
+        "split_counts": {
+          "test": 900,
+          "train": 4200,
+          "validation": 900
+        }
+      }
+    },
+    "data/synthetic/scam_messages.csv": {
+      "columns": [
+        "message_id",
+        "text",
+        "scenario_label",
+        "template_id",
+        "language",
+        "split"
+      ],
+      "distributions": {
+        "language": {
+          "English": 2750,
+          "Hinglish": 2749
+        },
+        "scenario_label": {
+          "bank_impersonation": 500,
+          "fake_job_scam": 500,
+          "family_emergency_scam": 500,
+          "government_impersonation": 500,
+          "investment_scam": 500,
+          "loan_scam": 500,
+          "marketplace_scam": 500,
+          "normal_or_unknown": 500,
+          "refund_scam": 500,
+          "romance_scam": 500,
+          "tech_support_scam": 499
+        },
+        "split": {
+          "test": 1100,
+          "train": 3299,
+          "validation": 1100
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 5499,
+      "split_audit": {
+        "cross_split_normalized_messages": 0,
+        "cross_split_source_groups": 0,
+        "normalized_duplicate_rows": 0,
+        "rows": 5499,
+        "source_groups": 110,
+        "split_counts": {
+          "test": 1100,
+          "train": 3299,
+          "validation": 1100
+        }
+      }
+    },
+    "data/synthetic/transactions.csv": {
+      "columns": [
+        "transaction_id",
+        "sender_id",
+        "receiver_id",
+        "amount",
+        "timestamp",
+        "device_id",
+        "payment_type",
+        "payment_reason",
+        "sender_average_amount",
+        "is_fraud",
+        "fraud_type",
+        "first_time_recipient",
+        "account_age_days",
+        "unique_senders_24h",
+        "incoming_transactions_24h",
+        "outgoing_ratio",
+        "fraud_reports",
+        "amount_ratio",
+        "is_large_deviation",
+        "is_new_recipient",
+        "recipient_age_bucket",
+        "recipient_activity_level",
+        "recipient_reported"
+      ],
+      "date_ranges": {
+        "timestamp": [
+          "2026-01-01T00:16:24+00:00",
+          "2026-01-30T23:31:49+00:00"
+        ]
+      },
+      "distributions": {
+        "fraud_type": {
+          "bank_impersonation": 107,
+          "fake_job": 99,
+          "family_emergency": 105,
+          "government_impersonation": 103,
+          "investment_scam": 103,
+          "marketplace_scam": 134,
+          "normal": 9250,
+          "tech_support": 99
+        },
+        "is_fraud": {
+          "0": 9250,
+          "1": 750
+        }
+      },
+      "duplicate_rows": 0,
+      "missing_by_column": {},
+      "rows": 10000
+    }
+  },
+  "leakage_checks": {
+    "explicit_label_and_identity_predictor_exclusion": {
+      "graph": {
+        "feature_count": 14,
+        "prohibited_columns": []
+      },
+      "recipient": {
+        "feature_count": 16,
+        "prohibited_columns": []
+      },
+      "transaction": {
+        "feature_count": 8,
+        "prohibited_columns": []
+      }
+    },
+    "frozen_chronology": "PASS",
+    "frozen_transaction_ids": "PASS",
+    "generated_transaction_chronology": "PASS",
+    "text_partitions": "PASS"
+  },
+  "schema_version": 1
+}

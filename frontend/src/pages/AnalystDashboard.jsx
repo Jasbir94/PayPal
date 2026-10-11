@@ -8,6 +8,7 @@ import TopNav from '../components/common/TopNav.jsx';
 import AppFooter from '../components/common/AppFooter.jsx';
 import { api } from '../services/api.js';
 import { currency, percent, pretty, score, transactionOnlyLabel } from '../utils/riskUtils.js';
+import { buildCaseReport, downloadCaseReport } from '../services/reports.js';
 
 export default function AnalystDashboard(){
   const [analytics,setAnalytics]=useState(null),[models,setModels]=useState(null),[selected,setSelected]=useState(null),[network,setNetwork]=useState(null),[audit,setAudit]=useState([]),[loading,setLoading]=useState(true),[error,setError]=useState('');
@@ -16,6 +17,7 @@ export default function AnalystDashboard(){
   const refresh=useCallback(async()=>{setLoading(true);try{const [data,info]=await Promise.all([api.analystAnalytics(),api.modelInfo()]);setAnalytics(data);setModels(info);if(!selected){const recent=data.recent_attempts||[];const id=localStorage.getItem('app-shield-last-attempt');const found=recent.find(x=>x.payment_attempt_id===id)||recent[0];if(found)await loadAttempt(found.payment_attempt_id)}}catch(e){setError(e.message)}finally{setLoading(false)}},[loadAttempt,selected]);
   useEffect(()=>{refresh()},[]);
   const assessment=selected?.assessment,contextual=selected?.contextual_result,passive=selected?.passive;
+  function exportCurrentReport(){try{downloadCaseReport(buildCaseReport({payment:selected?.payment,attempt:selected,network}))}catch(e){setError(e.message)}}
   const filteredAttempts=(analytics?.recent_attempts||[]).filter(row=>{
     const query=search.trim().toLowerCase();
     return (!query||row.payment_attempt_id.toLowerCase().includes(query))&&
@@ -30,7 +32,7 @@ export default function AnalystDashboard(){
   return <div className="app-shell analyst-shell"><TopNav analyst research/>
     <main className="analyst-container"><div className="privacy-strip"><span aria-hidden="true">◇</span> Analyst / demo view · Synthetic account and payment data only · Not a production fraud operations console.</div>
       {error&&<div className="error-banner" role="alert"><strong>Analyst data unavailable</strong><span>{error}</span></div>}
-      <div className="analyst-heading"><div><div className="eyebrow">PRE-PAYMENT INTELLIGENCE</div><h1>Analyst dashboard</h1><p>Inspect the signals that shaped the pre-payment decision.</p></div><div className="analyst-header-actions"><button className="button button-quiet" onClick={refresh} disabled={loading}>Refresh</button><a className="button button-secondary" href="/demo">Demo scenarios</a><a className="button button-primary" href="/research/comparison">Research workspace</a></div></div>
+      <div className="analyst-heading"><div><div className="eyebrow">PRE-PAYMENT INTELLIGENCE</div><h1>Analyst dashboard</h1><p>Inspect the signals that shaped the pre-payment decision.</p></div><div className="analyst-header-actions">{selected&&<button className="button button-secondary" onClick={exportCurrentReport}>Download case JSON</button>}<button className="button button-quiet" onClick={refresh} disabled={loading}>Refresh</button><a className="button button-secondary" href="/demo">Demo scenarios</a><a className="button button-primary" href="/research/comparison">Research workspace</a></div></div>
       <section className="metric-grid analytics-grid" aria-label="Simulated intervention analytics">
         <Metric label="Payments analyzed" value={analytics?.payments_analyzed??'—'} />
         <Metric label="Higher concern" value={highRiskCount} />

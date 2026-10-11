@@ -30,6 +30,11 @@ from backend.app.simulation.payment_simulator import PaymentSimulator
 from backend.app.api.day9_routes import feedback_router,review_router,monitor_router,research_router
 from backend.app.feedback.service import FeedbackService
 from backend.app.review.review_service import ReviewService
+from backend.app.api.conversation_routes import router as conversation_router
+from backend.app.api.banking_routes import router as banking_router
+from backend.app.rag.knowledge_store import HybridRetriever
+from backend.app.conversation.payment_conversation_agent import PaymentConversationAgent
+from backend.app.services.demo_banking_service import DemoBankingService
 
 
 @asynccontextmanager
@@ -70,6 +75,15 @@ async def lifespan(application: FastAPI):
             logging.getLogger(__name__).warning('Research feedback persistence unavailable: %s',type(error).__name__)
         application.state.payment_simulator = PaymentSimulator(application.state.risk_service,
             application.state.feedback_service,application.state.review_service)
+        simulator=application.state.payment_simulator
+        senders=[{'alias':alias,'account_id':item['account_id'],'display_name':item['display_name']}
+            for alias,item in simulator._scenario_data['senders'].items()]
+        application.state.demo_banking_service=DemoBankingService(senders,simulator.catalog()['recipients'])
+        simulator.banking_service=application.state.demo_banking_service
+        application.state.knowledge_retriever=HybridRetriever()
+        application.state.payment_conversation_agent=PaymentConversationAgent(
+            application.state.payment_simulator,application.state.knowledge_retriever,
+            application.state.demo_banking_service)
     except (OSError, ValueError) as error:
         application.state.risk_error = f'Risk engine unavailable: {error}. Run both training commands and restart.'
         logging.getLogger(__name__).warning(application.state.risk_error)
@@ -83,6 +97,8 @@ def create_app() -> FastAPI:
     application.include_router(psychology_router)
     application.include_router(graph_router)
     application.include_router(simulation_router)
+    application.include_router(conversation_router)
+    application.include_router(banking_router)
     application.include_router(feedback_router)
     application.include_router(review_router)
     application.include_router(monitor_router)
@@ -137,6 +153,8 @@ def model_info(request: Request) -> dict:
             'scenario_text': {'available': bool(getattr(request.app.state, 'scenario_text_available', False))},
             'psychology_text': {'available': bool(getattr(request.app.state, 'psychology_model_available', False))},
             'graph': {'available': getattr(request.app.state, 'graph_service', None) is not None},
+            'payment_conversation': {'available':getattr(request.app.state,'payment_conversation_agent',None) is not None},
+            'local_rag': {'available':getattr(request.app.state,'knowledge_retriever',None) is not None},
         }, 'score_semantics': 'evidence index; not a calibrated probability'}
 
 

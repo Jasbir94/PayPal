@@ -22,14 +22,9 @@ def assess_protective_evidence(transaction, recipient, context):
         found.append(('ESTABLISHED_RECIPIENT_ACCOUNT', PROTECTIVE_EVIDENCE_WEIGHTS['established_account']))
     if tx.get('baseline_available') and float(tx.get('amount_ratio', 9)) <= 1.5:
         found.append(('NORMAL_AMOUNT_PATTERN', PROTECTIVE_EVIDENCE_WEIGHTS['normal_amount']))
-    if ctx.get('contacted_by_unknown_person') is False:
-        found.append(('NO_UNKNOWN_CONTACT_REPORTED', PROTECTIVE_EVIDENCE_WEIGHTS['no_unknown_contact']))
-    explicit = ('urgent_payment_requested', 'threatened_consequences', 'claimed_authority',
-                'requested_secrecy', 'asked_to_install_remote_access')
-    if any(ctx.get(key) is True for key in explicit):
-        pass
-    elif context.get('available') and all(ctx.get(key) is False for key in explicit):
-        found.append(('NO_REPORTED_MANIPULATION_SIGNALS', PROTECTIVE_EVIDENCE_WEIGHTS['no_manipulation_signals']))
+    # Answers about the absence of pressure are useful context, but they are
+    # not independent protective facts and cannot subtract risk from backend
+    # or model evidence.
     amount = min(MAX_PROTECTIVE_REDUCTION, sum(weight for _, weight in found))
     return {'items': [name for name, _ in found], 'reduction': amount}
 

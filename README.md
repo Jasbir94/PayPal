@@ -2,17 +2,25 @@
 
 APP Shield is a research-oriented pre-payment scam detection system designed to identify authorized social-engineering fraud by combining transaction, recipient-network, payment-context, scam-scenario, and psychological-manipulation signals before a simulated payment is completed. It is a local synthetic-data prototype; it does not connect to or represent PayPal, Paytm, banks, or UPI providers.
 
-The project includes a React/FastAPI simulator, point-in-time features, explainable interventions, delayed feedback and audit, aggregate monitoring, and reproducible temporal evaluation. Start with the [architecture](docs/ARCHITECTURE.md), [API guide](docs/API.md), or [final measured results](reports/FINAL_RESULTS.md).
+The customer entry point is one chat with three actions: make a payment, check a simulated balance, and view transaction details. The React/FastAPI app also includes APP Shield's fraud checks and separate analyst/research routes. Start with the [quick guide](docs/QUICK_START.md), [simulated banking notes](docs/BANKING_DEMO.md), [architecture](docs/ARCHITECTURE.md), or [final measured results](reports/FINAL_RESULTS.md).
 
 ## Quick start
 
-With Docker Desktop's Linux engine running:
+For Windows, install Python 3.11+ and Node.js 20.19+ or 22.12+, then run this from the project folder:
 
 ```powershell
-docker compose up --build
+.\start.bat
 ```
 
-Compose binds the frontend to `http://127.0.0.1:8080` and the API to `http://127.0.0.1:8000`. Image build could not be verified on the development host because its Docker Linux engine was unavailable. For local development, start the backend and frontend in separate terminals as described below. `python -m scripts.seed_demo` validates bundled synthetic data/models without overwriting them. `python -m scripts.reset_demo --yes` removes only local feedback/audit/review history; restart the backend to clear in-memory attempts.
+The launcher checks dependencies, safely initializes wholly missing demo assets, starts the local API and frontend, checks readiness, and opens `http://127.0.0.1:5173/`. Stop APP Shield's own processes with `stop.bat`. See [Quick Start](docs/QUICK_START.md) for manual setup on other platforms.
+
+APP Shield is a local synthetic demo. It does not connect to a bank or transfer real money. Wallet balances and completed simulated transfers are stored in `data/processed/demo_banking.sqlite3`; initial balances are seeded once from `APP_SHIELD_DEMO_BALANCE_U101` (₹10,000), `APP_SHIELD_DEMO_BALANCE_U102` (₹2,000), and `APP_SHIELD_DEMO_BALANCE_U103` (₹10,000). Set these in the process environment before first startup to change initial demo values. The browser's profile picker issues a local demo bearer session; it is account-scoped for this simulation, not real identity authentication. Do not expose the demo API as a banking service. `python -m scripts.seed_demo` validates bundled fraud data/models without overwriting them. `python -m scripts.reset_demo --yes` removes only local feedback/audit/review history; restart the backend to clear in-memory chat/payment attempts.
+
+User workflows: [User Guide](docs/USER_GUIDE.md) · [Conversational Agent](docs/CONVERSATIONAL_AGENT.md) · [Analyst Guide](docs/ANALYST_GUIDE.md) · [Research Guide](docs/RESEARCH_GUIDE.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [API guide](docs/API.md)
+
+## Public demo hosting
+
+Deployment configuration is provided for a Vercel static frontend and a Render FastAPI service. Follow [Public Demo Deployment](docs/DEPLOYMENT.md) to set the frontend API URL, exact CORS origin, and persistent backend storage. The Render backend uses a paid single-instance service with a persistent disk so synthetic balances survive restarts; chat state remains in memory and resets when the backend restarts. This setup is a public research demo, not production banking.
 
 Reproduce reports with `python -m scripts.reproduce_results`. The source data has already been examined during development; its frozen copy is for reproducibility, not a pristine unseen test set.
 

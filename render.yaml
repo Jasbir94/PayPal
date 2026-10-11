@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: app-shield-api
+    runtime: python
+    plan: 0.5c-512mb
+    numInstances: 1
+    buildCommand: pip install -r backend/requirements.txt && python -m scripts.initialize_demo
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /ready
+    disk:
+      name: app-shield-demo-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: APP_SHIELD_BANKING_DB
+        value: /var/data/demo_banking.sqlite3
+      - key: APP_SHIELD_FEEDBACK_DB
+        value: /var/data/feedback.sqlite
+      - key: APP_SHIELD_CORS_ORIGINS
+        sync: false

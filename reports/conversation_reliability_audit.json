@@ -1,0 +1,762 @@
+{
+  "summary": {
+    "count": 20,
+    "question_count_total": 6,
+    "maximum_questions_per_flow": 1,
+    "repeated_questions": 0,
+    "terminal_outcomes": 20,
+    "preconfirmation_executions": 0,
+    "http_response_ms": {
+      "median": 63.8,
+      "p95": 154.4,
+      "max": 166.4
+    },
+    "complete_flow_ms": {
+      "median": 180.18,
+      "p95": 245.55,
+      "max": 251.07
+    },
+    "rag_retrieval_ms_50_local_samples": {
+      "median": 0.045,
+      "p95": 0.15,
+      "max": 0.273
+    },
+    "payment_analysis_ms": {
+      "passive_analysis_ms": {
+        "median": 26.8,
+        "p95": 41.56,
+        "max": 48.84
+      },
+      "full_analysis_ms": {
+        "median": 55.27,
+        "p95": 91.36,
+        "max": 105.09
+      },
+      "end_to_end_analysis_ms": {
+        "median": 80.78,
+        "p95": 129.17,
+        "max": 146.49
+      }
+    }
+  },
+  "cases": [
+    {
+      "scenario": "known recipient",
+      "state": "SIMULATED_COMPLETED",
+      "decision": "ALLOW_WITH_WARNING",
+      "risk_level": "LOW",
+      "risk_score": 0.0,
+      "reason_codes": [
+        "INSUFFICIENT_SCENARIO_EVIDENCE",
+        "MESSAGE_UNAVAILABLE",
+        "NO_MANIPULATION_DETECTED"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CONTINUED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "SIMULATED_SUCCESS",
+      "api_calls": 2,
+      "flow_ms": 175.36,
+      "analysis_ms": {
+        "passive_analysis_ms": 41.563,
+        "full_analysis_ms": 63.827,
+        "end_to_end_analysis_ms": 105.39
+      }
+    },
+    {
+      "scenario": "new legitimate recipient",
+      "state": "CANCELLED",
+      "decision": "ALLOW",
+      "risk_level": "LOW",
+      "risk_score": 2.22,
+      "reason_codes": [
+        "CTX_UNKNOWN_CONTACT",
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "TX_NEW_RECIPIENT"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 1,
+      "question_prompts": [
+        "Who asked you to make this payment?"
+      ],
+      "question_repeated": false,
+      "explicit_action": "PAYMENT_CANCELLED",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 3,
+      "flow_ms": 245.55,
+      "analysis_ms": {
+        "passive_analysis_ms": 48.835,
+        "full_analysis_ms": 21.685,
+        "end_to_end_analysis_ms": 70.52
+      }
+    },
+    {
+      "scenario": "urgent family emergency",
+      "state": "CANCELLED",
+      "decision": "ALLOW_WITH_WARNING",
+      "risk_level": "LOW",
+      "risk_score": 0.0,
+      "reason_codes": [
+        "INSUFFICIENT_SCENARIO_EVIDENCE",
+        "MESSAGE_UNAVAILABLE",
+        "NO_MANIPULATION_DETECTED"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 159.93,
+      "analysis_ms": {
+        "passive_analysis_ms": 32.234,
+        "full_analysis_ms": 78.418,
+        "end_to_end_analysis_ms": 110.652
+      }
+    },
+    {
+      "scenario": "government impersonation",
+      "state": "CANCELLED",
+      "decision": "STEP_UP_VERIFICATION",
+      "risk_level": "LOW",
+      "risk_score": 25.2,
+      "reason_codes": [
+        "CRIME_OR_LEGAL_THREAT",
+        "CTX_AUTHORITY_CLAIM",
+        "CTX_THREAT",
+        "CTX_URGENT_REQUEST",
+        "FEAR_MODEL_EVIDENCE",
+        "GOVERNMENT_IMPERSONATION_PATTERN",
+        "MANIPULATION_EVIDENCE_DETECTED",
+        "NEW_RECIPIENT_AUTHORITY_SCAM_PATTERN",
+        "PSY_URGENCY",
+        "SCENARIO_GOV_IMPERSONATION",
+        "TX_NEW_RECIPIENT"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 206.32,
+      "analysis_ms": {
+        "passive_analysis_ms": 41.395,
+        "full_analysis_ms": 105.094,
+        "end_to_end_analysis_ms": 146.489
+      }
+    },
+    {
+      "scenario": "fake bank verification",
+      "state": "CANCELLED",
+      "decision": "STEP_UP_VERIFICATION",
+      "risk_level": "LOW",
+      "risk_score": 20.8,
+      "reason_codes": [
+        "BANK_AUTHORITY_CLAIM",
+        "BANK_IMPERSONATION",
+        "BANK_IMPERSONATION_PATTERN",
+        "CTX_AUTHORITY_CLAIM",
+        "CTX_UNKNOWN_CONTACT",
+        "CTX_URGENT_REQUEST",
+        "MANIPULATION_EVIDENCE_DETECTED",
+        "NEW_RECIPIENT_AUTHORITY_SCAM_PATTERN",
+        "PSY_URGENCY",
+        "TX_NEW_RECIPIENT"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 218.35,
+      "analysis_ms": {
+        "passive_analysis_ms": 37.803,
+        "full_analysis_ms": 91.363,
+        "end_to_end_analysis_ms": 129.166
+      }
+    },
+    {
+      "scenario": "fake job registration fee",
+      "state": "CANCELLED",
+      "decision": "WARN_AND_REVIEW",
+      "risk_level": "LOW",
+      "risk_score": 17.26,
+      "reason_codes": [
+        "CTX_UNKNOWN_CONTACT",
+        "FAKE_JOB_PAYMENT_PATTERN",
+        "FAKE_JOB_SCAM",
+        "JOB_FEE_REQUEST",
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "PAYMENT_FEE_REQUEST",
+        "TX_NEW_RECIPIENT"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 217.6,
+      "analysis_ms": {
+        "passive_analysis_ms": 30.34,
+        "full_analysis_ms": 79.497,
+        "end_to_end_analysis_ms": 109.837
+      }
+    },
+    {
+      "scenario": "investment scam",
+      "state": "CANCELLED",
+      "decision": "WARN_AND_REVIEW",
+      "risk_level": "LOW",
+      "risk_score": 10.52,
+      "reason_codes": [
+        "CTX_GUARANTEED_RETURN",
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "PROMISED_PROFIT_CLAIM",
+        "TX_NEW_RECIPIENT",
+        "UNCERTAIN_TEXT_SCENARIO"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 202.83,
+      "analysis_ms": {
+        "passive_analysis_ms": 26.075,
+        "full_analysis_ms": 75.03,
+        "end_to_end_analysis_ms": 101.105
+      }
+    },
+    {
+      "scenario": "suspicious recipient network",
+      "state": "CANCELLED",
+      "decision": "WARN_AND_REVIEW",
+      "risk_level": "LOW",
+      "risk_score": 11.56,
+      "reason_codes": [
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "RECIPIENT_MODEL_ELEVATED",
+        "RECIPIENT_PRIOR_REPORTS",
+        "TX_NEW_RECIPIENT",
+        "UNCERTAIN_TEXT_SCENARIO"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 1,
+      "question_prompts": [
+        "Who asked you to make this payment?"
+      ],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 3,
+      "flow_ms": 251.07,
+      "analysis_ms": {
+        "passive_analysis_ms": 32.175,
+        "full_analysis_ms": 40.545,
+        "end_to_end_analysis_ms": 72.72
+      }
+    },
+    {
+      "scenario": "missing information",
+      "state": "CANCELLED",
+      "decision": "ALLOW_WITH_WARNING",
+      "risk_level": "LOW",
+      "risk_score": 0.0,
+      "reason_codes": [
+        "INSUFFICIENT_SCENARIO_EVIDENCE",
+        "MESSAGE_UNAVAILABLE",
+        "NO_MANIPULATION_DETECTED"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 4,
+      "flow_ms": 174.42,
+      "analysis_ms": {
+        "passive_analysis_ms": 28.591,
+        "full_analysis_ms": 68.176,
+        "end_to_end_analysis_ms": 96.767
+      }
+    },
+    {
+      "scenario": "user changes their mind",
+      "state": "CANCELLED",
+      "decision": "ALLOW_WITH_WARNING",
+      "risk_level": "LOW",
+      "risk_score": 0.0,
+      "reason_codes": [
+        "INSUFFICIENT_SCENARIO_EVIDENCE",
+        "MESSAGE_UNAVAILABLE",
+        "NO_MANIPULATION_DETECTED"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "CANCELLED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 181.28,
+      "analysis_ms": {
+        "passive_analysis_ms": 26.268,
+        "full_analysis_ms": 66.705,
+        "end_to_end_analysis_ms": 92.973
+      }
+    },
+    {
+      "scenario": "small known payment",
+      "state": "SIMULATED_COMPLETED",
+      "decision": "ALLOW_WITH_WARNING",
+      "risk_level": "LOW",
+      "risk_score": 0.0,
+      "reason_codes": [
+        "INSUFFICIENT_SCENARIO_EVIDENCE",
+        "MESSAGE_UNAVAILABLE",
+        "NO_MANIPULATION_DETECTED"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CONTINUED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "SIMULATED_SUCCESS",
+      "api_calls": 2,
+      "flow_ms": 179.07,
+      "analysis_ms": {
+        "passive_analysis_ms": 23.351,
+        "full_analysis_ms": 58.472,
+        "end_to_end_analysis_ms": 81.823
+      }
+    },
+    {
+      "scenario": "established merchant",
+      "state": "SIMULATED_COMPLETED",
+      "decision": "ALLOW",
+      "risk_level": "LOW",
+      "risk_score": 1.68,
+      "reason_codes": [
+        "CTX_UNKNOWN_CONTACT",
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "TX_NEW_RECIPIENT",
+        "UNCERTAIN_TEXT_SCENARIO"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 1,
+      "question_prompts": [
+        "Who asked you to make this payment?"
+      ],
+      "question_repeated": false,
+      "explicit_action": "PAYMENT_ALLOWED_WITHOUT_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "SIMULATED_SUCCESS",
+      "api_calls": 3,
+      "flow_ms": 231.75,
+      "analysis_ms": {
+        "passive_analysis_ms": 17.492,
+        "full_analysis_ms": 26.671,
+        "end_to_end_analysis_ms": 44.163
+      }
+    },
+    {
+      "scenario": "legitimate large purchase",
+      "state": "CANCELLED",
+      "decision": "ALLOW",
+      "risk_level": "LOW",
+      "risk_score": 15.8,
+      "reason_codes": [
+        "CTX_UNKNOWN_CONTACT",
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "TX_MODEL_ELEVATED",
+        "TX_NEW_RECIPIENT",
+        "UNCERTAIN_TEXT_SCENARIO"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 1,
+      "question_prompts": [
+        "Who asked you to make this payment?"
+      ],
+      "question_repeated": false,
+      "explicit_action": "PAYMENT_CANCELLED",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 3,
+      "flow_ms": 185.46,
+      "analysis_ms": {
+        "passive_analysis_ms": 19.165,
+        "full_analysis_ms": 24.416,
+        "end_to_end_analysis_ms": 43.581
+      }
+    },
+    {
+      "scenario": "legitimate family emergency",
+      "state": "SIMULATED_COMPLETED",
+      "decision": "ALLOW_WITH_WARNING",
+      "risk_level": "LOW",
+      "risk_score": 0.0,
+      "reason_codes": [
+        "INSUFFICIENT_SCENARIO_EVIDENCE",
+        "MESSAGE_UNAVAILABLE",
+        "NO_MANIPULATION_DETECTED"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CONTINUED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "SIMULATED_SUCCESS",
+      "api_calls": 2,
+      "flow_ms": 149.44,
+      "analysis_ms": {
+        "passive_analysis_ms": 27.333,
+        "full_analysis_ms": 52.412,
+        "end_to_end_analysis_ms": 79.745
+      }
+    },
+    {
+      "scenario": "secret authority request",
+      "state": "CANCELLED",
+      "decision": "STEP_UP_VERIFICATION",
+      "risk_level": "LOW",
+      "risk_score": 24.46,
+      "reason_codes": [
+        "AUTHORITY_MODEL_EVIDENCE",
+        "CTX_AUTHORITY_CLAIM",
+        "CTX_SECRECY",
+        "CTX_UNKNOWN_CONTACT",
+        "CTX_URGENT_REQUEST",
+        "GOVERNMENT_IMPERSONATION_PATTERN",
+        "MANIPULATION_EVIDENCE_DETECTED",
+        "NEW_RECIPIENT_AUTHORITY_SCAM_PATTERN",
+        "PSY_URGENCY",
+        "SCENARIO_GOV_IMPERSONATION",
+        "TX_NEW_RECIPIENT"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 109.66,
+      "analysis_ms": {
+        "passive_analysis_ms": 27.749,
+        "full_analysis_ms": 58.123,
+        "end_to_end_analysis_ms": 85.872
+      }
+    },
+    {
+      "scenario": "uncertain contact",
+      "state": "CANCELLED",
+      "decision": "ALLOW",
+      "risk_level": "LOW",
+      "risk_score": 0.0,
+      "reason_codes": [
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "TX_NEW_RECIPIENT",
+        "UNCERTAIN_TEXT_SCENARIO"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 1,
+      "question_prompts": [
+        "Who asked you to make this payment?"
+      ],
+      "question_repeated": false,
+      "explicit_action": "PAYMENT_CANCELLED",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 3,
+      "flow_ms": 192.33,
+      "analysis_ms": {
+        "passive_analysis_ms": 20.172,
+        "full_analysis_ms": 24.384,
+        "end_to_end_analysis_ms": 44.556
+      }
+    },
+    {
+      "scenario": "Hinglish bank impersonation",
+      "state": "CANCELLED",
+      "decision": "STEP_UP_VERIFICATION",
+      "risk_level": "MEDIUM",
+      "risk_score": 47.88,
+      "reason_codes": [
+        "BANK_AUTHORITY_CLAIM",
+        "BANK_IMPERSONATION",
+        "BANK_IMPERSONATION_PATTERN",
+        "CTX_AUTHORITY_CLAIM",
+        "CTX_SECRECY",
+        "CTX_UNKNOWN_CONTACT",
+        "CTX_URGENT_REQUEST",
+        "MANIPULATION_EVIDENCE_DETECTED",
+        "NEW_RECIPIENT_AUTHORITY_SCAM_PATTERN",
+        "PSY_URGENCY",
+        "RECIPIENT_MODEL_ELEVATED",
+        "RECIPIENT_PRIOR_REPORTS",
+        "SECRECY_REQUEST_DETECTED",
+        "SUSPICIOUS_RECIPIENT_UNKNOWN_URGENT_PATTERN",
+        "TX_NEW_RECIPIENT"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 127.07,
+      "analysis_ms": {
+        "passive_analysis_ms": 20.206,
+        "full_analysis_ms": 49.168,
+        "end_to_end_analysis_ms": 69.374
+      }
+    },
+    {
+      "scenario": "remote support pressure",
+      "state": "CANCELLED",
+      "decision": "STEP_UP_VERIFICATION",
+      "risk_level": "LOW",
+      "risk_score": 22.67,
+      "reason_codes": [
+        "CTX_REMOTE_ACCESS",
+        "EMOTIONAL_PRESSURE_MODEL_EVIDENCE",
+        "MANIPULATION_EVIDENCE_DETECTED",
+        "ML_ONLY_RISK_CAPPED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "RECIPIENT_MODEL_ELEVATED",
+        "RECIPIENT_PRIOR_REPORTS",
+        "TX_NEW_RECIPIENT",
+        "URGENCY_MODEL_EVIDENCE"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 139.59,
+      "analysis_ms": {
+        "passive_analysis_ms": 14.934,
+        "full_analysis_ms": 42.417,
+        "end_to_end_analysis_ms": 57.351
+      }
+    },
+    {
+      "scenario": "refund pressure",
+      "state": "CANCELLED",
+      "decision": "WARN_AND_REVIEW",
+      "risk_level": "LOW",
+      "risk_score": 9.28,
+      "reason_codes": [
+        "CTX_UNKNOWN_CONTACT",
+        "CTX_URGENT_REQUEST",
+        "MANIPULATION_EVIDENCE_DETECTED",
+        "ML_ONLY_RISK_CAPPED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "REWARD_MODEL_EVIDENCE",
+        "TX_NEW_RECIPIENT",
+        "UNCERTAIN_TEXT_SCENARIO"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 0,
+      "question_prompts": [],
+      "question_repeated": false,
+      "explicit_action": "CANCELLED_AFTER_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "CANCELLED",
+      "api_calls": 2,
+      "flow_ms": 130.82,
+      "analysis_ms": {
+        "passive_analysis_ms": 22.223,
+        "full_analysis_ms": 49.957,
+        "end_to_end_analysis_ms": 72.18
+      }
+    },
+    {
+      "scenario": "ordinary merchant",
+      "state": "SIMULATED_COMPLETED",
+      "decision": "ALLOW",
+      "risk_level": "LOW",
+      "risk_score": 1.52,
+      "reason_codes": [
+        "CTX_UNKNOWN_CONTACT",
+        "NO_MANIPULATION_DETECTED",
+        "NO_RULE_MANIPULATION_EVIDENCE",
+        "TX_NEW_RECIPIENT",
+        "UNCERTAIN_TEXT_SCENARIO"
+      ],
+      "evidence_reasons": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "questions": 1,
+      "question_prompts": [
+        "Who asked you to make this payment?"
+      ],
+      "question_repeated": false,
+      "explicit_action": "PAYMENT_ALLOWED_WITHOUT_WARNING",
+      "before_action_status": "NOT_EXECUTED",
+      "simulated_status": "SIMULATED_SUCCESS",
+      "api_calls": 3,
+      "flow_ms": 162.87,
+      "analysis_ms": {
+        "passive_analysis_ms": 17.336,
+        "full_analysis_ms": 25.963,
+        "end_to_end_analysis_ms": 43.299
+      }
+    }
+  ]
+}

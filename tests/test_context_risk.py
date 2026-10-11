@@ -35,6 +35,12 @@ def test_optional_fields_and_empty_message():
     assert PaymentContext(user_message='   ').user_message is None
 
 
+def test_empty_default_contradiction_list_is_not_context_evidence():
+    result = calculate_context_risk(PaymentContext())
+    assert result['context_available'] is False
+    assert result['reasons'] == ['insufficient_context_information']
+
+
 def test_government_stacked_evidence():
     context = PaymentContext(payment_reason='government', contacted_by_unknown_person=True,
         claimed_authority=True, authority_type='police', urgent_payment_requested=True,

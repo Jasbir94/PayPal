@@ -1,5 +1,5 @@
 """Pre-payment simulation API; all operations remain local and simulated."""
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Query, Request
 from backend.app.simulation.schemas import (CreatePaymentAttempt, AnalyzePaymentAttempt,
     ContinuePaymentAttempt, VerifyPaymentAttempt)
 
@@ -13,6 +13,10 @@ def simulator(request:Request):
 @router.get('/accounts')
 def get_simulated_accounts(request:Request): return simulator(request).catalog()
 
+@router.get('/recipients/{account_id}/network')
+def get_recipient_network(account_id:str,request:Request):
+    return simulator(request).account_neighborhood(account_id)
+
 @router.get('/scenarios')
 def get_demo_scenarios(request:Request): return {'scenarios':simulator(request).scenarios()}
 
@@ -25,7 +29,8 @@ def create_payment_attempt(payload:CreatePaymentAttempt,request:Request):
     return {**result,'created':created}
 
 @router.get('/analytics')
-def get_simulation_analytics(request:Request): return simulator(request).analytics()
+def get_simulation_analytics(request:Request,limit:int=Query(30,ge=1,le=1000)):
+    return simulator(request).analytics(limit=limit)
 
 @router.get('/analyst/analytics')
 def get_analyst_analytics(request:Request): return simulator(request).analytics(analyst=True)

@@ -24,6 +24,25 @@ def test_accounts_scenarios_and_pre_payment_analysis_use_actual_backend():
         assert first.json()['payment']['state'] in ('CONTEXT_REQUIRED','WARNING','VERIFICATION_REQUIRED','READY','SIMULATED_HELD')
         assert first.json()['payment']['simulated_status']=='NOT_EXECUTED'
 
+def test_recipient_network_lookup_uses_graph_without_creating_payment_attempt():
+    with TestClient(app) as client:
+        catalog=client.get('/api/v1/simulated-payments/accounts').json()
+        recipient=catalog['recipients'][0]
+        assert recipient['account_id']
+        before=client.get('/api/v1/simulated-payments/analytics').json()['payments_analyzed']
+        response=client.get(f"/api/v1/simulated-payments/recipients/{recipient['account_id']}/network")
+        assert response.status_code==200
+        network=response.json()
+        assert network['account_id']==recipient['account_id']
+        assert network['nodes'] and network['nodes'][0]['role']=='recipient'
+        assert 'is_known_mule' not in response.text and 'is_suspicious' not in response.text
+        assert client.get('/api/v1/simulated-payments/analytics').json()['payments_analyzed']==before
+
+def test_recipient_network_lookup_rejects_unknown_account():
+    with TestClient(app) as client:
+        response=client.get('/api/v1/simulated-payments/recipients/unknown-account/network')
+        assert response.status_code==404
+
 def test_creation_idempotency_and_no_automatic_payment_execution():
     with TestClient(app) as client:
         one=create_attempt(client,'same-idempotency-key-001')
