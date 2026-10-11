@@ -18,6 +18,10 @@ services:
         value: "1"
       - key: APP_SHIELD_BANKING_DB
         value: /var/data/demo_banking.sqlite3
+      - key: APP_SHIELD_MONGO_URI
+        sync: false
+      - key: APP_SHIELD_MONGO_DATABASE
+        value: appshield
       - key: APP_SHIELD_FEEDBACK_DB
         value: /var/data/feedback.sqlite
       - key: APP_SHIELD_CORS_ORIGINS

@@ -42,5 +42,3 @@ def test_frozen_benchmark_profile_matches_metadata():
     assert {key: value['rows'] for key, value in profile['splits'].items()} == {
         'train': 1200, 'validation': 400, 'test': 400}
     assert profile['id_overlap'] == 0
-
-\n

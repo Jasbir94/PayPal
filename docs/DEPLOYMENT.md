@@ -6,11 +6,12 @@ This repository is configured for a **Vercel static frontend + Render FastAPI ba
 
 1. Push this repository to GitHub and connect it in Render with **New → Blueprint**. Render reads the root `render.yaml` file.
 2. The Blueprint installs `backend/requirements.txt`, validates the committed synthetic datasets/models, starts Uvicorn on Render's `$PORT`, and uses `/ready` as its health check.
-3. The Blueprint attaches a 1 GB persistent disk at `/var/data`; the demo wallet and analyst feedback SQLite databases are configured on that disk. This requires a paid Render web-service plan. Render Free services do not support persistent disks, and their local files are lost when they restart or redeploy.
-4. Set `APP_SHIELD_CORS_ORIGINS` in the Render service environment to the exact Vercel production origin, for example `https://app-shield-example.vercel.app`. Include only origins that you control; add a preview origin explicitly if needed. Do not append a path or trailing slash.
-5. Wait for `/ready` to report `ready`. Verify `/health`, `/ready`, and `/docs` on the Render service URL.
+3. Create a dedicated MongoDB database named `appshield` and a database user scoped to that database. In Render, set the secret `APP_SHIELD_MONGO_URI` to its MongoDB Atlas connection string and keep `APP_SHIELD_MONGO_DATABASE=appshield`. Never use a URI for another application or commit a connection string. MongoDB stores synthetic wallets, demo sessions, payment records, and ledger entries. The API uses atomic multi-document transactions, so use Atlas or another replica-set deployment.
+4. The Blueprint retains a 1 GB disk at `/var/data` for analyst feedback/research SQLite records. This still requires a paid Render web-service plan. Render Free services do not support persistent disks, and their local files are lost when they restart or redeploy. The Mongo wallet database and feedback database are separate.
+5. Set `APP_SHIELD_CORS_ORIGINS` in the Render service environment to the exact Vercel production origin, for example `https://app-shield-example.vercel.app`. Include only origins that you control; add a preview origin explicitly if needed. Do not append a path or trailing slash.
+6. Wait for `/ready` to report `ready`. Verify `/health`, `/ready`, and `/docs` on the Render service URL.
 
-The disk-backed SQLite configuration intentionally pins this demo API to one instance. Render documents that a service with a persistent disk cannot scale to multiple instances. Chat conversations are held in process memory and disappear on service restart; do not use this setup for production or multi-instance traffic.
+The feedback database disk intentionally pins this demo API to one instance. Render documents that a service with a persistent disk cannot scale to multiple instances. Chat conversations are held in process memory and disappear on service restart. Mongo-backed wallets survive restarts, but demo sessions and in-progress chats do not. Do not use this setup for production payments or multi-instance traffic.
 
 ## Vercel frontend
 

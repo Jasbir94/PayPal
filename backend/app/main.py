@@ -78,7 +78,15 @@ async def lifespan(application: FastAPI):
         simulator=application.state.payment_simulator
         senders=[{'alias':alias,'account_id':item['account_id'],'display_name':item['display_name']}
             for alias,item in simulator._scenario_data['senders'].items()]
-        application.state.demo_banking_service=DemoBankingService(senders,simulator.catalog()['recipients'])
+        mongo_uri=os.getenv('APP_SHIELD_MONGO_URI','').strip()
+        if mongo_uri:
+            # Import only when configured so local SQLite development needs no Mongo server.
+            from backend.app.services.mongo_demo_banking_service import MongoDemoBankingService
+            application.state.demo_banking_service=MongoDemoBankingService(
+                senders,simulator.catalog()['recipients'],uri=mongo_uri,
+                database_name=os.getenv('APP_SHIELD_MONGO_DATABASE','appshield').strip() or 'appshield')
+        else:
+            application.state.demo_banking_service=DemoBankingService(senders,simulator.catalog()['recipients'])
         simulator.banking_service=application.state.demo_banking_service
         application.state.knowledge_retriever=HybridRetriever()
         application.state.payment_conversation_agent=PaymentConversationAgent(

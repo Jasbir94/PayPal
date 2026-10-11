@@ -168,5 +168,3 @@ def test_before_after_reassurance_ablation_removes_only_self_reported_protection
     previous=FraudEngine(simulator.risk).analyze_payment(transaction,context,contextual_result=contextual)
     assert current['component_scores']['protective_reduction']==previous['component_scores']['protective_reduction']-5
     assert current['app_scam_risk']>=previous['app_scam_risk']
-
-\n

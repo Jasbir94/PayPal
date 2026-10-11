@@ -130,5 +130,3 @@ def test_payment_detail_mutation_invalidates_prior_assessment_before_settlement(
     assert attempt['state']=='ERROR'
     assert attempt['simulated_status']=='NOT_EXECUTED'
     assert attempt['payment_detail_version']==original_version
-
-\n
