@@ -20,7 +20,7 @@ User workflows: [User Guide](docs/USER_GUIDE.md) · [Conversational Agent](docs/
 
 ## Public demo hosting
 
-Deployment configuration is provided for a Vercel static frontend and a Render FastAPI service. Follow [Public Demo Deployment](docs/DEPLOYMENT.md) to set the frontend API URL, exact CORS origin, and persistent backend storage. The Render backend uses a paid single-instance service with a persistent disk so synthetic balances survive restarts; chat state remains in memory and resets when the backend restarts. This setup is a public research demo, not production banking.
+Deployment configuration is provided for a Vercel static frontend and a Render FastAPI service. Follow [Public Demo Deployment](docs/DEPLOYMENT.md) for the persistent single-instance deployment or [Free Demo Hosting](docs/FREE_HOSTING.md) for a separate free preview. The free preview uses MongoDB for durable wallet/payment records; analyst feedback and in-progress chat state can reset when Render's free service sleeps or restarts. This is a research demo, not production banking.
 
 Reproduce reports with `python -m scripts.reproduce_results`. The source data has already been examined during development; its frozen copy is for reproducibility, not a pristine unseen test set.
 

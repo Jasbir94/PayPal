@@ -1,0 +1,26 @@
+# Separate free preview service. The existing render.yaml remains unchanged,
+# including its persistent disk and its existing deployment/data.
+services:
+  - type: web
+    name: app-shield-api-free
+    runtime: python
+    plan: free
+    numInstances: 1
+    buildCommand: pip install -r backend/requirements.txt && python -m scripts.initialize_demo
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /ready
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: APP_SHIELD_MONGO_URI
+        sync: false
+      - key: APP_SHIELD_MONGO_DATABASE
+        value: appshield
+      - key: APP_SHIELD_BANKING_DB
+        value: /tmp/demo_banking.sqlite3
+      - key: APP_SHIELD_FEEDBACK_DB
+        value: /tmp/feedback.sqlite
+      - key: APP_SHIELD_CORS_ORIGINS
+        sync: false
