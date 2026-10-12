@@ -1,5 +1,11 @@
 const API_BASE = (import.meta.env?.VITE_API_BASE_URL || '').replace(/\/+$/, '');
-const apiUrl = path => `${API_BASE}${path}`;
+export const resolveApiUrl = (path, apiBase, isProduction) => {
+  if (isProduction && !apiBase) {
+    throw new Error('Backend API URL is not configured. Set VITE_API_BASE_URL to the Render API origin.');
+  }
+  return `${apiBase}${path}`;
+};
+const apiUrl = path => resolveApiUrl(path, API_BASE, import.meta.env?.PROD === true);
 const API_ROOT = '/api/v1/simulated-payments';
 const requestId = () => globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 

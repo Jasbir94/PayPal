@@ -1,11 +1,18 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { api } from '../src/services/api.js';
+import { api, resolveApiUrl } from '../src/services/api.js';
 import { buildCaseReport } from '../src/services/reports.js';
 
 const originalFetch=globalThis.fetch;
 afterEach(()=>{globalThis.fetch=originalFetch});
 const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json'}});
+
+test('production API calls require a backend origin instead of falling back to Vercel',()=>{
+  assert.throws(()=>resolveApiUrl('/api/v1/banking/profiles','',true),/VITE_API_BASE_URL/);
+  assert.equal(resolveApiUrl('/api/v1/banking/profiles','https://api.example.onrender.com',true),
+    'https://api.example.onrender.com/api/v1/banking/profiles');
+  assert.equal(resolveApiUrl('/api/v1/banking/profiles','',false),'/api/v1/banking/profiles');
+});
 
 test('scenario comparison creates an attempt, analyzes it, then loads analyst evidence',async()=>{
   const calls=[];
