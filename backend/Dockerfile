@@ -4,6 +4,7 @@ WORKDIR /app
 COPY backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-cache-dir -r /app/backend/requirements.txt
 COPY backend /app/backend
+COPY scripts /app/scripts
 COPY data /app/data
 COPY saved_models /app/saved_models
 COPY models /app/models
