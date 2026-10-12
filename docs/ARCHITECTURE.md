@@ -26,16 +26,16 @@ flowchart TD
   AU --> MO[Monitoring, review and temporal evaluation]
 ```
 
-Transaction/recipient/graph features use timestamp-bounded history. Conversation text is optional and bounded. Missing evidence remains explicitly missing. The current learned fusion artifact is trained/evaluated on transaction/recipient synthetic features; the full live simulator also has interpretable context/scenario/psychology and graph evidence, but those modalities do not have linked temporal labels in that training corpus. The research API stores aggregate-monitoring inputs locally in SQLite. Automatic retraining and promotion are disabled.
+Transaction/recipient/graph features use timestamp-bounded history. Conversation text is optional and bounded. Missing evidence remains explicitly missing. The current learned fusion artifact is trained/evaluated on transaction/recipient synthetic features; the full live simulator also has interpretable context/scenario/psychology and graph evidence, but those modalities do not have linked temporal labels in that training corpus. With `DATABASE_URL` configured, the research API stores feedback, labels, reviews, and audit events in PostgreSQL; local no-URL runs use transient in-memory storage. Automatic retraining and promotion are disabled.
 
 ## Runtime boundaries
 
 - FastAPI (`backend/app/main.py`) owns inference and orchestration.
 - `PaymentSimulator` is in-memory and never calls a payment provider.
-- Feedback/audit/review persistence uses a local SQLite repository.
+- Feedback/audit/review persistence uses APP Shield-prefixed SQL tables in PostgreSQL when deployed.
 - NetworkX graph features are built as of each payment timestamp.
 - The React/Vite frontend is a client only; it contains no independent risk policy.
-- Docker Compose binds both services to loopback and persists only demo feedback in a named volume.
+- Docker Compose binds both services to loopback; without `DATABASE_URL`, app state is transient.
 
 ## Future production shape
 

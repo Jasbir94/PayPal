@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import secrets
 import sqlite3
+from uuid import uuid4
 from zoneinfo import ZoneInfo
 
 from fastapi import HTTPException
@@ -36,13 +37,21 @@ class DemoBankingService:
 
     def __init__(self, senders, recipients, database_path=None):
         configured = database_path or os.getenv('APP_SHIELD_BANKING_DB')
-        self.database_path = Path(configured) if configured else PROJECT_ROOT / 'data' / 'processed' / 'demo_banking.sqlite3'
-        if str(self.database_path) != ':memory:':
+        if str(configured) == ':memory:':
+            self.database_path = ':memory:'
+            self._database_target = f'file:app-shield-banking-{uuid4()}?mode=memory&cache=shared'
+            self._uri = True
+            self._anchor = sqlite3.connect(self._database_target, uri=True, check_same_thread=False)
+        else:
+            self.database_path = Path(configured) if configured else PROJECT_ROOT / 'data' / 'processed' / 'demo_banking.sqlite3'
+            self._database_target = str(self.database_path)
+            self._uri = False
+            self._anchor = None
             self.database_path.parent.mkdir(parents=True, exist_ok=True)
         self._initialize(senders, recipients)
 
     def _connect(self):
-        connection = sqlite3.connect(str(self.database_path), timeout=15, isolation_level=None)
+        connection = sqlite3.connect(self._database_target, timeout=15, isolation_level=None, uri=self._uri)
         connection.row_factory = sqlite3.Row
         connection.execute('PRAGMA foreign_keys=ON')
         connection.execute('PRAGMA busy_timeout=15000')

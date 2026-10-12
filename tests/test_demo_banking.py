@@ -93,3 +93,13 @@ def test_external_simulated_recipient_is_not_falsely_credited(bank):
     assert bank.balance('account-a')['available_balance']==9900
     with bank._transaction() as connection:
         assert connection.execute('SELECT COUNT(*) FROM ledger_entries WHERE transaction_id=?',('tx-external',)).fetchone()[0]==1
+
+
+def test_in_memory_banking_survives_requests_without_creating_a_file(monkeypatch, tmp_path):
+    monkeypatch.delenv('APP_SHIELD_BANKING_DB', raising=False)
+    service = DemoBankingService(
+        [{'alias':'U101','account_id':'account-a','display_name':'Account A'}], [], ':memory:')
+    session = service.create_demo_session('U101')
+    assert service.resolve_token(session['access_token'])['account_id'] == 'account-a'
+    assert service.balance('account-a')['available_balance'] == 10000
+    assert list(tmp_path.iterdir()) == []

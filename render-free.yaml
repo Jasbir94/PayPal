@@ -14,13 +14,13 @@ services:
         value: 3.12.10
       - key: PYTHONUNBUFFERED
         value: "1"
-      - key: APP_SHIELD_MONGO_URI
+      - key: APP_ENV
+        value: production
+      - key: DATABASE_URL
         sync: false
-      - key: APP_SHIELD_MONGO_DATABASE
-        value: appshield
-      - key: APP_SHIELD_BANKING_DB
-        value: /tmp/demo_banking.sqlite3
-      - key: APP_SHIELD_FEEDBACK_DB
-        value: /tmp/feedback.sqlite
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
       - key: APP_SHIELD_CORS_ORIGINS
         sync: false

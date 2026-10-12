@@ -5,10 +5,7 @@ services:
       dockerfile: backend/Dockerfile
     environment:
       APP_ENV: demo
-      APP_SHIELD_FEEDBACK_DB: /app/data/processed/day9/feedback.sqlite
       APP_SHIELD_CORS_ORIGINS: http://127.0.0.1:8080
-    volumes:
-      - feedback_data:/app/data/processed/day9
     ports:
       - "127.0.0.1:8000:8000"
     healthcheck:
@@ -26,5 +23,3 @@ services:
         condition: service_healthy
     ports:
       - "127.0.0.1:8080:8080"
-volumes:
-  feedback_data:

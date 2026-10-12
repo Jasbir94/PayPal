@@ -9,6 +9,7 @@ from threading import RLock
 from time import time
 from uuid import uuid4
 from fastapi import HTTPException
+from backend.app.conversation.gemini_assistant import GeminiChatAssistant
 from backend.app.schemas.context import PaymentContext
 from backend.app.simulation.schemas import CreatePaymentAttempt,AnalyzePaymentAttempt,ContinuePaymentAttempt
 from backend.app.services.demo_banking_service import InsufficientBalance
@@ -94,8 +95,14 @@ class PaymentConversationAgent:
     SESSION_TTL=1800
     MAX_MESSAGES=40
     MAX_TOTAL_CHARS=6000
-    def __init__(self,simulator,retriever,banking_service=None):
-        self.simulator=simulator;self.retriever=retriever;self.banking=banking_service;self._sessions={};self._lock=RLock();self._request_cache={}
+    def __init__(self,simulator,retriever,banking_service=None,gemini_assistant=None):
+        self.simulator=simulator;self.retriever=retriever;self.banking=banking_service
+        self.gemini=gemini_assistant or GeminiChatAssistant();self._sessions={};self._lock=RLock();self._request_cache={}
+
+    def _intent(self,message,*,allow_gemini):
+        intent=route_intent(message)
+        if intent!='UNKNOWN' or not allow_gemini:return intent
+        return self.gemini.classify_intent(message) or intent
 
     def idempotent_request(self, *, scope, owner, key, payload, operation):
         """Return a cached result for a replay; reject a key reused for new input."""
@@ -143,7 +150,7 @@ class PaymentConversationAgent:
                 'transactions':None,'transaction_detail':None}
             session['messages'].append({'role':'user','text':message})
             self._sessions[session['session_id']]=session
-        intent=route_intent(message)
+        intent=self._intent(message,allow_gemini=True)
         if intent=='CHECK_BALANCE':return self._show_balance(session)
         if intent in ('TRANSACTION_DETAILS','TRANSACTION_FILTER'):return self._show_transactions(session,message)
         if intent!='MAKE_PAYMENT':return self._prompt(session,'Hello! How can I help you today?','MAIN_MENU',main_options=MAIN_OPTIONS)
@@ -166,7 +173,8 @@ class PaymentConversationAgent:
             if len(session['messages'])>=self.MAX_MESSAGES or sum(len(row['text']) for row in session['messages'])+len(message)>self.MAX_TOTAL_CHARS:
                 raise HTTPException(413,'This conversation reached its safety-check limit. Cancel the current attempt or start a new chat.')
             session['messages'].append({'role':'user','text':message})
-        intent=route_intent(message)
+        intent=self._intent(message,allow_gemini=not session.get('payment_attempt_id')
+            and not session.get('collecting_payment'))
         if not session['payment_attempt_id']:
             if intent=='CHECK_BALANCE':return self._show_balance(session)
             if intent in ('TRANSACTION_DETAILS','TRANSACTION_FILTER'):return self._show_transactions(session,message)
@@ -529,6 +537,9 @@ class PaymentConversationAgent:
 
     def _prompt(self,session,message,state,*,quick_replies=None,recipient_options=None,actions=None,knowledge=None,payment=None,
                 balance=None,transactions=None,transaction_detail=None,main_options=None,view_more=False):
+        if state=='MAIN_MENU' and self.gemini:
+            latest_user=next((row['text'] for row in reversed(session['messages']) if row['role']=='user'),'')
+            message=self.gemini.generate_menu_reply(latest_user) or message
         session['messages'].append({'role':'assistant','text':message});session['updated']=time();session['last_state']=state
         return {'session_id':session['session_id'],'payment_attempt_id':session.get('payment_attempt_id'),
             'message':message,'interaction_type':state,'payment_state':payment['state'] if payment else state,

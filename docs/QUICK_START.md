@@ -46,10 +46,12 @@ npm run dev -- --host 127.0.0.1 --strictPort
 
 On Windows, replace `.venv/bin/python` with `.venv\Scripts\python.exe`.
 
+Gemini assistance is optional. Set `GEMINI_API_KEY` in the backend environment to enable ambiguous-intent classification and generic menu replies. `GEMINI_MODEL` defaults to `gemini-2.5-flash`. Gemini does not parse payment amounts or recipients, assess risk, choose safety questions, or confirm/cancel payments. Without a key, deterministic behavior remains active.
+
 ## Use the customer chat
 
 The chat opens with three actions: **Make Payment**, **Check Balance**, and **Transaction Details**. You can also type requests such as “Send ₹3,000 to Riya Sen,” “What's my balance?” or “How much did I send this week?”
 
 For a payment, the backend checks the recipient and available balance, runs the APP Shield assessment, asks any selected context question, and shows a review. A separate **Confirm & Send** action is required. Internal demo-recipient transfers update both wallets and append debit/credit ledger rows atomically. Other catalog recipients are simulated external settlements and are not credited to a fabricated local wallet.
 
-The account picker switches among synthetic profiles. On a new database, U101 starts with ₹10,000 and U102 starts with ₹2,000; set `APP_SHIELD_DEMO_BALANCE_U101` / `APP_SHIELD_DEMO_BALANCE_U102` before first startup to change those seed amounts. Balance changes persist in `data/processed/demo_banking.sqlite3`. These profile sessions are for a local demo and do not prove real-world identity. See [simulated banking details](BANKING_DEMO.md). For a prepared fraud case, analyst and research routes remain available directly.
+The account picker switches among synthetic profiles. On a new database, U101 starts with ₹10,000 and U102 starts with ₹2,000; set `APP_SHIELD_DEMO_BALANCE_U101` / `APP_SHIELD_DEMO_BALANCE_U102` before first startup to change those seed amounts. Set `DATABASE_URL` to PostgreSQL for durable balances and histories; without it, local state is transient and cleared when the backend stops. These profile sessions are for a demo and do not prove real-world identity. See [simulated banking details](BANKING_DEMO.md). For a prepared fraud case, analyst and research routes remain available directly.

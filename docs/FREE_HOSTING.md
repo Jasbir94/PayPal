@@ -1,21 +1,21 @@
 # Free demo hosting
 
-The lowest-friction free setup for this repository is a Vercel frontend, a Render Python API, and MongoDB Atlas for durable demo wallet and payment data. This is for a personal synthetic demo, not a production payment service.
+The free preview uses a Vercel frontend, a Render Python API, and a PostgreSQL database for durable demo wallet and payment data. This is for a personal synthetic demo, not a production payment service.
 
 ## What persists
 
-- MongoDB stores demo profiles, account sessions, simulated payment records, and wallet ledger entries when `APP_SHIELD_MONGO_URI` is set.
-- The free Render service has an ephemeral filesystem. Analyst feedback/audit/review history uses `/tmp/feedback.sqlite` and can disappear when the service sleeps, restarts, or redeploys. In-progress chat sessions are in memory and also reset on restart.
-- The separate paid `render.yaml` deployment and its persistent disk are left unchanged. The free service is a new deployment and does not import existing SQLite records.
+- PostgreSQL stores demo profiles, sessions, simulated payment records, wallet ledger entries, analyst feedback, and audit records through `DATABASE_URL`.
+- Local filesystem persistence is not used. In-progress chat sessions remain in memory and reset when the free Render service sleeps, restarts, or redeploys.
+- The paid `render.yaml` deployment is separate. Existing local SQLite records are not automatically imported into PostgreSQL.
 
-Render free services sleep after 15 minutes without traffic and can take about a minute to wake. Free instances have 512 MB RAM and share a monthly 750 free-instance-hour allowance per workspace. Atlas Free clusters have a 512 MB storage limit and no backups. These services are suitable for a demo, not production data.
+Render free services sleep after 15 minutes without traffic and can take about a minute to wake. Free instances have 512 MB RAM and share a monthly 750 free-instance-hour allowance per workspace. Select a PostgreSQL provider and plan appropriate for demo data; these services are not suitable for production banking data.
 
 ## Create the API service
 
-1. Rotate the MongoDB database-user password that was pasted into chat. Create a new database user with access limited to the `appshield` database. Do not reuse the credentials for another project.
+1. Rotate the database credential pasted into chat. Create a dedicated PostgreSQL database/user for APP Shield; do not reuse credentials from another project.
 2. In Render, create a Blueprint from `https://github.com/Jasbir94/PayPal` and select `render-free.yaml` as its Blueprint file. This creates a separate service named `app-shield-api-free` on the free plan; it does not alter the existing paid Blueprint.
-3. Set the Blueprint secret `APP_SHIELD_MONGO_URI` to the newly rotated Atlas connection string. `APP_SHIELD_MONGO_DATABASE` is set to `appshield` in the file. Atlas connections need the Render service’s outbound address to be accepted; use a narrowly scoped access list if your hosting setup provides stable egress. Never put the URI in source code or a `VITE_*` variable.
-4. Deploy and wait for `/ready` to return `ready`. Check `/health`, `/docs`, and the Render logs. Atlas must support replica-set transactions; Atlas clusters do.
+3. Set the Blueprint secret `DATABASE_URL` to the new PostgreSQL connection string. Never put it in source code or a `VITE_*` variable.
+4. Deploy and wait for `/ready` to return `ready`. Check `/health`, `/docs`, and the Render logs.
 
 ## Create the frontend site
 
@@ -29,5 +29,5 @@ Render free services sleep after 15 minutes without traffic and can take about a
 - [Render free services](https://render.com/docs/free)
 - [Render Blueprint configuration](https://render.com/docs/infrastructure-as-code)
 - [Vercel Hobby plan](https://vercel.com/docs/plans/hobby)
-- [MongoDB Atlas free-cluster limits](https://www.mongodb.com/docs/atlas/reference/limitations/)
-- [MongoDB connection setup](https://www.mongodb.com/docs/atlas/connect-to-database-deployment/)
+- [Render PostgreSQL](https://render.com/docs/databases)
+- [Neon PostgreSQL connection strings](https://neon.tech/docs/connect/connect-from-any-app)

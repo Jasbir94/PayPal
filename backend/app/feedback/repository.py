@@ -1,15 +1,136 @@
-"""Append-only SQLite persistence for snapshots, feedback labels, actions and audit events."""
+"""SQL persistence for snapshots, feedback labels, actions, and audit events."""
 from __future__ import annotations
 from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
-import sqlite3
+import re
 from contextlib import contextmanager
 from threading import RLock
 from uuid import uuid4
-from backend.app.config.risk_config import PROJECT_ROOT
+from sqlalchemy import (Column, Float, Index, Integer, MetaData, String, Table, Text,
+    UniqueConstraint, create_engine, text)
+from sqlalchemy.engine import Engine
+from sqlalchemy.pool import StaticPool
+from backend.app.database.db import create_database_engine, normalize_database_url
+
+_METADATA = MetaData()
+_TABLES = {
+    name: 'app_shield_' + name for name in (
+        'prediction_snapshots', 'user_actions', 'fraud_labels', 'audit_events',
+        'review_queue', 'shadow_predictions')
+}
+_SNAPSHOTS = Table(_TABLES['prediction_snapshots'], _METADATA,
+    Column('attempt_id', String(80), primary_key=True),
+    Column('prediction_timestamp', String(64), nullable=False),
+    Column('snapshot_json', Text, nullable=False),
+    Column('snapshot_hash', String(64), nullable=False))
+_ACTIONS = Table(_TABLES['user_actions'], _METADATA,
+    Column('action_id', String(36), primary_key=True),
+    Column('attempt_id', String(80), nullable=False),
+    Column('action', String(80), nullable=False),
+    Column('created_at', String(64), nullable=False),
+    Column('detail_json', Text, nullable=False))
+_LABELS = Table(_TABLES['fraud_labels'], _METADATA,
+    Column('label_id', String(36), primary_key=True),
+    Column('attempt_id', String(80), nullable=False),
+    Column('label', String(64), nullable=False),
+    Column('source', String(64), nullable=False),
+    Column('confidence', Float, nullable=False),
+    Column('label_timestamp', String(64), nullable=False),
+    Column('received_at', String(64), nullable=False),
+    Column('note', Text))
+_AUDIT = Table(_TABLES['audit_events'], _METADATA,
+    Column('sequence', Integer, primary_key=True, autoincrement=True),
+    Column('event_id', String(36), nullable=False, unique=True),
+    Column('attempt_id', String(80), nullable=False),
+    Column('event_type', String(80), nullable=False),
+    Column('timestamp', String(64), nullable=False),
+    Column('model_version', String(255)),
+    Column('payload_json', Text, nullable=False),
+    Column('previous_hash', String(64), nullable=False),
+    Column('event_hash', String(64), nullable=False, unique=True))
+_REVIEWS = Table(_TABLES['review_queue'], _METADATA,
+    Column('attempt_id', String(80), primary_key=True),
+    Column('status', String(32), nullable=False),
+    Column('reason', Text, nullable=False),
+    Column('created_at', String(64), nullable=False),
+    Column('reviewed_at', String(64)),
+    Column('outcome', String(64)),
+    Column('note', Text))
+_SHADOW = Table(_TABLES['shadow_predictions'], _METADATA,
+    Column('shadow_id', String(36), primary_key=True),
+    Column('attempt_id', String(80), nullable=False),
+    Column('created_at', String(64), nullable=False),
+    Column('model_version', String(255), nullable=False),
+    Column('risk', Float, nullable=False),
+    Column('calibrated_probability', Float),
+    Column('decision', String(64), nullable=False),
+    Column('features_json', Text, nullable=False),
+    Column('holdout_fingerprint', String(255)))
+Index('ix_app_shield_actions_attempt', _ACTIONS.c.attempt_id, _ACTIONS.c.created_at)
+Index('ix_app_shield_labels_attempt', _LABELS.c.attempt_id, _LABELS.c.received_at)
+Index('ix_app_shield_audit_attempt', _AUDIT.c.attempt_id, _AUDIT.c.sequence)
+Index('ix_app_shield_shadow_created', _SHADOW.c.created_at, _SHADOW.c.model_version)
+
+
+class _Result:
+    def __init__(self, result):
+        self.result = result
+
+    @property
+    def rowcount(self):
+        return self.result.rowcount
+
+    def fetchone(self):
+        return self.result.mappings().first()
+
+    def fetchall(self):
+        return self.result.mappings().all()
+
+
+class _Connection:
+    def __init__(self, connection):
+        self.connection = connection
+
+    def execute(self, query, parameters=()):
+        ignore_conflict = query.lstrip().upper().startswith('INSERT OR IGNORE INTO ')
+        query = re.sub(r'\bINSERT\s+OR\s+IGNORE\s+INTO\b', 'INSERT INTO', query,
+            count=1, flags=re.IGNORECASE)
+        for old_name, new_name in _TABLES.items():
+            query = re.sub(rf'\b{old_name}\b', new_name, query)
+        if isinstance(parameters, dict):
+            values = parameters
+        else:
+            position = 0
+            def replace_placeholder(_match):
+                nonlocal position
+                name = f'p{position}'
+                position += 1
+                return ':' + name
+            query = re.sub(r'\?', replace_placeholder, query)
+            values = {f'p{index}': value for index, value in enumerate(parameters or ())}
+        if ignore_conflict:
+            query = query.rstrip().rstrip(';') + ' ON CONFLICT DO NOTHING'
+        return _Result(self.connection.execute(text(query), values))
+
+
+def _make_engine(path=None) -> tuple[Engine, str | None]:
+    database_url = normalize_database_url(os.getenv('DATABASE_URL'))
+    configured = path if path is not None else (database_url or os.getenv('APP_SHIELD_FEEDBACK_DB'))
+    if configured == ':memory:':
+        return create_engine('sqlite://', connect_args={'check_same_thread':False},
+            poolclass=StaticPool), ':memory:'
+    if configured:
+        configured_text = str(configured)
+        if '://' in configured_text:
+            database_url = configured_text
+        else:
+            database_url = 'sqlite:///' + os.path.abspath(configured_text).replace('\\', '/')
+    elif not database_url:
+        return create_engine('sqlite://', connect_args={'check_same_thread':False},
+            poolclass=StaticPool), ':memory:'
+    return create_database_engine(database_url), None
 
 
 class SnapshotConflict(ValueError):
@@ -17,70 +138,19 @@ class SnapshotConflict(ValueError):
 
 
 class FeedbackRepository:
-    def __init__(self, path: str | Path | None = None):
-        configured = path or os.getenv('APP_SHIELD_FEEDBACK_DB')
-        if str(configured)==':memory:':
-            self.path=':memory:'
-            self._database_target=f'file:feedback-{uuid4()}?mode=memory&cache=shared'
-            self._uri=True
-            self._anchor=sqlite3.connect(self._database_target,uri=True,check_same_thread=False)
-        else:
-            self.path = Path(configured) if configured else PROJECT_ROOT / 'data' / 'processed' / 'day9' / 'feedback.sqlite'
-            self._database_target=str(self.path)
-            self._uri=False
-            self._anchor=None
-            self.path.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, path=None):
+        self.engine, self.path = _make_engine(path)
         self._lock = RLock()
         self._initialize()
 
-    def _connect(self):
-        connection = sqlite3.connect(self._database_target, timeout=15,uri=self._uri)
-        connection.row_factory = sqlite3.Row
-        connection.execute('PRAGMA foreign_keys=ON')
-        return connection
-
     @contextmanager
     def _database(self):
-        db=self._connect()
-        try:
-            yield db
-            db.commit()
-        except Exception:
-            db.rollback()
-            raise
-        finally:
-            db.close()
+        with self.engine.begin() as connection:
+            yield _Connection(connection)
 
     def _initialize(self):
-        with self._lock, self._database() as db:
-            db.executescript('''
-                CREATE TABLE IF NOT EXISTS prediction_snapshots (
-                    attempt_id TEXT PRIMARY KEY, prediction_timestamp TEXT NOT NULL,
-                    snapshot_json TEXT NOT NULL, snapshot_hash TEXT NOT NULL);
-                CREATE TABLE IF NOT EXISTS user_actions (
-                    action_id TEXT PRIMARY KEY, attempt_id TEXT NOT NULL, action TEXT NOT NULL,
-                    created_at TEXT NOT NULL, detail_json TEXT NOT NULL);
-                CREATE INDEX IF NOT EXISTS idx_actions_attempt ON user_actions(attempt_id, created_at);
-                CREATE TABLE IF NOT EXISTS fraud_labels (
-                    label_id TEXT PRIMARY KEY, attempt_id TEXT NOT NULL, label TEXT NOT NULL,
-                    source TEXT NOT NULL, confidence REAL NOT NULL, label_timestamp TEXT NOT NULL,
-                    received_at TEXT NOT NULL, note TEXT);
-                CREATE INDEX IF NOT EXISTS idx_labels_attempt ON fraud_labels(attempt_id, received_at);
-                CREATE TABLE IF NOT EXISTS audit_events (
-                    sequence INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT UNIQUE NOT NULL,
-                    attempt_id TEXT NOT NULL, event_type TEXT NOT NULL, timestamp TEXT NOT NULL,
-                    model_version TEXT, payload_json TEXT NOT NULL, previous_hash TEXT NOT NULL,
-                    event_hash TEXT UNIQUE NOT NULL);
-                CREATE INDEX IF NOT EXISTS idx_audit_attempt ON audit_events(attempt_id, sequence);
-                CREATE TABLE IF NOT EXISTS review_queue (
-                    attempt_id TEXT PRIMARY KEY, status TEXT NOT NULL, reason TEXT NOT NULL,
-                    created_at TEXT NOT NULL, reviewed_at TEXT, outcome TEXT, note TEXT);
-                CREATE TABLE IF NOT EXISTS shadow_predictions (
-                    shadow_id TEXT PRIMARY KEY, attempt_id TEXT NOT NULL, created_at TEXT NOT NULL,
-                    model_version TEXT NOT NULL, risk REAL NOT NULL, calibrated_probability REAL,
-                    decision TEXT NOT NULL, features_json TEXT NOT NULL, holdout_fingerprint TEXT);
-                CREATE INDEX IF NOT EXISTS idx_shadow_created ON shadow_predictions(created_at, model_version);
-            ''')
+        with self._lock:
+            _METADATA.create_all(self.engine)
 
     @staticmethod
     def _json(value):

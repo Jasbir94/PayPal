@@ -37,3 +37,11 @@ def test_shadow_records_are_persistent_and_summarized_as_unlabeled():
     result=shadow_summary(repository.list_shadow_predictions())
     assert result['prediction_count']==1
     assert result['accuracy_status']=='NOT_EVALUABLE_WITHOUT_MATURE_TRUSTED_LABELS'
+
+
+def test_default_feedback_repository_is_transient_without_database_url(monkeypatch):
+    monkeypatch.delenv('DATABASE_URL', raising=False)
+    monkeypatch.delenv('APP_SHIELD_FEEDBACK_DB', raising=False)
+    repository=FeedbackRepository()
+    assert repository.path == ':memory:'
+    assert repository.aggregate_counts()['user_actions'] == 0
