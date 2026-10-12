@@ -12,4 +12,4 @@ COPY evaluation /app/evaluation
 COPY reports /app/reports
 RUN mkdir -p /app/data/processed/day9
 EXPOSE 8000
-CMD ["uvicorn","backend.app.main:app","--host","0.0.0.0","--port","8000"]
+CMD ["sh","-c","exec uvicorn backend.app.main:app --host 0.0.0.0 --port \"${PORT:-8000}\""]

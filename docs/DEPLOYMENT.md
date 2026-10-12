@@ -5,7 +5,7 @@ This repository is configured for a **Vercel static frontend + Render FastAPI ba
 ## Render backend
 
 1. Push this repository to GitHub and connect it in Render with **New → Blueprint**. Render reads the root `render.yaml` file.
-2. The Blueprint installs `backend/requirements.txt`, validates the committed synthetic datasets/models, starts Uvicorn on Render's `$PORT`, and uses `/ready` as its health check.
+2. The Blueprint uses Docker with `backend/Dockerfile` and the repository root (`.`) as its build context. Do not set the Render service Root Directory to `backend/`; the Dockerfile copies `backend/`, `data/`, `saved_models/`, `models/`, `ml/`, `evaluation/`, and `reports/` from the repository root. Uvicorn binds to Render's `PORT` environment variable and `/ready` is the health check.
 3. Create a dedicated PostgreSQL database and user for APP Shield. In Render, set the secret `DATABASE_URL` to its rotated PostgreSQL connection string. Do not use credentials pasted into chat or commit a connection string. The API stores synthetic wallets, sessions, payments, ledger entries, analyst feedback, labels, reviews, and audit events in APP Shield-prefixed tables.
 4. No persistent Render disk is required. Demo wallets and research feedback persist in PostgreSQL; in-progress chat sessions remain in process memory and reset on restart.
 5. Optionally set the Render secret `GEMINI_API_KEY` to a newly rotated Google AI Studio key. `GEMINI_MODEL` defaults to `gemini-2.5-flash`. Keep the key server-side; without it, deterministic chat behavior remains active.
